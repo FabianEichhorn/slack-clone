@@ -1,6 +1,6 @@
 .sidenav {
     width: 20vw;
-    height: 100vh;
+    height: 95vh;
     background-color: #4d5caf;
     margin-top: -12px;
 }
@@ -19,6 +19,14 @@
         margin-top: 0.5rem;
         margin-left: 1rem;
         font-size: 18px;
+    }
+}
+
+.channel-content {
+    display: flex;
+    align-items: center;
+    mat-icon {
+        margin-top: -1rem
     }
 }
 
