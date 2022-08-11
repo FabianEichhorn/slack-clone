@@ -1,0 +1,16 @@
+.mat-toolbar {
+    box-shadow: 0 0 6px #00000080;
+}
+
+.header-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.menu-icon {
+    width: 20px;
+    cursor: pointer;
+}
