@@ -17,6 +17,13 @@ import { ChatInputComponent } from './chat-input/chat-input.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ContentDrawerComponent } from './content-drawer/content-drawer.component';
 
+// imports for Angular Firestore: problems solved with this links
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+
 
 
 @NgModule({
@@ -37,6 +44,10 @@ import { ContentDrawerComponent } from './content-drawer/content-drawer.componen
     MatIconModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]
