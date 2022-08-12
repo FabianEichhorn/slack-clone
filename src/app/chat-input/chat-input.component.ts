@@ -25,7 +25,6 @@ export class ChatInputComponent implements OnInit {
       .collection('channelmessages')
       .add({ 'text': this.messageInput });
     this.messageInput = "";
-
   }
 
 }
