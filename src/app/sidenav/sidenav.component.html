@@ -5,10 +5,10 @@
             <h2>Channel</h2>
         </div>
 
-        <span>Allgemein</span>
-        <span>Coding</span>
-        <span>JavaScript</span>
-        <span>Angular</span>
+        <span *ngFor="let channel of channels">{{ channel.name }}</span>
+
+
+
     </div>
 
     <div class="channels">

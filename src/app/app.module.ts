@@ -46,14 +46,11 @@ import { AngularFireModule } from '@angular/fire/compat';
     MatIconModule,
     BrowserAnimationsModule,
     MatButtonModule,
-<<<<<<< HEAD
     FormsModule,
-=======
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
->>>>>>> 11e8ff6d1319b2858a7cc7d5195264ab3f805b90
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

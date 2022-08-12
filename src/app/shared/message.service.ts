@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -10,16 +11,17 @@ export class MessageService {
 
   ngOnInit(): void {
     this.messages = this.getMessages();
+
   }
 
-  constructor() { }
+  constructor(public firestore: AngularFirestore) { }
 
 
   // Empty array for messages
   public getMessages() {
     return [];
-
   }
+
 
 
 }
