@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ChatInputComponent } from './chat-input/chat-input.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ContentDrawerComponent } from './content-drawer/content-drawer.component';
+import { MessageService } from './shared/message.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -37,8 +39,9 @@ import { ContentDrawerComponent } from './content-drawer/content-drawer.componen
     MatIconModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

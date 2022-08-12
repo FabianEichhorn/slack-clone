@@ -8,7 +8,7 @@
     </div>
 
     <div>
-        <input placeholder="Nachricht an Max Mustermann">
+        <input type="text" [(ngModel)]="messageInput" placeholder="Nachricht an Max Mustermann">
     </div>
 
     <div class="gadgets-box">
@@ -17,5 +17,5 @@
         <div>Sprachnachricht</div>
     </div>
 
-    <img src="./assets/icons/arrow-34-48.png" alt="senden">
+    <img (click)="sendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
 </div>
