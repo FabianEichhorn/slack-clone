@@ -6,14 +6,17 @@ import { AppComponent } from './app.component';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './header/header.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 import { ChatInputComponent } from './chat-input/chat-input.component';
 import { MessagesComponent } from './messages/messages.component';
+import { ContentDrawerComponent } from './content-drawer/content-drawer.component';
+
 
 
 @NgModule({
@@ -23,16 +26,17 @@ import { MessagesComponent } from './messages/messages.component';
     HeaderComponent,
     ChatInputComponent,
     MessagesComponent,
+    ContentDrawerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
