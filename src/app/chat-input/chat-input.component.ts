@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MessageService } from '../shared/message.service';
 
 @Component({
@@ -13,14 +14,18 @@ export class ChatInputComponent implements OnInit {
   data: any = this.messageService;
 
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, public firestore: AngularFirestore) { }
 
   ngOnInit(): void {
   }
 
   sendMessage() {
     this.data.messages.push(this.messageInput);
+    this.firestore
+      .collection('channelmessages')
+      .add({ 'text': this.messageInput });
     this.messageInput = "";
+
   }
 
 }
