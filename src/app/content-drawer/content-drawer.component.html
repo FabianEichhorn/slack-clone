@@ -1,11 +1,11 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" [opened]="true" mode="side">
+  <mat-drawer #sidenav class="example-sidenav" [opened]="true" mode="side">
     <app-sidenav></app-sidenav>
   </mat-drawer>
 
   <div class="example-sidenav-content">
     <app-messages></app-messages>
-    <button type="button" mat-button (click)="drawer.toggle()">
+    <button type="button" mat-button (click)="sidenav.toggle()">
       Toggle sidenav
     </button>
     <app-chat-input></app-chat-input>
