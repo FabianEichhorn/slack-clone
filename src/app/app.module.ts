@@ -19,6 +19,13 @@ import { ContentDrawerComponent } from './content-drawer/content-drawer.componen
 import { MessageService } from './shared/message.service';
 import { FormsModule } from '@angular/forms';
 
+// imports for Angular Firestore: problems solved with this links
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+
 
 
 @NgModule({
@@ -39,7 +46,14 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     BrowserAnimationsModule,
     MatButtonModule,
+<<<<<<< HEAD
     FormsModule,
+=======
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
+>>>>>>> 11e8ff6d1319b2858a7cc7d5195264ab3f805b90
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

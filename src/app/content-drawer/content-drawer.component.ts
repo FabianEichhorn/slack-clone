@@ -20,4 +20,11 @@ export class ContentDrawerComponent implements OnInit {
     });
   }
 
+  // function that closes the sidenav, for example by clicking on a link
+  // closeSidenav() {
+  //   if (this.sidenav) {
+  //     this.sidenav.toggle();
+  //   }
+  // }
+
 }
