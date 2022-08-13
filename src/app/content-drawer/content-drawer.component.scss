@@ -1,0 +1,21 @@
+.example-container {
+    height: 93.7vh;
+}
+
+.example-sidenav-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+
+.chat-input {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+    height: 100px;
+}

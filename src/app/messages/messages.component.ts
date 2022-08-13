@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MessageService } from '../shared/message.service';
+
 
 @Component({
   selector: 'app-messages',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor() { }
+  data: any = this.messageService;
+  constructor(public messageService: MessageService, public firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+    this.messageService.getFromFirebase();
   }
 
 }

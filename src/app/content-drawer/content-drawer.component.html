@@ -1,0 +1,12 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #sidenav class="example-sidenav" [opened]="true" mode="side">
+        <app-sidenav></app-sidenav>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <app-messages></app-messages>
+        <div>
+            <app-chat-input class="chat-input"></app-chat-input>
+        </div>
+    </div>
+</mat-drawer-container>
