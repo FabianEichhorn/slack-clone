@@ -14,24 +14,21 @@ export class MessageService {
 
   ngOnInit(): void {
 
+  }
+
+  public getFromFirebase() {
     this.firestore
-      .collection("channelmessages")
+      .collection("channelMessages")
       .valueChanges()
       .subscribe((changes: any) => {
         this.messages = changes;
-        console.log(changes);
       });
   }
 
-  getFirestoreData() {
-
+  public postToFirestore(collectionName: string, data:any) {
     this.firestore
-      .collection("channelmessages")
-      .valueChanges()
-      .subscribe((changes: any) => {
-        this.messages = changes;
-        console.log(changes);
-      });
+      .collection(collectionName)
+      .add(data);
   }
 
 

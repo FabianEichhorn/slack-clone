@@ -11,10 +11,10 @@ import { MessageService } from '../shared/message.service';
 export class MessagesComponent implements OnInit {
 
   data: any = this.messageService;
-  constructor(private messageService: MessageService, public firestore: AngularFirestore) { }
+  constructor(public messageService: MessageService, public firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.data.getFirestoreData();
+    this.messageService.getFromFirebase();
   }
 
 }
