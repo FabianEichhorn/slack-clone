@@ -18,7 +18,7 @@ export class ChatInputComponent implements OnInit {
   }
 
   sendMessage() {
-    this.channelmessage.timestamp = new Date();
+    this.channelmessage.timestamp = new Date().getTime();
     this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
     this.channelmessage.text = "";
   }
