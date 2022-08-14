@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { ChannelMessage } from '../models/channelmessage.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  public messages = [];
+  public messages: ChannelMessage[] = [];
 
   constructor(public firestore: AngularFirestore) { }
 
@@ -18,10 +19,11 @@ export class MessageService {
 
   public getFromFirebase() {
     this.firestore
-      .collection("channelMessages")
+      .collection("channelMessages", ref => ref.where('channelId', '==', '8liMczKcm1Paer7sJbAX'))
       .valueChanges()
       .subscribe((changes: any) => {
         this.messages = changes;
+        this.messages.sort((a,b) => { return a.timestamp - b.timestamp})
       });
   }
 
