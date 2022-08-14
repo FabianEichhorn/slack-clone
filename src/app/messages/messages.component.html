@@ -1,6 +1,16 @@
 <div *ngFor="let message of data.messages" class="message">
-  <p>{{ message.text }} </p>
-  <p>Zeitstempel: {{ message.timestamp.toDate() | date : 'dd.MM.y, HH:mm:ss' }}</p>
-  <p>Id vom Absender: {{ message.userId }}</p>
-  <p>Id vom Channel, in welchem die Nachricht sein sollte: {{ message.channelId }}</p>
+    <div>
+        <div>{{ user.img }}</div>
+
+    </div>
+    <div>
+        <div class="user-box">
+            <p class="user">User: {{ message.userId }}</p>
+            <p class="timestamp">{{ message.timestamp.toDate() | date : 'dd.MM.y, HH:mm:ss' }}</p>
+        </div>
+
+        <p>{{ message.text }} </p>
+        <p> //Id vom Channel, in welchem die Nachricht sein sollte: {{ message.channelId }} //</p>
+    </div>
+
 </div>
