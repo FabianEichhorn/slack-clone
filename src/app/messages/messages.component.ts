@@ -18,7 +18,6 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.messageService.getFromFirebase();
-    this.user.img.push('src/assets/img/user-32.png');
   }
 
 }
