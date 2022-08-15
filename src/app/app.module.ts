@@ -29,6 +29,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import { ThreadComponent } from './thread/thread.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -41,6 +43,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     ChatInputComponent,
     MessagesComponent,
     ContentDrawerComponent,
+    ThreadComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

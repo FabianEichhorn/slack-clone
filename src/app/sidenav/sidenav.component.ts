@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,7 +11,7 @@ export class SidenavComponent implements OnInit {
 
   channels: any = [];
 
-  constructor(public firestore: AngularFirestore) { }
+  constructor(public firestore: AngularFirestore, public router: Router) { }
 
   ngOnInit(): void {
     this.firestore

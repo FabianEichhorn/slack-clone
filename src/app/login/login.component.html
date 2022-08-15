@@ -1,0 +1,23 @@
+<div class="login-register-box">
+    <div class="form-box">
+        <h1>Login</h1>
+
+        <div class="input-box">
+            <i class="fa fa-envelope icon"></i>
+            <input required class="email-input" type="email" placeholder="E-mail">
+        </div>
+
+        <div class="input-box">
+            <i class="fa fa-key icon"></i>
+            <input class="password-input" type="password" placeholder="Passwort">
+            <span class="eye" onclick="showPassword()">
+            <i class="fa fa-eye" id="hide1"></i>
+            <i class="fa fa-eye-slash" id="hide2"></i>
+            </span>
+        </div>
+
+        <button type="button" class="login-btn">Login</button>
+        <button type="button" class="login-button">Register</button>
+        <button type="button" class="login-btn" (click)="data.login = true ">Als Gast anmelden</button>
+    </div>
+</div>
