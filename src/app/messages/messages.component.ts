@@ -23,7 +23,6 @@ export class MessagesComponent implements OnInit {
       this.channelId = paramMap.get('id');
       this.messageService.getFromFirebase(this.channelId);
     });
-
   }
 
 }
