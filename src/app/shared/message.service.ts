@@ -17,9 +17,9 @@ export class MessageService {
 
   }
 
-  public getFromFirebase() {
+  public getFromFirebase(channelId : string | null) {
     this.firestore
-      .collection("channelMessages", ref => ref.where('channelId', '==', '8liMczKcm1Paer7sJbAX'))
+      .collection("channelMessages", ref => ref.where('channelId', '==', channelId))
       .valueChanges()
       .subscribe((changes: any) => {
         this.messages = changes;

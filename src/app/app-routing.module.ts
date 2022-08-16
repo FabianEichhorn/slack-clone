@@ -8,6 +8,7 @@ const routes: Routes = [
   // { path: 'messages/:id1', component: MessagesComponent },
   { path: 'thread', component: ThreadComponent },
   { path: 'channelmessages', component: MessagesComponent },
+  { path: 'channelmessages/:id', component: MessagesComponent },
   { path: 'privatemessages', component: MessagesComponent },
   { path: 'login', component: LoginComponent },
 

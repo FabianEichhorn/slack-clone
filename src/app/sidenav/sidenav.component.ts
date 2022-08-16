@@ -16,10 +16,9 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
     this.firestore
       .collection("channels")
-      .valueChanges()
+      .valueChanges( {idField: 'customIdName'} )
       .subscribe((changes: any) => {
         this.channels = changes;
-        console.log(changes);
       });
   }
 }
