@@ -29,6 +29,7 @@
                         ],
                         "styles": [
                             "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "node_modules/@ctrl/ngx-emoji-mart/picker.css",
                             "src/styles.scss"
                         ],
                         "scripts": []
@@ -95,6 +96,7 @@
                         ],
                         "styles": [
                             "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                             "src/styles.scss"
                         ],
                         "scripts": []
@@ -111,71 +113,60 @@
                     }
                 }
             }
-<<<<<<< HEAD
-          },
-          "defaultConfiguration": "production"
+
         },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
+        "defaultConfiguration": "production"
+    },
+    "serve": {
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "configurations": {
             "production": {
-              "browserTarget": "slack-clone:build:production"
+                "browserTarget": "slack-clone:build:production"
             },
             "development": {
-              "browserTarget": "slack-clone:build:development"
+                "browserTarget": "slack-clone:build:development"
             }
-          },
-          "defaultConfiguration": "development"
         },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
+        "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+        "builder": "@angular-devkit/build-angular:extract-i18n",
+        "options": {
             "browserTarget": "slack-clone:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
+        }
+    },
+    "test": {
+        "builder": "@angular-devkit/build-angular:karma",
+        "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+                "src/favicon.ico",
+                "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+                "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                "src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {
+        }
+    },
+    "deploy": {
+        "builder": "@angular/fire:deploy",
+        "options": {
             "prerender": false,
             "ssr": false,
             "browserTarget": "slack-clone:build:production",
             "firebaseProject": "slack-clone-64942",
             "firebaseHostingSite": "slack-clone-64942"
-          }
-=======
->>>>>>> dbf5d6109dad1721211098f434ba1b80113c89e2
-        },
-        "cli": {
-          "analytics": false
         }
+
     },
     "cli": {
         "analytics": false
     }
-<<<<<<< HEAD
-  },
-  "cli": {
-    "analytics": false
-  }
-=======
->>>>>>> dbf5d6109dad1721211098f434ba1b80113c89e2
 }

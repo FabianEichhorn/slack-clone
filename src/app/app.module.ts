@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -11,8 +10,6 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
-
 import { ChatInputComponent } from './chat-input/chat-input.component';
 import { MessagesComponent } from './messages/messages.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -20,10 +17,10 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-
 import { ContentDrawerComponent } from './content-drawer/content-drawer.component';
 import { MessageService } from './shared/message.service';
 import { FormsModule } from '@angular/forms';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 // imports for Angular Firestore: problems solved with this links
 
@@ -64,6 +61,7 @@ import { LoginComponent } from './login/login.component';
     provideAuth(() => getAuth()),
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
+    PickerModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
