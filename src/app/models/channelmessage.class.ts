@@ -10,7 +10,7 @@ export class ChannelMessage {
     this.text = obj ? obj.text : '';
     this.timestamp = obj ? obj.timestamp : new Date().getTime();
     this.userId = obj ? obj.userId : '3C651LYhk1HaB8Y0Vsbf'
-    this.channelId = obj ? obj.channelId : '8liMczKcm1Paer7sJbAX'
+    this.channelId = obj ? obj.channelId : ''
   }
 
   public toJSON(): any {

@@ -12,17 +12,19 @@ import { MessageService } from '../shared/message.service';
 export class ChatInputComponent implements OnInit {
 
   channelmessage: ChannelMessage = new ChannelMessage();
-  channelId : string | null = '';
+  channelId: string | null = '';
   public textArea: string = '';
   public isEmojiPickerVisible: any;
-  
+
 
   constructor(private messageService: MessageService, public firestore: AngularFirestore, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       this.channelId = paramMap.get('id');
-      console.log(this.channelId);
+      if (this.channelId) {
+        this.channelmessage.channelId = this.channelId;
+      }
     });
   }
 
@@ -32,9 +34,9 @@ export class ChatInputComponent implements OnInit {
     this.channelmessage.text = "";
   }
 
-  public addEmoji(event:any) {
+  public addEmoji(event: any) {
     this.textArea = `${this.textArea}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
- }
+  }
 
 }
