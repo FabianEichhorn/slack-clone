@@ -1,6 +1,5 @@
 .example-container {
     height: 95vh;
-    margin-left: 0 !important;
 }
 
 .example-sidenav-content {
@@ -9,23 +8,4 @@
     max-height: 100%;
     width: 100%;
     max-width: 100%;
-}
-
-.messages-box {
-    min-height: 85%;
-}
-
-.chat-input-box {
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    min-height: 15%;
-}
-
-.chat-input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 110px;
 }

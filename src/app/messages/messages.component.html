@@ -1,25 +1,27 @@
 <div *ngIf="channelId == null">
-  please select a channel
+    please select a channel
 </div>
+<div class="messages-box">
+    <div *ngFor="let message of data.messages" class="message">
+        <div *ngIf="data.messages.lenght == 0">
+            no messages available
+        </div>
 
-<div *ngFor="let message of data.messages" class="message">
-  <div *ngIf="data.messages.lenght == 0">
-    no messages available
-  </div>
+        <div>
+            <div>{{user.img}}</div>
 
-  <div>
-    <div>{{user.img}}</div>
+        </div>
+        <div>
+            <div class="user-box">
+                <p class="user">User: {{ message.userId }}</p>
+                <p class="timestamp">{{ message.timestamp| date : 'dd.MM.y, HH:mm:ss' }}</p>
+            </div>
 
-  </div>
-  <div>
-    <div class="user-box">
-      <p class="user">User: {{ message.userId }}</p>
-      <p class="timestamp">{{ message.timestamp| date : 'dd.MM.y, HH:mm:ss' }}</p>
+            <p>{{ message.text }} </p>
+        </div>
     </div>
-
-    <p>{{ message.text }} </p>
-  </div>
-
 </div>
 
-<app-chat-input></app-chat-input>
+<div class="chat-input-box">
+    <app-chat-input class="chat-input"></app-chat-input>
+</div>
