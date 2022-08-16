@@ -21,6 +21,7 @@ import { ContentDrawerComponent } from './content-drawer/content-drawer.componen
 import { MessageService } from './shared/message.service';
 import { FormsModule } from '@angular/forms';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 // imports for Angular Firestore: problems solved with this links
 
@@ -62,6 +63,7 @@ import { LoginComponent } from './login/login.component';
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     PickerModule,
+    EditorModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

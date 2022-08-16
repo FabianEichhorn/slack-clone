@@ -1,57 +1,157 @@
-    .chat-input-box {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        background-color: rgb(255, 255, 255);
-        width: 98%;
-        height: 100px;
-        border-style: solid;
-        border-width: 2px;
-        border-color: rgb(177, 176, 176);
-        border-radius: 8px;
-        input {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            font-size: 16px;
-            margin-left: 10px;
-            max-width: 100%;
-            width: 90%;
-            border: 0;
-            outline: none;
-            &:focus {
-                outline: none!important;
-            }
-        }
-        img {
-            cursor: pointer;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 25px;
-            height: 25px;
+     .chat-input-box {
+         position: relative;
+         display: flex;
+         flex-direction: column;
+         background-color: rgb(255, 255, 255);
+         width: 98%;
+         height: 100px;
+         border-style: solid;
+         border-width: 2px;
+         border-color: rgb(177, 176, 176);
+         border-radius: 8px;
+         input {
+             margin-top: 20px;
+             margin-bottom: 20px;
+             font-size: 16px;
+             margin-left: 10px;
+             max-width: 100%;
+             width: 90%;
+             border: 0;
+             outline: none;
+             &:focus {
+                 outline: none!important;
+             }
+         }
+         img {
+             cursor: pointer;
+             position: absolute;
+             bottom: 10px;
+             right: 10px;
+             width: 25px;
+             height: 25px;
+         }
+     }
+     
+     .font-settings-box {
+         display: flex;
+         div {
+             margin-left: 10px;
+         }
+     }
+     
+     .gadgets-box {
+         display: flex;
+         div {
+             margin-left: 10px;
+         }
+     }
+     
+     .emoji-container {
+         background: transparent;
+         border: 0;
+         transform: translateX(-0px);
+         cursor: pointer;
+         &:focus {
+             outline: 0;
+         }
+     }
+     /* :host {
+    width: 94%;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+editor {
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    padding: 8px;
+    span {
+        font-size: 12px;
+        opacity: 0.7;
+    }
+}
+
+.wrapperFiles {
+    margin-right: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+button {
+    background: none;
+    height: 24px;
+    border: none;
+    border-radius: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    &:hover {
+        background: lightgrey;
+    }
+}
+
+.file {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(211, 211, 211, 0.324);
+    border-radius: 2px;
+    padding: 4px 6px;
+    &:hover {
+        .icon-delete {
+            opacity: 1;
         }
     }
-    
-    .font-settings-box {
-        display: flex;
-        div {
-            margin-left: 10px;
-        }
+}
+
+.icon-delete {
+    position: absolute;
+    font-size: 12px;
+    right: -12px;
+    top: -10px;
+    opacity: 0;
+    padding: 2px;
+    border-radius: 2px;
+    background-color: rgba(246, 245, 245, 0.832);
+    cursor: pointer;
+    z-index: 10;
+}
+
+mat-icon {
+    font-size: 20px;
+    background-color: #fafafa;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+    &:hover {
+        background-color: rgba(106, 104, 104, 0.3);
     }
-    
-    .gadgets-box {
-        display: flex;
-        div {
-            margin-left: 10px;
-        }
-    }
-    
-    .emoji-container {
-        background: transparent;
-        border: 0;
-        transform: translateX(-0px);
+}
+
+.icon-ImageUpload {
+    position: relative;
+    cursor: pointer;
+    // icon for DataUpload is hiding behind an inputfield
+    input {
+        position: absolute;
+        background-color: red;
+        width: 22px;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        z-index: 10;
         cursor: pointer;
-        &:focus {
-            outline: 0;
-        }
     }
+}
+
+code {
+    color: red;
+} */
