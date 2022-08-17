@@ -1,10 +1,10 @@
 .messages-box {
     position: relative;
-    padding-bottom: 130px;
+    min-height: 100%;
+    padding-bottom: 10px;
 }
 
 .message {
-    overflow: hidden;
     display: flex;
     font-weight: 550;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -18,34 +18,47 @@
 
 .user-box {
     display: flex;
+    margin-bottom: 10px;
     img {
-      width: 30px;
-      height: 30px;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
     }
 }
 
 .user {
     font-weight: 800;
+    font-size: 15px;
     margin-right: 15px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
 }
 
 .timestamp {
+    display: flex;
+    align-items: center;
     font-weight: 100;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+
+.typed-message {
+    padding-left: 40px;
 }
 
 .chat-input-box {
-    position: fixed;
-    bottom: 20px;
-    right: 0;
-    left: 0;
+    position: sticky;
+    bottom: 10px;
+    width: 100%;
 }
 
 .chat-input {
-    margin-left: 301px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
     max-width: 100%;
     height: 110px;
 }
