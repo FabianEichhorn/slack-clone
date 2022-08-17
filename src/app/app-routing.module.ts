@@ -9,10 +9,9 @@ const routes: Routes = [
   { path: 'thread', component: ThreadComponent },
   { path: 'channelmessages', component: MessagesComponent },
   { path: 'channelmessages/:id', component: MessagesComponent },
-  { path: 'privatemessages', component: MessagesComponent },
+  { path: 'directmessages', component: MessagesComponent },
+  { path: 'directmessages/:id', component: MessagesComponent },
   { path: 'login', component: LoginComponent },
-
-
 ];
 
 @NgModule({

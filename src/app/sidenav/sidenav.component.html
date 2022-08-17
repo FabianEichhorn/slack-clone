@@ -1,29 +1,27 @@
 <div class="sidenav">
-    <div class="channels">
-        <span routerLink="/thread" class="thread-link">Threads</span>
+  <div class="channels">
+    <span routerLink="/thread" class="thread-link">Threads</span>
 
-        <div class="channel-content">
-            <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
-            <h2>Channel</h2>
-        </div>
-        <span [routerLink]="['/channelmessages/' + channel.customIdName]" *ngFor="let channel of channels">{{ channel.name }}</span>
+    <div class="channel-content">
+      <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color"
+        aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+      <h2>Channel</h2>
     </div>
+    <span [routerLink]="['/channelmessages/' + channel.customIdName]" *ngFor="let channel of channels">{{ channel.name }}</span>
+  </div>
 
-    <div class="channels">
-        <div class="channel-content">
-            <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
-            <h2>Direct Messages</h2>
-        </div>
-
-        <span routerLink="/privatemessages">Marco Beer</span>
-        <span routerLink="/privatemessages">Lukas Klammer</span>
-        <span routerLink="/privatemessages">Fabian Eichhorn</span>
-
+  <div class="channels">
+    <div class="channel-content">
+      <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color"
+        aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+      <h2>Direct Messages</h2>
     </div>
+    <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of users">{{ user.firstName }} {{ user.lastName }}</span>
+  </div>
 
-    <div class="footer">
-        <span>Legal & Privacy Notice </span>
-    </div>
+  <div class="footer">
+    <span>Legal & Privacy Notice </span>
+  </div>
 
 
 </div>

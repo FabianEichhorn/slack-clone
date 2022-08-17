@@ -3,17 +3,17 @@ export class User {
   lastName: string;
   email: string;
   password: string;
-  img: string[] = [] // url to an image
-
+  img: string; // url to an image
+  customIdName? : string;
 
   constructor(obj?: any) {
-    this.firstName = obj ? obj.firstName : 'Max (bsp aus class Datei)';
-    this.lastName = obj ? obj.lastName : 'Mustermann (bsp aus class Datei)';
-    this.email = obj ? obj.email : 'max.mustermann@test.de (bsp aus class Datei)';
+    this.firstName = obj ? obj.firstName : '';
+    this.lastName = obj ? obj.lastName : '';
+    this.email = obj ? obj.email : '';
     this.password = obj ? obj.password : '';
     this.img = obj ? obj.img : '';
+    this.customIdName = obj ? obj.customIdName : '';
   }
-
 
   public toJSON(): any {
     return {
@@ -22,6 +22,7 @@ export class User {
       email: this.email,
       password: this.password,
       img: this.img,
+      customIdName : this.customIdName,
     }
   }
 }
