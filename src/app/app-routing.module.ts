@@ -5,13 +5,37 @@ import { MessagesComponent } from './messages/messages.component';
 import { ThreadComponent } from './thread/thread.component';
 
 const routes: Routes = [
-  // { path: 'messages/:id1', component: MessagesComponent },
-  { path: 'thread', component: ThreadComponent },
-  { path: 'channelmessages', component: MessagesComponent },
-  { path: 'channelmessages/:id', component: MessagesComponent },
-  { path: 'directmessages', component: MessagesComponent },
-  { path: 'directmessages/:id', component: MessagesComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'thread', component: ThreadComponent
+  },
+  {
+    path: 'channelmessages', component: MessagesComponent,
+    data: { messageType: "channelmMssages" }
+  },
+  {
+    path: 'channelmessages/:id', component: MessagesComponent,
+    data: { messageType: "channelMessages" },
+    children: [
+      {
+        path: 'threads',
+        component: MessagesComponent, // muss evtl. noch angepasst werden
+      }
+    ]
+  },
+  {
+    path: 'directmessages', component: MessagesComponent,
+    data: { messageType: "directMessages" }
+  },
+  {
+    path: 'directmessages/:id', component: MessagesComponent,
+    data: { messageType: "directMessages" }
+  },
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: '**', redirectTo: '/'
+  },
 ];
 
 @NgModule({

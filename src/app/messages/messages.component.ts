@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../shared/message.service';
 import { UserService } from '../shared/user.service';
 
@@ -13,14 +13,20 @@ import { UserService } from '../shared/user.service';
 })
 export class MessagesComponent implements OnInit {
 
-  channelId : string | null = '';
+  id : string | null = '';
+  url : string = '';
+  messageType: string = '';
 
   constructor(public messageService: MessageService, private route: ActivatedRoute, public userService: UserService) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      this.messageType = data['messageType'];
+    });
+
     this.route.paramMap.subscribe(paramMap => {
-      this.channelId = paramMap.get('id');
-      this.messageService.getFromFirebase(this.channelId);
+      this.id = paramMap.get('id');
+      this.messageService.getFromFirebase(this.messageType, this.id);
     });
   }
 
