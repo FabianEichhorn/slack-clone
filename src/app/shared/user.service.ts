@@ -9,6 +9,8 @@ export class UserService implements OnInit {
 
   users: User[] = [];
 
+  userBox: boolean = false;
+
   constructor(public firestore: AngularFirestore) {
     this.getUsers();
   }

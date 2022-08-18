@@ -29,6 +29,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ThreadComponent } from './thread/thread.component';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -43,6 +44,7 @@ import { LoginComponent } from './login/login.component';
     ContentDrawerComponent,
     ThreadComponent,
     LoginComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

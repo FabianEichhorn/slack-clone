@@ -1,6 +1,7 @@
 <div *ngIf="data.login">
     <app-header></app-header>
     <app-content-drawer></app-content-drawer>
+    <app-user *ngIf="userData.userBox" class="test"></app-user>
 </div>
 
 <div *ngIf="!data.login">

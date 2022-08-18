@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidenavService } from '../shared/sidenav.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,23 @@ import { SidenavService } from '../shared/sidenav.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private sidenav: SidenavService) { }
+  userData: any = this.userService;
+
+  constructor(private sidenav: SidenavService, public userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   toggleSidenav() {
     this.sidenav.toggle();
+  }
+
+  openUserBox() {
+    if (this.userData.userBox) {
+      this.userData.userBox = false;
+    } else {
+      this.userData.userBox = true;
+    }
   }
 
 }
