@@ -23,7 +23,7 @@ export class SidenavComponent implements OnInit {
 
   private getChannels() {
     this.firestore
-      .collection("channels")
+      .collection("channels", ref => ref.where("users", "array-contains", "3C651LYhk1HaB8Y0Vsbf")) // query all channels where current user is part of
       .valueChanges( {idField: 'customIdName'} )
       .subscribe((changes: any) => {
         this.channels = changes;
