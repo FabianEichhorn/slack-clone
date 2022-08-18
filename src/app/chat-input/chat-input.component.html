@@ -1,19 +1,24 @@
 <div class="chat-input-box">
     <div class="font-settings-box">
-        <div>B</div>
-        <div>I</div>
-        <div>$</div>
-        <div>--</div>
-        <div>||</div>
+        <button (click)="makeTextBold()">B</button>
+        <button (click)="makeTextItalics()">I</button>
+        <button>$</button>
+        <button>--</button>
+        <button>||</button>
     </div>
 
     <div>
-        <input type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
+        <input *ngIf="isTextBold" style="font-weight: bold;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
+        <input *ngIf="isTextItalics" style="font-style: italic;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
+        <input *ngIf="isTextnormal" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
 
     </div>
 
     <div class="gadgets-box">
-        <div>Bild Senden</div>
+        <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo">
+            insert_photo
+            <input type="file" multiple accept="*.jpg.png" />
+        </mat-icon>
         <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>
         <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>
         <div>Sprachnachricht</div>

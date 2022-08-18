@@ -4,7 +4,7 @@
          flex-direction: column;
          background-color: rgb(255, 255, 255);
          width: 98%;
-         height: 100px;
+         height: 105px;
          border-style: solid;
          border-width: 2px;
          border-color: rgb(177, 176, 176);
@@ -37,11 +37,19 @@
          div {
              margin-left: 10px;
          }
+         button {
+             margin-left: 10px;
+         }
      }
      
      .gadgets-box {
          display: flex;
+         align-items: center;
          div {
+             margin-left: 10px;
+         }
+         mat-icon {
+             display: flex;
              margin-left: 10px;
          }
      }

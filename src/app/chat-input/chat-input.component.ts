@@ -15,6 +15,9 @@ export class ChatInputComponent implements OnInit {
   channelId: string | null = '';
   public textArea: string = '';
   public isEmojiPickerVisible: any;
+  public isTextBold: any;
+  public isTextItalics: any;
+  public isTextnormal: any = true;
 
 
   constructor(private messageService: MessageService, public firestore: AngularFirestore, private route: ActivatedRoute) { }
@@ -37,6 +40,18 @@ export class ChatInputComponent implements OnInit {
   public addEmoji(event: any) {
     this.textArea = `${this.textArea}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
+  }
+
+  makeTextBold() {
+    this.isTextBold = true;
+    this.isTextItalics = false;
+    this.isTextnormal = false;
+  }
+
+  makeTextItalics() {
+    this.isTextItalics = true;
+    this.isTextBold = false;
+    this.isTextnormal = false;
   }
 
 }
