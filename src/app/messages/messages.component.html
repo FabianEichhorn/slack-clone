@@ -9,18 +9,14 @@
 
         <div>
             <div class="user-box">
-                <ng-container *ngFor="let user of userService.users">
-                    <ng-container *ngIf="user.customIdName === message.userId">
-                        <img src="{{ user.img }}" alt="">
-                        <p class="user">{{ user.firstName }} {{ user.lastName }}</p>
+                <ng-container *ngFor="let participant of userService.participants">
+                    <ng-container *ngIf="participant.customIdName === message.userId">
+                        <img src="{{ participant.img }}" alt="">
+                        <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
                     </ng-container>
                 </ng-container>
-                <p></p>
                 <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
             </div>
-
-            <p>UserId (nur zum Test, kann aus HTML entfernt werden): {{ message.userId }}</p>
-
             <p class="typed-message">{{ message.text }} </p>
         </div>
     </div>

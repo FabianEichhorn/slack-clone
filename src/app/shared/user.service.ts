@@ -1,5 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ChannelMessage } from '../models/channelmessage.class';
+import { Directmessage } from '../models/directmessage.class';
 import { User } from '../models/user.class';
 
 @Injectable({
@@ -29,12 +31,12 @@ export class UserService implements OnInit {
       });
   }
 
-  public getParticipants(messages: any) {
+  public getParticipants(messages: ChannelMessage[] | Directmessage[]) {
     this.getParticipantsIds(messages);
     this.getParticipantsData();
   }
 
-  private getParticipantsIds(messages: any) {
+  private getParticipantsIds(messages: ChannelMessage[] | Directmessage[]) {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
       if (this.participantsIds.indexOf(message.userId) === -1) { // push userId only if it isn't already in the array
@@ -44,18 +46,12 @@ export class UserService implements OnInit {
   }
 
   private getParticipantsData() {
-    console.log(this.participantsIds);
-
     for (let i = 0; i < this.participantsIds.length; i++) {
       const participantId = this.participantsIds[i];
-      // wenn im array participants bereits die ID vorkommt - nicht laden, sonst laden
-      console.log(this.participantAlreadyLoaded(participantId));
-
       if (!this.participantAlreadyLoaded(participantId)) {
         this.getParticipant(participantId);
       }
     }
-    console.log(this.participants);
   }
 
   // returns true, if a participant is already loaded, to avoid redundant data loadings from firebase
@@ -64,8 +60,6 @@ export class UserService implements OnInit {
   }
 
   private getParticipant(participantId: string) {
-    console.log('Firestore Abfrage startet: ', participantId);
-
     this.firestore
       .collection('users')
       .doc(participantId)
