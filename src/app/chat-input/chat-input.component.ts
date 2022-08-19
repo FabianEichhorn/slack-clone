@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, TitleStrategy } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { contains } from '@firebase/util';
 import { ChannelMessage } from '../models/channelmessage.class';
+import { Directmessage } from '../models/directmessage.class';
 import { MessageService } from '../shared/message.service';
 
 @Component({
@@ -11,8 +14,12 @@ import { MessageService } from '../shared/message.service';
 })
 export class ChatInputComponent implements OnInit {
 
+  public url: string | null = this.router.url;
+
   channelmessage: ChannelMessage = new ChannelMessage();
+  directmessage: Directmessage = new Directmessage();
   channelId: string | null = '';
+  userId: string | null = '';
   public textArea: string = '';
   public isEmojiPickerVisible: any;
   public isTextBold: any;
@@ -20,7 +27,8 @@ export class ChatInputComponent implements OnInit {
   public isTextnormal: any = true;
 
 
-  constructor(private messageService: MessageService, public firestore: AngularFirestore, private route: ActivatedRoute) { }
+  constructor(private messageService: MessageService, public firestore: AngularFirestore, public route: ActivatedRoute, private router: Router) { }
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -32,9 +40,17 @@ export class ChatInputComponent implements OnInit {
   }
 
   sendMessage() {
+    this.url = this.channelId;
     this.channelmessage.timestamp = new Date().getTime();
     this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
     this.channelmessage.text = "";
+    //} else if (this.url == '/directmessages:id') {
+    //this.url = this.userId;
+    //this.channelmessage.timestamp = new Date().getTime();
+    //this.messageService.postToFirestore('directMessages', this.channelmessage.toJSON());
+    //this.channelmessage.text = "";
+    //}
+
   }
 
   public addEmoji(event: any) {
@@ -53,5 +69,6 @@ export class ChatInputComponent implements OnInit {
     this.isTextBold = false;
     this.isTextnormal = false;
   }
+
 
 }
