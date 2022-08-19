@@ -32,12 +32,16 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  openThread(customIdName: string) {
+  public openThread(customIdName: string) {
     this.isThreadOpened = true;
+    this.getThread(customIdName);
+  }
+
+  public getThread(customIdName: string) {
     this.messageService.getThread(customIdName);
   }
 
-  closeThread() {
+  public closeThread() {
     this.isThreadOpened = false;
   }
 

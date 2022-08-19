@@ -17,16 +17,23 @@
           </ng-container>
           <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
         </div>
-        <p class="typed-message">{{ message.text }} </p>
-        <button (click)="openThread(message.customIdName)">open thread von message id: {{ message.customIdName }}</button>
+        <div class="message-button-box">
+          <p >{{ message.text }} </p>
+          <button mat-button color="primary" (click)="openThread(message.customIdName)" *ngIf="messageType === 'channelMessages'">show thread</button>
+        </div>
       </div>
     </div>
 
   </div>
 
   <div *ngIf="isThreadOpened" class="threads-box">
-    <button (click)="closeThread()">X - close thread</button>
-    <div *ngIf="messageService.thread.length == 0">thread empty: write your first thread message</div>
+    <div class="thread-headline">
+      <h2>Thread</h2>
+      <button mat-button (click)="closeThread()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <h3 *ngIf="messageService.thread.length == 0">thread empty: write your first thread message</h3>
     <div *ngFor="let message of messageService.thread" class="message">
       <div>
         <div class="user-box">
