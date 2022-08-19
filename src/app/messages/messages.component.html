@@ -1,27 +1,53 @@
 <div *ngIf="id == null">
-    please select a channel or a direct message
+  please select a channel or a direct message
 </div>
-<div class="messages-box">
-    <div *ngFor="let message of messageService.messages" class="message">
-        <div *ngIf="messageService.messages.length == 0">
-            no messages available
-        </div>
 
-        <div>
-            <div class="user-box">
-                <ng-container *ngFor="let participant of userService.participants">
-                    <ng-container *ngIf="participant.customIdName === message.userId">
-                        <img src="{{ participant.img }}" alt="">
-                        <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
-                    </ng-container>
-                </ng-container>
-                <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
-            </div>
-            <p class="typed-message">{{ message.text }} </p>
+<div class="thread-messages-box">
+  <div class="messages-box">
+    <div *ngIf="messageService.messages.length == 0">no messages available</div>
+
+    <div *ngFor="let message of messageService.messages" class="message">
+      <div>
+        <div class="user-box">
+          <ng-container *ngFor="let participant of userService.participants">
+            <ng-container *ngIf="participant.customIdName === message.userId">
+              <img src="{{ participant.img }}" alt="">
+              <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
+            </ng-container>
+          </ng-container>
+          <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
         </div>
+        <p class="typed-message">{{ message.text }} </p>
+        <button (click)="openThread(message.customIdName)">open thread von message id: {{ message.customIdName }}</button>
+      </div>
     </div>
+
+  </div>
+
+  <div *ngIf="isThreadOpened" class="threads-box">
+    <button (click)="closeThread()">X - close thread</button>
+    <div *ngIf="messageService.thread.length == 0">thread empty: write your first thread message</div>
+    <div *ngFor="let message of messageService.thread" class="message">
+      <div>
+        <div class="user-box">
+          <ng-container *ngFor="let participant of userService.participants">
+            <ng-container *ngIf="participant.customIdName === message.userId">
+              <img src="{{ participant.img }}" alt="">
+              <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
+            </ng-container>
+          </ng-container>
+          <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+        </div>
+        <p class="typed-message">{{ message.text }} </p>
+      </div>
+    </div>
+    <div class="chat-input-box">
+      <app-chat-input class="chat-input"></app-chat-input>
+      <!-- Idee: boolean mit übergeben, damit man weiß, wohin die Nachricht zu pushen ist [postTo]="Beispielort" -->
+    </div>
+  </div>
 </div>
 
 <div class="chat-input-box">
-    <app-chat-input class="chat-input"></app-chat-input>
+  <app-chat-input class="chat-input"></app-chat-input>
 </div>

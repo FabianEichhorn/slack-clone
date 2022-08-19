@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ChannelMessage } from '../models/channelmessage.class';
+import { Threadmessage } from '../models/threadmessage.class';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -9,6 +10,7 @@ import { UserService } from './user.service';
 export class MessageService {
 
   public messages: ChannelMessage[] = [];
+  public thread: Threadmessage[] = [];
 
   constructor(public firestore: AngularFirestore, public userService: UserService) { }
 
@@ -27,7 +29,7 @@ export class MessageService {
   private getChannelMessageFromFirebase(id : string | null) {
     this.firestore
       .collection("channelMessages", ref => ref.where('channelId', '==', id))
-      .valueChanges()
+      .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         this.messages = changes;
         this.messages.sort((a,b) => { return a.timestamp - b.timestamp});
@@ -52,6 +54,18 @@ export class MessageService {
     this.firestore
       .collection(collectionName)
       .add(data);
+  }
+
+  public getThread(messageId: string) {
+    this.firestore
+      .collection('channelMessages')
+      .doc(messageId)
+      .collection('thread')
+      .valueChanges()
+      .subscribe((changes: any) => {
+        this.thread = changes;
+        this.thread.sort((a,b) => { return a.timestamp - b.timestamp});
+      });
   }
 
 }

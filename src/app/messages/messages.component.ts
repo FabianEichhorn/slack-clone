@@ -16,6 +16,7 @@ export class MessagesComponent implements OnInit {
   id : string | null = '';
   url : string = '';
   messageType: string = '';
+  isThreadOpened: boolean = false;
 
   constructor(public messageService: MessageService, private route: ActivatedRoute, public userService: UserService) { }
 
@@ -25,11 +26,19 @@ export class MessagesComponent implements OnInit {
     });
 
     this.route.paramMap.subscribe(paramMap => {
+      this.closeThread();
       this.id = paramMap.get('id');
       this.messageService.getFromFirebase(this.messageType, this.id);
     });
   }
 
+  openThread(customIdName: string) {
+    this.isThreadOpened = true;
+    this.messageService.getThread(customIdName);
+  }
 
+  closeThread() {
+    this.isThreadOpened = false;
+  }
 
 }
