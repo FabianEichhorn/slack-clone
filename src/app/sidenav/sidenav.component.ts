@@ -38,4 +38,9 @@ export class SidenavComponent implements OnInit {
         this.users = changes;
       });
   }
+
+  public openDialogAddChannel() {
+    // todo: implement add channel Logik und Dialog
+    alert('add channel noch zu implementieren.');
+  }
 }
