@@ -16,7 +16,11 @@
         aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
       <h2>Direct Messages</h2>
     </div>
-    <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of users">{{ user.firstName }} {{ user.lastName }}</span>
+    <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of users">
+      <ng-container *ngIf="user.customIdName !== '3C651LYhk1HaB8Y0Vsbf'"> <!-- todo: userservice logged in user variable -->
+        {{ user.firstName }} {{ user.lastName }}
+      </ng-container>
+    </span>
   </div>
 
   <div class="footer">

@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   openUserBox() {
     if (this.userData.userBox) {
-      this.userData.userBox = false;
+      this.userService.userBox = false;
     } else {
       this.userData.userBox = true;
     }
