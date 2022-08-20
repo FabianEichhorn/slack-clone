@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InprintComponent } from './inprint/inprint.component';
 import { LoginComponent } from './login/login.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ThreadComponent } from './thread/thread.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: '**', redirectTo: '/'
   },
+  {
+    path: 'inprint', component: InprintComponent
+  },
+
 ];
 
 @NgModule({

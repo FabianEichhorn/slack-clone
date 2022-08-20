@@ -1,55 +1,55 @@
 h2 {
-  margin: 0 !important;
+    margin: 0 !important;
 }
 
 .sidenav {
-  width: 300px;
-  height: 95vh !important;
-  //background-color: #4d5caf;
-  background-color: #2e4872;
+    width: 300px;
+    height: 95vh !important;
+    //background-color: #4d5caf;
+    background-color: #2e4872;
 }
 
 .channels {
-  display: flex;
-  flex-direction: column;
-  color: white;
-  padding-left: 24px;
-  padding-top: 32px;
-
-  h2 {
-    margin-bottom: 1rem;
-    font-size: 24px;
-  }
-
-  span {
-    cursor: pointer;
-    margin-top: 0.5rem;
-    margin-left: 1rem;
-    font-size: 18px;
-
-    &:hover {
-      color: rgb(202, 202, 202);
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-left: 24px;
+    padding-top: 32px;
+    h2 {
+        margin-bottom: 1rem;
+        font-size: 24px;
     }
-  }
+    span {
+        cursor: pointer;
+        margin-top: 0.5rem;
+        margin-left: 1rem;
+        font-size: 18px;
+        &:hover {
+            color: rgb(202, 202, 202);
+        }
+    }
 }
 
 .thread-link {
-  cursor: pointer;
-  padding-bottom: 32px;
+    cursor: pointer;
+    padding-bottom: 32px;
 }
 
 .channel-content {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .footer {
-  width: 300px;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  padding: 18px 0;
-  border-top: 1px solid rgb(195, 195, 195);
-  color: white
+    width: 300px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 18px 0;
+    border-top: 1px solid rgb(195, 195, 195);
+    color: white;
+    span {
+        margin-left: 0.5rem;
+    }
 }

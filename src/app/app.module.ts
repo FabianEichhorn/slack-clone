@@ -30,6 +30,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { ThreadComponent } from './thread/thread.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { InprintComponent } from './inprint/inprint.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -45,6 +47,7 @@ import { UserComponent } from './user/user.component';
     ThreadComponent,
     LoginComponent,
     UserComponent,
+    InprintComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { UserComponent } from './user/user.component';
     AngularFireModule.initializeApp(environment.firebase),
     PickerModule,
     EditorModule,
+    RouterModule, 
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
