@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, TitleStrategy } from '@angular/router';
 import { Router, NavigationEnd } from '@angular/router';
-import { contains } from '@firebase/util';
 import { ChannelMessage } from '../models/channelmessage.class';
 import { Directmessage } from '../models/directmessage.class';
 import { MessageService } from '../shared/message.service';
@@ -14,7 +13,7 @@ import { MessageService } from '../shared/message.service';
 })
 export class ChatInputComponent implements OnInit {
 
-  public url: string | null = this.router.url;
+  public routerUrl: string | null = this.router.url;
 
   channelmessage: ChannelMessage = new ChannelMessage();
   directmessage: Directmessage = new Directmessage();
@@ -27,7 +26,9 @@ export class ChatInputComponent implements OnInit {
   public isTextnormal: any = true;
 
 
-  constructor(private messageService: MessageService, public firestore: AngularFirestore, public route: ActivatedRoute, private router: Router) { }
+
+  constructor(private messageService: MessageService, public firestore: AngularFirestore, public route: ActivatedRoute, private router: Router) {
+  }
 
 
   ngOnInit(): void {
@@ -37,19 +38,19 @@ export class ChatInputComponent implements OnInit {
         this.channelmessage.channelId = this.channelId;
       }
     });
+
+
   }
 
   sendMessage() {
-    this.url = this.channelId;
+    this.routerUrl = this.channelId;
     this.channelmessage.timestamp = new Date().getTime();
     this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
     this.channelmessage.text = "";
-    //} else if (this.url == '/directmessages:id') {
-    //this.url = this.userId;
+    //this.routerUrl = this.channelId;
     //this.channelmessage.timestamp = new Date().getTime();
-    //this.messageService.postToFirestore('directMessages', this.channelmessage.toJSON());
+    //this.messageService.postToFirestore('directMessages', this.directmessage.toJSON());
     //this.channelmessage.text = "";
-    //}
 
   }
 
@@ -69,6 +70,5 @@ export class ChatInputComponent implements OnInit {
     this.isTextBold = false;
     this.isTextnormal = false;
   }
-
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ChannelMessage } from '../models/channelmessage.class';
+import { Directmessage } from '../models/directmessage.class';
 import { Threadmessage } from '../models/threadmessage.class';
 import { UserService } from './user.service';
 
@@ -20,37 +21,37 @@ export class MessageService {
 
   public getFromFirebase(messageType: string, id: string | null) {
     if (messageType == 'channelMessages') {
-      this.getChannelMessageFromFirebase (id);
+      this.getChannelMessageFromFirebase(id);
     } else if (messageType == 'directMessages') {
       this.getDirectMessageFromFirebase(id);
     }
   }
 
-  private getChannelMessageFromFirebase(id : string | null) {
+  private getChannelMessageFromFirebase(id: string | null) {
     this.firestore
       .collection("channelMessages", ref => ref.where('channelId', '==', id))
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         this.messages = changes;
-        this.messages.sort((a,b) => { return a.timestamp - b.timestamp});
+        this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
         this.userService.getParticipants(this.messages);
       });
   }
 
-  private getDirectMessageFromFirebase(id : string | null) {
+  private getDirectMessageFromFirebase(id: string | null) {
     this.firestore
       .collection("directMessages", ref => ref
         .where('users', 'array-contains', '3C651LYhk1HaB8Y0Vsbf') // gives back all directMessages where current logged in user is part of
-        )
+      )
       .valueChanges()
       .subscribe((changes: any) => {
         this.messages = changes.filter((item: { users: (string | null)[]; }) => item.users.includes(id));
-        this.messages.sort((a,b) => { return a.timestamp - b.timestamp});
+        this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
         this.userService.getParticipants(this.messages);
       });
   }
 
-  public postToFirestore(collectionName: string, data:any) {
+  public postToFirestore(collectionName: string, data: any) {
     this.firestore
       .collection(collectionName)
       .add(data);
@@ -64,9 +65,11 @@ export class MessageService {
       .valueChanges()
       .subscribe((changes: any) => {
         this.thread = changes;
-        this.thread.sort((a,b) => { return a.timestamp - b.timestamp});
+        this.thread.sort((a, b) => { return a.timestamp - b.timestamp });
       });
   }
+
+
 
 }
 

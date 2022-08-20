@@ -7,7 +7,7 @@ export class Directmessage {
   constructor(obj?: any) {
     this.text = obj ? obj.text : '';
     this.timestamp = obj ? obj.timestamp : new Date().getTime();
-    this.userId = obj ? obj.userId : '3C651LYhk1HaB8Y0Vsbf'
+    this.userId = obj ? obj.userId : '3C651LYhk1HaB8Y0Vsbf';
     this.users = obj ? obj.users : [];
   }
 
