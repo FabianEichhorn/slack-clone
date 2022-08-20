@@ -11,6 +11,12 @@ const routes: Routes = [
     path: 'thread', component: ThreadComponent
   },
   {
+    path: 'inprint', component: InprintComponent
+  },
+  {
+    path: 'data-protection', component: DataProtectionComponent
+  },
+  {
     path: 'channelmessages', component: MessagesComponent,
     data: { messageType: "channelmMssages" }
   },
@@ -38,12 +44,7 @@ const routes: Routes = [
   {
     path: '**', redirectTo: '/'
   },
-  {
-    path: 'inprint', component: InprintComponent
-  },
-  {
-    path: 'data-protection', component: DataProtectionComponent
-  },
+
 
 ];
 
