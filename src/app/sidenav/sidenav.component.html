@@ -9,7 +9,7 @@
         <mat-icon>add</mat-icon>
       </button>
         </div>
-        <span [routerLink]="['/channelmessages/' + channel.customIdName]" *ngFor="let channel of channels">{{ channel.name
+        <span [routerLink]="['/channelmessages/' + channel.customIdName]" *ngFor="let channel of sidenavService.channels">{{ channel.name
       }}</span>
     </div>
 
@@ -18,7 +18,7 @@
             <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
             <h2>Direct Messages</h2>
         </div>
-        <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of users">
+        <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of sidenavService.users">
       <ng-container *ngIf="user.customIdName !== '3C651LYhk1HaB8Y0Vsbf'">
         <!-- todo: userservice logged in user variable -->
         {{ user.firstName }} {{ user.lastName }}

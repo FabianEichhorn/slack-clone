@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Channel } from '../models/channel.class';
-import { User } from '../models/user.class';
+import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
+import { SidenavService } from '../shared/sidenav.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,37 +10,23 @@ import { User } from '../models/user.class';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
+  private channelName: string = '';
 
-  channels: Channel[] = [];
-  users: User[] = [];
-
-  constructor(public firestore: AngularFirestore, public router: Router) { }
+  constructor(public router: Router, public sidenavService: SidenavService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getChannels();
-    this.getUsers();
-  }
-
-  private getChannels() {
-    this.firestore
-      .collection("channels", ref => ref.where("users", "array-contains", "3C651LYhk1HaB8Y0Vsbf")) // query all channels where current user is part of
-      .valueChanges( {idField: 'customIdName'} )
-      .subscribe((changes: any) => {
-        this.channels = changes;
-      });
-  }
-
-  private getUsers() {
-    this.firestore
-      .collection("users")
-      .valueChanges( {idField: 'customIdName'} )
-      .subscribe((changes: any) => {
-        this.users = changes;
-      });
+    this.sidenavService.getChannels();
+    this.sidenavService.getUsers();
   }
 
   public openDialogAddChannel() {
     // todo: implement add channel Logik und Dialog
-    alert('add channel noch zu implementieren.');
+    const dialogRef = this.dialog.open(DialogAddChannelComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('dialog closed: ', result);
+      this.channelName = result;
+      // save to firebase logik
+    });
   }
 }

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Add channel</h1>
+<div mat-dialog-content>
+  <p>Channels are made for team communication. They should be topic-related</p>
+  <mat-form-field appearance="fill">
+    <mat-label>channel name</mat-label>
+    <input matInput [(ngModel)]="channelName" placeholder="please enter your channel name" required="">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">cancel</button>
+  <button mat-button [mat-dialog-close]="channelName" cdkFocusInitial>add channel</button>
+</div>

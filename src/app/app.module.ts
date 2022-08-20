@@ -12,11 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ChatInputComponent } from './chat-input/chat-input.component';
 import { MessagesComponent } from './messages/messages.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { ContentDrawerComponent } from './content-drawer/content-drawer.component';
 import { MessageService } from './shared/message.service';
 import { FormsModule } from '@angular/forms';
@@ -33,6 +33,9 @@ import { UserComponent } from './user/user.component';
 import { InprintComponent } from './inprint/inprint.component';
 import { RouterModule } from '@angular/router';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -50,6 +53,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
     UserComponent,
     InprintComponent,
     DataProtectionComponent,
+    DialogAddChannelComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,13 +69,15 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
     provideFirestore(() => getFirestore()),
     MatButtonModule,
     FormsModule,
+    MatDialogModule,
+    MatInputModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     PickerModule,
     EditorModule,
-    RouterModule, 
+    RouterModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
