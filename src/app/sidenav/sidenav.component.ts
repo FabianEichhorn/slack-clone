@@ -10,7 +10,6 @@ import { SidenavService } from '../shared/sidenav.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  private channelName: string = '';
 
   constructor(public router: Router, public sidenavService: SidenavService, public dialog: MatDialog) { }
 
@@ -23,10 +22,10 @@ export class SidenavComponent implements OnInit {
     // todo: implement add channel Logik und Dialog
     const dialogRef = this.dialog.open(DialogAddChannelComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('dialog closed: ', result);
-      this.channelName = result;
-      // save to firebase logik
+    dialogRef.afterClosed().subscribe(channelName => {
+      if (channelName != '') {
+        this.sidenavService.addChannel(channelName);
+      }
     });
   }
 }

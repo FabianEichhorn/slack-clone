@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog-add-channel.component.scss']
 })
 export class DialogAddChannelComponent implements OnInit {
-  channelName: string = ''; // todo:  to connect with firebase add channel
+  channelName: string = '';
 
   constructor(public dialogRef: MatDialogRef<DialogAddChannelComponent>) { }
 

@@ -35,4 +35,13 @@ export class SidenavService {
         this.users = changes;
       });
   }
+
+  public addChannel(channelName: string) {
+    this.firestore
+      .collection('channels')
+      .add({
+        'name': channelName,
+        'users': ['0ktdB0VydBMemqEwcDIv', '3C651LYhk1HaB8Y0Vsbf', '8dbx47l03bPocYuOfuJ4'],
+      })
+  }
 }
