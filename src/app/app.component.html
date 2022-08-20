@@ -1,9 +1,9 @@
-<div *ngIf="data.login">
+<div *ngIf="loginService.login">
     <app-header></app-header>
     <app-content-drawer></app-content-drawer>
-    <app-user *ngIf="userData.userBox" class="test"></app-user>
+    <app-user *ngIf="userService.userBox" class="test"></app-user>
 </div>
 
-<div *ngIf="!data.login">
+<div *ngIf="!loginService.login">
     <app-login></app-login>
 </div>
