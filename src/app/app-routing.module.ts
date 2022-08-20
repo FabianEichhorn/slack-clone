@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { InprintComponent } from './inprint/inprint.component';
 import { LoginComponent } from './login/login.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -39,6 +40,9 @@ const routes: Routes = [
   },
   {
     path: 'inprint', component: InprintComponent
+  },
+  {
+    path: 'data-protection', component: DataProtectionComponent
   },
 
 ];

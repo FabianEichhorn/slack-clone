@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { InprintComponent } from './inprint/inprint.component';
 import { RouterModule } from '@angular/router';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 
 
 
@@ -48,6 +49,7 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     UserComponent,
     InprintComponent,
+    DataProtectionComponent,
   ],
   imports: [
     BrowserModule,
