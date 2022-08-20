@@ -42,7 +42,7 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: '**', redirectTo: '/'
+    path: '**', redirectTo: '/' // falls was falsches eingegeben wird, wird man immer wieder zur startseite geleitet
   },
 
 
