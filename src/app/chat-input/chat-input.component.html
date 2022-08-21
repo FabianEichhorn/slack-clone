@@ -1,16 +1,16 @@
 <div class="chat-input-box">
     <div class="font-settings-box">
-        <button (click)="makeTextBold()">B</button>
-        <button (click)="makeTextItalics()">I</button>
+        <button (click)="messageService.makeTextBold()">B</button>
+        <button (click)="messageService.makeTextItalics()">I</button>
         <button>$</button>
         <button>--</button>
         <button>||</button>
     </div>
 
     <div>
-        <input *ngIf="isTextBold" style="font-weight: bold;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
-        <input *ngIf="isTextItalics" style="font-style: italic;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
-        <input *ngIf="isTextnormal" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
+        <input *ngIf="messageService.isTextBold" style="font-weight: bold;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
+        <input *ngIf="messageService.isTextItalics" style="font-style: italic;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
+        <input *ngIf="messageService.isTextnormal" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
 
     </div>
 

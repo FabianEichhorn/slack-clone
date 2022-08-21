@@ -12,6 +12,9 @@ export class MessageService {
 
   public messages: ChannelMessage[] = [];
   public thread: Threadmessage[] = [];
+  public isTextBold: any;
+  public isTextItalics: any;
+  public isTextnormal: any = true;
 
   constructor(public firestore: AngularFirestore, public userService: UserService) { }
 
@@ -69,6 +72,17 @@ export class MessageService {
       });
   }
 
+  makeTextBold() {
+    this.isTextBold = true;
+    this.isTextItalics = false;
+    this.isTextnormal = false;
+  }
+
+  makeTextItalics() {
+    this.isTextItalics = true;
+    this.isTextBold = false;
+    this.isTextnormal = false;
+  }
 
 
 }

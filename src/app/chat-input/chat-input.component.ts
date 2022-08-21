@@ -21,13 +21,11 @@ export class ChatInputComponent implements OnInit {
   userId: string | null = '';
   public textArea: string = '';
   public isEmojiPickerVisible: any;
-  public isTextBold: any;
-  public isTextItalics: any;
-  public isTextnormal: any = true;
 
 
 
-  constructor(private messageService: MessageService, public firestore: AngularFirestore, public route: ActivatedRoute, private router: Router) {
+
+  constructor(public messageService: MessageService, public firestore: AngularFirestore, public route: ActivatedRoute, private router: Router) {
   }
 
 
@@ -59,16 +57,5 @@ export class ChatInputComponent implements OnInit {
     this.isEmojiPickerVisible = false;
   }
 
-  makeTextBold() {
-    this.isTextBold = true;
-    this.isTextItalics = false;
-    this.isTextnormal = false;
-  }
-
-  makeTextItalics() {
-    this.isTextItalics = true;
-    this.isTextBold = false;
-    this.isTextnormal = false;
-  }
-
+  
 }
