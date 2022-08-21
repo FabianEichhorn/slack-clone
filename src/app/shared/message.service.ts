@@ -21,6 +21,7 @@ export class MessageService {
 
 
   ngOnInit(): void {
+
   }
 
   public getFromFirebase(messageType: string, id: string | null) {
@@ -45,6 +46,19 @@ export class MessageService {
   private getDirectMessageFromFirebase(id: string | null) {
     this.firestore
       .collection("directMessages", ref => ref
+        .where('channelId', '==', id) // gives back all directMessages where current logged in user is part of
+      )
+      .valueChanges({ idField: 'customIdName' })
+      .subscribe((changes: any) => {
+        this.messages = changes;
+        this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
+        this.userService.getParticipants(this.messages);
+      });
+  }
+
+  /*private getDirectMessageFromFirebase(id: string | null) {
+    this.firestore
+      .collection("directMessages", ref => ref
         .where('users', 'array-contains', '3C651LYhk1HaB8Y0Vsbf') // gives back all directMessages where current logged in user is part of
       )
       .valueChanges()
@@ -53,7 +67,7 @@ export class MessageService {
         this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
         this.userService.getParticipants(this.messages);
       });
-  }
+  }*/
 
   public postToFirestore(collectionName: string, data: any) {
     this.firestore
@@ -83,8 +97,8 @@ export class MessageService {
       this.isTextnormal = false;
     } else {
       this.isTextBold = true;
-    this.isTextItalics = false;
-    this.isTextnormal = false;
+      this.isTextItalics = false;
+      this.isTextnormal = false;
     }
     console.log('Text Bold is', this.isTextBold)
   }
@@ -98,12 +112,12 @@ export class MessageService {
       this.isTextItalics = true;
       this.isTextnormal = false;
       console.log('beide', this.isTextBold, this.isTextItalics);
-      
+
     }
     else {
       this.isTextItalics = true;
-    this.isTextBold = false;
-    this.isTextnormal = false;
+      this.isTextBold = false;
+      this.isTextnormal = false;
     }
     console.log('Text Italics is', this.isTextItalics)
   }

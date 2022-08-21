@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, TitleStrategy } from '@angular/router';
 import { Router, NavigationEnd } from '@angular/router';
+import { contains } from '@firebase/util';
 import { ChannelMessage } from '../models/channelmessage.class';
 import { Directmessage } from '../models/directmessage.class';
 import { MessageService } from '../shared/message.service';
@@ -16,7 +17,6 @@ export class ChatInputComponent implements OnInit {
   public routerUrl: string | null = this.router.url;
 
   channelmessage: ChannelMessage = new ChannelMessage();
-  directmessage: Directmessage = new Directmessage();
   channelId: string | null = '';
   userId: string | null = '';
   public textArea: string = '';
@@ -36,20 +36,14 @@ export class ChatInputComponent implements OnInit {
         this.channelmessage.channelId = this.channelId;
       }
     });
-
-
   }
 
   sendMessage() {
-    this.routerUrl = this.channelId;
-    this.channelmessage.timestamp = new Date().getTime();
-    this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
-    this.channelmessage.text = "";
-    //this.routerUrl = this.channelId;
-    //this.channelmessage.timestamp = new Date().getTime();
-    //this.messageService.postToFirestore('directMessages', this.directmessage.toJSON());
-    //this.channelmessage.text = "";
-
+    if (this.routerUrl.includes('channelmessages')) {
+      this.sendChannelMessage();
+    } else if (this.routerUrl.includes('directmessages')) {
+      this.sendDirectMessage();
+    }
   }
 
   public addEmoji(event: any) {
@@ -57,5 +51,19 @@ export class ChatInputComponent implements OnInit {
     this.isEmojiPickerVisible = false;
   }
 
-  
+  sendChannelMessage() {
+    this.channelId = this.routerUrl;
+    this.channelmessage.timestamp = new Date().getTime();
+    this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
+    this.channelmessage.text = "";
+  }
+
+  sendDirectMessage() {
+    this.channelId = this.routerUrl;
+    this.channelmessage.timestamp = new Date().getTime();
+    this.messageService.postToFirestore('directMessages', this.channelmessage.toJSON());
+    this.channelmessage.text = "";
+  }
+
+
 }
