@@ -16,6 +16,7 @@ export class MessageService {
   public isTextBold: any;
   public isTextItalics: any;
   public isTextnormal: any = true;
+  public isTextLineThrough: any;
 
   constructor(public firestore: AngularFirestore, public userService: UserService) { }
 
@@ -77,38 +78,39 @@ export class MessageService {
     if (this.isTextBold == true) {
       this.isTextBold = false;
       this.isTextnormal = true;
-    } else if (this.isTextBold == true && this.isTextItalics == true) {
-      this.isTextBold = true;
-      this.isTextItalics = true;
-      this.isTextnormal = false;
     } else {
       this.isTextBold = true;
-    this.isTextItalics = false;
-    this.isTextnormal = false;
+      this.isTextLineThrough = false
+      this.isTextItalics = false;
+      this.isTextnormal = false;
     }
-    console.log('Text Bold is', this.isTextBold)
+
   }
 
   makeTextItalics() {
     if (this.isTextItalics == true) {
       this.isTextItalics = false;
       this.isTextnormal = true;
-    } else if (this.isTextBold == true && this.isTextItalics == true) {
-      this.isTextBold = true;
+    } else {
       this.isTextItalics = true;
+      this.isTextLineThrough = false
+      this.isTextBold = false;
       this.isTextnormal = false;
-      console.log('beide', this.isTextBold, this.isTextItalics);
-      
     }
-    else {
-      this.isTextItalics = true;
-    this.isTextBold = false;
-    this.isTextnormal = false;
-    }
-    console.log('Text Italics is', this.isTextItalics)
+
   }
 
-
+  makeTextLineThrough() {
+    if (this.isTextLineThrough == true) {
+      this.isTextLineThrough = false;
+      this.isTextnormal = true;
+    } else {
+      this.isTextLineThrough = true;
+      this.isTextItalics = false;
+      this.isTextBold = false;
+      this.isTextnormal = false;
+    }
+  }
 }
 
 /* this.isTextItalics = true;

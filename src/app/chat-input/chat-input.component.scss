@@ -39,6 +39,15 @@
          }
          button {
              margin-left: 10px;
+             margin-top: 2px;
+             height: 23px;
+             width: 23px;
+             background-color: transparent;
+             border-radius: 100px;
+             border: 1px solid gray;
+             &:hover {
+                 background-color: gray;
+             }
          }
      }
      

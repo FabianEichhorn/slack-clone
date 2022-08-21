@@ -3,13 +3,14 @@
         <button (click)="messageService.makeTextBold()">B</button>
         <button (click)="messageService.makeTextItalics()">I</button>
         <button>$</button>
-        <button>--</button>
+        <button (click)="messageService.makeTextLineThrough()">--</button>
         <button>||</button>
     </div>
 
     <div>
         <input *ngIf="messageService.isTextBold" style="font-weight: bold;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
         <input *ngIf="messageService.isTextItalics" style="font-style: italic;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
+        <input *ngIf="messageService.isTextLineThrough" style="text-decoration: line-through;" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
         <input *ngIf="messageService.isTextnormal" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
 
     </div>
