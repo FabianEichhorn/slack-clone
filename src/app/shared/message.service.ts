@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { TitleStrategy } from '@angular/router';
 import { ChannelMessage } from '../models/channelmessage.class';
 import { Directmessage } from '../models/directmessage.class';
 import { Threadmessage } from '../models/threadmessage.class';
@@ -73,21 +74,46 @@ export class MessageService {
   }
 
   makeTextBold() {
-    this.isTextBold = true;
+    if (this.isTextBold == true) {
+      this.isTextBold = false;
+      this.isTextnormal = true;
+    } else if (this.isTextBold == true && this.isTextItalics == true) {
+      this.isTextBold = true;
+      this.isTextItalics = true;
+      this.isTextnormal = false;
+    } else {
+      this.isTextBold = true;
     this.isTextItalics = false;
     this.isTextnormal = false;
+    }
+    console.log('Text Bold is', this.isTextBold)
   }
 
   makeTextItalics() {
-    this.isTextItalics = true;
+    if (this.isTextItalics == true) {
+      this.isTextItalics = false;
+      this.isTextnormal = true;
+    } else if (this.isTextBold == true && this.isTextItalics == true) {
+      this.isTextBold = true;
+      this.isTextItalics = true;
+      this.isTextnormal = false;
+      console.log('beide', this.isTextBold, this.isTextItalics);
+      
+    }
+    else {
+      this.isTextItalics = true;
     this.isTextBold = false;
     this.isTextnormal = false;
+    }
+    console.log('Text Italics is', this.isTextItalics)
   }
 
 
 }
 
-
+/* this.isTextItalics = true;
+    this.isTextBold = false;
+    this.isTextnormal = false; */
 
 
 
