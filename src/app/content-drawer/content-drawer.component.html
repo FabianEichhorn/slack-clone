@@ -1,10 +1,8 @@
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container autosize>
 
-    <mat-drawer #sidenav class="example-sidenav" [opened]="true" mode="side">
-        <app-sidenav></app-sidenav>
-    </mat-drawer>
+  <mat-drawer #sidenav class="sidenav" [opened]="true" mode="side">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
 
-    <div class="example-sidenav-content">
-        <router-outlet></router-outlet>
-    </div>
+  <router-outlet></router-outlet>
 </mat-drawer-container>

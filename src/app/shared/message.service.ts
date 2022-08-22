@@ -13,6 +13,7 @@ export class MessageService {
 
   public messages: ChannelMessage[] = [];
   public thread: Threadmessage[] = [];
+  public isLoading: boolean = true;
   public isTextBold: any;
   public isTextItalics: any;
   public isTextnormal: any = true;
@@ -41,6 +42,7 @@ export class MessageService {
         this.messages = changes;
         this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
         this.userService.getParticipants(this.messages);
+        this.isLoading = false;
       });
   }
 
@@ -54,6 +56,7 @@ export class MessageService {
         this.messages = changes;
         this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
         this.userService.getParticipants(this.messages);
+        this.isLoading = false;
       });
   }
 

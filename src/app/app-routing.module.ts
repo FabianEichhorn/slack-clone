@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'channelmessages', component: MessagesComponent,
-    data: { messageType: "channelmMssages" }
+    data: { messageType: "channelmMessages" }
   },
   {
     path: 'channelmessages/:id', component: MessagesComponent,
