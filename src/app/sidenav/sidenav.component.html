@@ -1,36 +1,32 @@
-<div class="sidenav">
-  <div class="channels">
-    <div class="channel-content">
-      <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color"
-        aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
-      <h2>Channel</h2>
-      <button mat-button (click)="openDialogAddChannel()">
+<div class="sidenav" id="sidenav">
+    <div class="channels">
+        <div class="channel-content">
+            <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+            <h2>Channel</h2>
+            <button mat-button (click)="openDialogAddChannel()">
         <mat-icon>add</mat-icon>
       </button>
-    </div>
-    <span [routerLink]="['/channelmessages/' + channel.customIdName]" *ngFor="let channel of sidenavService.channels"
-      routerLinkActive="router-link-active">{{ channel.name
+        </div>
+        <span [routerLink]="['/channelmessages/' + channel.customIdName]" *ngFor="let channel of sidenavService.channels" routerLinkActive="router-link-active">{{ channel.name
       }}</span>
-  </div>
-
-  <div class="channels">
-    <div class="channel-content">
-      <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color"
-        aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
-      <h2>Direct Messages</h2>
     </div>
-    <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of sidenavService.users" routerLinkActive="router-link-active">
+
+    <div class="channels">
+        <div class="channel-content">
+            <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+            <h2>Direct Messages</h2>
+        </div>
+        <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of sidenavService.users" routerLinkActive="router-link-active">
       <ng-container *ngIf="user.customIdName !== '3C651LYhk1HaB8Y0Vsbf'">
         <!-- todo: userservice logged in user variable -->
         {{ user.firstName }} {{ user.lastName }}
       </ng-container>
     </span>
-  </div>
+    </div>
 
-  <div class="footer">
-    <span routerLink="/inprint" style="cursor: pointer;">Legal</span> <span> &</span> <span
-      routerLink="/data-protection" style="cursor: pointer;"> Privacy Notice</span>
-  </div>
+    <div class="footer">
+        <span routerLink="/inprint" style="cursor: pointer;">Legal</span> <span> &</span> <span routerLink="/data-protection" style="cursor: pointer;"> Privacy Notice</span>
+    </div>
 
 
 </div>

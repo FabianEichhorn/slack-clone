@@ -1,10 +1,10 @@
 .app-screen {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  app-content-drawer {
-    flex: 1;
-  }
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    app-content-drawer {
+        flex: 1;
+    }
 }
 
 .test {
@@ -12,4 +12,10 @@
     position: absolute;
     top: 50px;
     right: 85px;
+}
+
+@media (max-width: 700px) {
+    .app-screen {
+        overflow: hidden;
+    }
 }

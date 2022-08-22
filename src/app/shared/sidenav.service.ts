@@ -11,6 +11,7 @@ export class SidenavService {
   public sideNavToggleSubject: BehaviorSubject<any> = new BehaviorSubject(null);
   public channels: Channel[] = [];
   public users: User[] = [];
+  public hideinMaxWidth: any;
 
   constructor(public firestore: AngularFirestore) { }
 
@@ -43,5 +44,13 @@ export class SidenavService {
         'name': channelName,
         'users': ['0ktdB0VydBMemqEwcDIv', '3C651LYhk1HaB8Y0Vsbf', '8dbx47l03bPocYuOfuJ4'],
       })
+  }
+
+  public hideSidenav() {
+    if (this.hideinMaxWidth == true) {
+      document.getElementById('sidenav').classList.add('d-none')
+    } else {
+      document.getElementById('sidenav').classList.remove('d-none')
+    }
   }
 }
