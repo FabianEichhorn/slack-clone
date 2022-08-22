@@ -37,6 +37,7 @@ import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-chann
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     InprintComponent,
     DataProtectionComponent,
     DialogAddChannelComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,24 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { User } from '../models/user.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  login: boolean = true;
+  user: any = new User;
 
-  constructor() { }
+  login: boolean = false;
+  registration: boolean = false;
+
+  constructor(public firestore: AngularFirestore) { }
+
+
+
+  public postToFirestore(collectionName: string, data: any) {
+    this.firestore
+      .collection(collectionName)
+      .add(data);
+  }
 }

@@ -4,9 +4,16 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import { InprintComponent } from './inprint/inprint.component';
 import { LoginComponent } from './login/login.component';
 import { MessagesComponent } from './messages/messages.component';
+import { RegisterComponent } from './register/register.component';
 import { ThreadComponent } from './thread/thread.component';
 
 const routes: Routes = [
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'register', component: LoginComponent
+  },
   {
     path: 'thread', component: ThreadComponent
   },
@@ -38,9 +45,7 @@ const routes: Routes = [
     path: 'directmessages/:id', component: MessagesComponent,
     data: { messageType: "directMessages" }
   },
-  {
-    path: 'login', component: LoginComponent
-  },
+
   {
     path: '**', redirectTo: '/' // falls was falsches eingegeben wird, wird man immer wieder zur startseite geleitet
   },

@@ -4,7 +4,7 @@ export class User {
   email: string;
   password: string;
   img: string; // url to an image
-  customIdName? : string;
+  customIdName?: string;
 
   constructor(obj?: any) {
     this.firstName = obj ? obj.firstName : '';
@@ -22,7 +22,7 @@ export class User {
       email: this.email,
       password: this.password,
       img: this.img,
-      customIdName : this.customIdName,
+      customIdName: this.customIdName,
     }
   }
 }
