@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   userData: any = this.userService;
 
-  constructor(private sidenav: SidenavService, public userService: UserService) { }
+  constructor(public sidenav: SidenavService, public userService: UserService) { }
 
   ngOnInit(): void {
   }
