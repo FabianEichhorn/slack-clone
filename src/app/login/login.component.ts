@@ -71,26 +71,11 @@ export class LoginComponent implements OnInit {
       .subscribe((changes: any) => {
         if (changes[0] && changes[0].password == this.loginPassword) {
           this.router.navigate(['/channelmessages'])
-          this.loginService.login = true
+          this.loginService.login = true;
         } else {
           alert('Incorrect E-Mail or Password')
         }
       })
-
-
-
-
   }
-
-
-
 }
-
-
-
-  //if (this.checkUserData) {
-  //alert('correct')
-  //} else {
-  //alert('Incorrect E-Mail or Password, please try again')
-  //}
 
