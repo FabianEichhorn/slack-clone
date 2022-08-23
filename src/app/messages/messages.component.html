@@ -18,7 +18,7 @@
                     <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
                 </div>
                 <div class="message-button-box">
-                    <p [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic'}"> {{ message.text }}</p>
+                    <p [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough'}"> {{ message.text }}</p>
                     <button class="showthread-btn" mat-button color="primary" (click)="openThread(message.customIdName)" *ngIf="messageType === 'channelMessages'">Thread</button>
                 </div>
             </div>

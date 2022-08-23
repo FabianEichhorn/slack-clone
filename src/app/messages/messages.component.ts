@@ -17,6 +17,7 @@ export class MessagesComponent implements OnInit {
   url : string = '';
   messageType: string = '';
   isThreadOpened: boolean = false;
+  selectedStyle: 'bold' | 'italic'
 
   constructor(public messageService: MessageService, private route: ActivatedRoute, public userService: UserService) { }
 

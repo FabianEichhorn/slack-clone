@@ -55,6 +55,7 @@ export class ChatInputComponent implements OnInit {
 
   sendChannelMessage() {
     this.channelId = this.routerUrl;
+    this.channelmessage.textStyle = this.messageService.selectedButton;
     this.channelmessage.timestamp = new Date().getTime();
     this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
     this.channelmessage.text = "";
@@ -62,6 +63,7 @@ export class ChatInputComponent implements OnInit {
 
   sendDirectMessage() {
     this.channelId = this.routerUrl;
+    this.channelmessage.textStyle = this.messageService.selectedButton;
     this.channelmessage.timestamp = new Date().getTime();
     this.messageService.postToFirestore('directMessages', this.channelmessage.toJSON());
     this.channelmessage.text = "";
