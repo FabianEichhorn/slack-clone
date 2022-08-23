@@ -6,12 +6,12 @@
 
         <div class="input-box">
             <i class="fa fa-envelope icon"></i>
-            <input [(ngModel)]="loginEmail" required class="email-input" type="email" placeholder="E-mail">
+            <input [(ngModel)]="loginService.loginEmail" required class="email-input" type="email" placeholder="E-mail">
         </div>
 
         <div class="input-box">
             <i class="fa fa-key icon"></i>
-            <input [(ngModel)]="loginPassword" class="password-input" type="password" placeholder="Passwort">
+            <input [(ngModel)]="loginService.loginPassword" class="password-input" type="password" placeholder="Passwort">
             <span class="eye" onclick="showPassword()">
             <i class="fa fa-eye" id="hide1"></i>
             <i class="fa fa-eye-slash" id="hide2"></i>
@@ -20,7 +20,7 @@
 
         <button type="button" class="login-btn" (click)="checkUserLogin()">Login</button>
         <button type="button" class="login-button" routerLink="register" (click)="loginService.registration = true">Register</button>
-        <button type="button" class="login-btn" (click)="loginService.login = true">Als Gast anmelden</button>
+        <button type="button" class="login-btn" (click)="questLogin()">Als Gast anmelden</button>
     </div>
 </div>
 

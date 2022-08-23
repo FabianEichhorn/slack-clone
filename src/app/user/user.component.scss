@@ -1,8 +1,12 @@
 .user-settings-box {
+    div {
+        cursor: pointer;
+    }
     height: 250px;
     width: 300px;
     background-color: #263d61;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .user-settings-content {

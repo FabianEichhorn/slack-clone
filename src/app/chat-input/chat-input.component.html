@@ -30,7 +30,6 @@
         <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>
         <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>
 
-        <div>Sprachnachricht</div>
     </div>
 
     <img (click)="sendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">

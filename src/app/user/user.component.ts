@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from '../shared/login.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loginService: LoginService, public router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logut() {
+    this.loginService.questLogin = false;
+    this.loginService.login = false;
+    this.router.navigate(['/login'])
   }
 
 }

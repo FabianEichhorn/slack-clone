@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router, RouterLink } from '@angular/router';
 import { ConnectableObservable } from 'rxjs';
+import { ChannelMessage } from '../models/channelmessage.class';
 import { User } from '../models/user.class';
 import { LoginService } from '../shared/login.service';
 
@@ -14,6 +15,7 @@ import { LoginService } from '../shared/login.service';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
+  channelMessage: ChannelMessage = new ChannelMessage();
   //register
   firstName: string;
   lastName: string;
@@ -21,24 +23,14 @@ export class LoginComponent implements OnInit {
   password: string;
 
   //login
-  loginEmail: string;
-  loginPassword: string;
+
 
   checkUserData: any;
 
 
-
   constructor(public loginService: LoginService, public firestore: AngularFirestore, public router: Router) { }
 
-  ngOnInit(): void {
-
-  }
-
-  checking() {
-
-
-    console.log(this.checkUserData)
-  }
+  ngOnInit(): void { }
 
   //Register
 
@@ -66,16 +58,26 @@ export class LoginComponent implements OnInit {
 
   checkUserLogin() {
     this.checkUserData = this.firestore.collection("users",
-      ref => ref.where("email", "==", this.loginEmail))
+      ref => ref.where("email", "==", this.loginService.loginEmail))
       .valueChanges()
       .subscribe((changes: any) => {
-        if (changes[0] && changes[0].password == this.loginPassword) {
-          this.router.navigate(['/channelmessages'])
+        if (changes[0] && changes[0].password == this.loginService.loginPassword) {
+          this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
           this.loginService.login = true;
         } else {
           alert('Incorrect E-Mail or Password')
         }
       })
+    this.loginService.login = true;
+  }
+
+  //Quest Login
+
+  questLogin() {
+    this.loginService.questLogin = true;
+    this.loginService.login = true;
+    this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
+    console.log(this.loginService.questLogin, this.loginService.login)
   }
 }
 

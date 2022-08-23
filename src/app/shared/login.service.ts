@@ -8,9 +8,13 @@ import { User } from '../models/user.class';
 export class LoginService {
 
   user: any = new User;
-
+  currentUserId: string;
+  questLogin: boolean = false;
   login: boolean = false;
   registration: boolean = false;
+  loginEmail: string;
+  loginPassword: string;
+
 
   constructor(public firestore: AngularFirestore) { }
 
