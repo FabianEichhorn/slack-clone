@@ -15,15 +15,12 @@ import { MessageService } from '../shared/message.service';
 export class ChatInputComponent implements OnInit {
 
   public routerUrl: string | null = this.router.url;
-
-  channelmessage: ChannelMessage = new ChannelMessage();
-  channelId: string | null = '';
-  userId: string | null = '';
+  public channelmessage: ChannelMessage = new ChannelMessage();
+  public channelId: string | null = '';
+  public userId: string | null = '';
   public textArea: string = '';
   public isEmojiPickerVisible: any;
-
-
-
+  public fileName: string = '';
 
   constructor(public messageService: MessageService, public firestore: AngularFirestore, public route: ActivatedRoute, private router: Router) {
   }
@@ -63,6 +60,13 @@ export class ChatInputComponent implements OnInit {
     this.channelmessage.timestamp = new Date().getTime();
     this.messageService.postToFirestore('directMessages', this.channelmessage.toJSON());
     this.channelmessage.text = "";
+  }
+
+  onFileSelected(event) {
+
+    console.log(event);
+
+
   }
 
 
