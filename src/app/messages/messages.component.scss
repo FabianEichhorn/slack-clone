@@ -1,7 +1,7 @@
 :host {
-  height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
 }
 
 .thread-messages-box {
@@ -22,9 +22,9 @@
 }
 
 .info-empty {
-  margin: 32px;
-  font-size: 16px;
-  text-align: center;
+    margin: 32px;
+    font-size: 16px;
+    text-align: center;
 }
 
 .message {
@@ -122,25 +122,42 @@
     margin-bottom: 10px;
 }
 
-
 // custom scrollbar
 
 /* width */
+
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
+
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
-  background: #888;
+    background: #888;
 }
 
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
+}
+
+
+/* textStyle */
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-size: 50px;
 }
