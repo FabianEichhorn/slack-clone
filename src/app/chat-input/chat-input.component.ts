@@ -1,10 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ActivatedRoute, TitleStrategy } from '@angular/router';
-import { Router, NavigationEnd } from '@angular/router';
-import { contains } from '@firebase/util';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ChannelMessage } from '../models/channelmessage.class';
-import { Directmessage } from '../models/directmessage.class';
 import { MessageService } from '../shared/message.service';
 
 @Component({
@@ -22,8 +21,13 @@ export class ChatInputComponent implements OnInit {
   public isEmojiPickerVisible: any;
   public fileName: string = '';
 
-  constructor(public messageService: MessageService, public firestore: AngularFirestore, public route: ActivatedRoute, private router: Router) {
-  }
+  constructor(
+    public messageService: MessageService,
+    public firestore: AngularFirestore,
+    public route: ActivatedRoute,
+    private router: Router,
+    private storage: AngularFireStorage,
+    ) {}
 
 
   ngOnInit(): void {
@@ -63,10 +67,20 @@ export class ChatInputComponent implements OnInit {
   }
 
   onFileSelected(event) {
+    const file:File = event.target.files[0]; // in the event we can find out the filename of selectedImage
 
-    console.log(event);
+    if (file) {
+      this.fileName = file.name;
 
+      console.log('Firebase Upload: file:', file, ' name: ', this.fileName);
 
+      // this.saveToFireStorage();
+    }
+  }
+
+  saveToFireStorage() {
+    this.storage
+    .upload('testimage', 'image.image')
   }
 
 
