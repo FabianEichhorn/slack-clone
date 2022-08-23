@@ -9,3 +9,22 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+/* textStyle */
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.normal {
+    font-weight: unset;
+}
+
+.linethrough {
+    text-decoration: line-through;
+}

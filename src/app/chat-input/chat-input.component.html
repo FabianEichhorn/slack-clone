@@ -1,44 +1,39 @@
 <div class="chat-input-box">
-  <div class="font-settings-box">
-    <button (click)="messageService.makeTextBold()">B</button>
-    <button (click)="messageService.makeTextItalics()">I</button>
-    <button (click)="messageService.makeTextLineThrough()">--</button>
-  </div>
-
-  <div>
-    <input *ngIf="messageService.isTextBold" style="font-weight: bold;" type="text" [(ngModel)]="channelmessage.text"
-      [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
-    <input *ngIf="messageService.isTextItalics" style="font-style: italic;" type="text"
-      [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
-    <input *ngIf="messageService.isTextLineThrough" style="text-decoration: line-through;" type="text"
-      [(ngModel)]="channelmessage.text" [(ngModel)]="textArea" placeholder="Nachricht an Max Mustermann">
-    <input *ngIf="messageService.isTextnormal" type="text" [(ngModel)]="channelmessage.text" [(ngModel)]="textArea"
-      placeholder="Nachricht an Max Mustermann">
-
-  </div>
-
-  <div class="gadgets-box">
-
-    <!-- diesen Bereich eventuell für Abgabe ausblenden -->
-    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept="image/*"> <!-- this button is hidden by CSS, but triggered by a function of another element -->
-
-    <div class="file-upload">
-      <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo" (click)="fileUpload.click()">
-        insert_photo
-      </mat-icon>
-      {{ fileName || "No image uploaded yet." }}
+    <div class="font-settings-box">
+        <button (click)="messageService.makeTextBold()">B</button>
+        <button (click)="messageService.makeTextItalics()">I</button>
+        <button (click)="messageService.makeTextLineThrough()">--</button>
     </div>
 
-    <!-- diesen Bereich eventuell für Abgabe ausblenden -->
+    <div>
+        <input [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough'}" placeholder="Nachricht von Max Mustermann" [(ngModel)]="textArea"
+            [(ngModel)]="channelmessage.text" type="text">
 
-    <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>
-    <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)"
-      title="Choose your emoji"></emoji-mart>
 
-    <div>Sprachnachricht</div>
-  </div>
+    </div>
 
-  <img (click)="sendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
+    <div class="gadgets-box">
+
+        <!-- diesen Bereich eventuell für Abgabe ausblenden -->
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept="image/*">
+        <!-- this button is hidden by CSS, but triggered by a function of another element -->
+
+        <div class="file-upload">
+            <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo" (click)="fileUpload.click()">
+                insert_photo
+            </mat-icon>
+            {{ fileName || "No image uploaded yet." }}
+        </div>
+
+        <!-- diesen Bereich eventuell für Abgabe ausblenden -->
+
+        <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>
+        <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>
+
+        <div>Sprachnachricht</div>
+    </div>
+
+    <img (click)="sendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
 </div>
 
 

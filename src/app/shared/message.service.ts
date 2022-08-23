@@ -18,6 +18,7 @@ export class MessageService {
   public isTextItalics: any;
   public isTextnormal: any = true;
   public isTextLineThrough: any;
+  public selectedButton: "normal" | "italic" | "bold" | "linethrough" = 'normal';
 
 
   constructor(public firestore: AngularFirestore, public userService: UserService) { }
@@ -93,54 +94,35 @@ export class MessageService {
   }
 
   makeTextBold() {
-/*     this.messages[27].textStyle = 'bold'
-    console.log(this.messages);
-    console.log(this.textStyle);
-     */
-    if (this.isTextBold == true) {
-      this.isTextBold = false;
-      this.isTextnormal = true;
+    if (this.selectedButton != 'bold') {
+       this.selectedButton = 'bold'
     } else {
-      this.isTextBold = true;
-      this.isTextLineThrough = false
-      this.isTextItalics = false;
-      this.isTextnormal = false;
+      this.selectedButton = 'normal'
     }
-
+    console.log(this.selectedButton);
+    
+    
   }
 
   makeTextItalics() {
-    console.log(this.messages);
-    if (this.isTextItalics == true) {
-      this.isTextItalics = false;
-      this.isTextnormal = true;
-    } else if (this.isTextBold == true && this.isTextItalics == true) {
-      this.isTextItalics = true;
-      this.isTextLineThrough = false
-      this.isTextBold = false;
-      this.isTextnormal = false;
-      console.log('beide', this.isTextBold, this.isTextItalics);
-
-    } else {
-      this.isTextItalics = true;
-      this.isTextBold = false;
-      this.isTextnormal = false;
-    }
-    console.log('Text Italics is', this.isTextItalics)
+    if (this.selectedButton != 'italic') {
+      this.selectedButton = 'italic'
+   } else {
+     this.selectedButton = 'normal'
+   }
+   console.log(this.selectedButton);
+   
   }
 
 
 
   makeTextLineThrough() {
-    if (this.isTextLineThrough == true) {
-      this.isTextLineThrough = false;
-      this.isTextnormal = true;
-    } else {
-      this.isTextLineThrough = true;
-      this.isTextItalics = false;
-      this.isTextBold = false;
-      this.isTextnormal = false;
-    }
+    if (this.selectedButton != 'linethrough') {
+      this.selectedButton = 'linethrough'
+   } else {
+     this.selectedButton = 'normal'
+   }
+   console.log(this.selectedButton);
   }
 }
 /* this.isTextItalics = true;

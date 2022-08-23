@@ -20,6 +20,7 @@ export class ChatInputComponent implements OnInit {
   public textArea: string = '';
   public isEmojiPickerVisible: any;
   public fileName: string = '';
+ 
 
   constructor(
     public messageService: MessageService,
