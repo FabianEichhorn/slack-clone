@@ -19,6 +19,7 @@ export class MessageService {
   public isTextnormal: any = true;
   public isTextLineThrough: any;
 
+
   constructor(public firestore: AngularFirestore, public userService: UserService) { }
 
 
@@ -92,6 +93,10 @@ export class MessageService {
   }
 
   makeTextBold() {
+/*     this.messages[27].textStyle = 'bold'
+    console.log(this.messages);
+    console.log(this.textStyle);
+     */
     if (this.isTextBold == true) {
       this.isTextBold = false;
       this.isTextnormal = true;
@@ -105,6 +110,7 @@ export class MessageService {
   }
 
   makeTextItalics() {
+    console.log(this.messages);
     if (this.isTextItalics == true) {
       this.isTextItalics = false;
       this.isTextnormal = true;
