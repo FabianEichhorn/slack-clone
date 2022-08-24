@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
@@ -24,18 +22,17 @@ export class ChatInputComponent implements OnInit {
   public textArea: string = '';
   public isEmojiPickerVisible: any;
   public fileName: string = '';
+  private imageFile: File = null;
   public findUserId: any;
 
 
   constructor(
     public messageService: MessageService,
-    public firestore: AngularFirestore,
     public route: ActivatedRoute,
     private router: Router,
-    private storage: AngularFireStorage,
     public loginService: LoginService,
     public user: UserService,
-    private _snackBar: MatSnackBar,
+    private _snackBar: MatSnackBar
   ) { }
 
 
@@ -48,8 +45,9 @@ export class ChatInputComponent implements OnInit {
     });
   }
 
-  sendMessage() {
+  public sendMessage() {
     if (this.channelmessage.text != '') {
+      this.uploadImage();
       if (this.routerUrl.includes('channelmessages')) {
         this.sendChannelMessage();
       } else if (this.routerUrl.includes('directmessages')) {
@@ -88,23 +86,21 @@ export class ChatInputComponent implements OnInit {
   }
 
   private openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {"duration": 2000});
+    this._snackBar.open(message, action, { "duration": 2000 });
   }
 
-  onFileSelected(event) {
-    const file: File = event.target.files[0]; // in the event we can find out the filename of selectedImage
-    if (file) {
-      this.fileName = file.name;
-      console.log('Firebase Upload: file:', file, ' name: ', this.fileName);
-      // this.saveToFireStorage();
-    }
+  public onFileSelected(event) {
+    this.imageFile = event.target.files[0]; // in the event we can find out the filename of selectedImage
+    this.fileName = this.imageFile.name;
   }
 
-  saveToFireStorage() {
-    this.storage
-      .upload('testimage', 'image.image')
+  public uploadImage() {
+    this.messageService.uploadImageFireStorage(this.imageFile);
+    this.imageFile = null;
+    this.fileName = '';
   }
-  getRightUserId() {
+
+  private getRightUserId() {
     if (this.loginService.questLogin) {
       this.channelmessage.userId = 'GfjNnUqEpNxZxTyBdCwt';
     } else if (this.loginService.login && this.loginService.loginEmail == 'dumbminds@gmx.de') {

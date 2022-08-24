@@ -23,6 +23,7 @@
           <p
             [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough'}">
             {{ message.text }}</p>
+            <img *ngIf="message.uploadedImageUrl" src='{{ message.uploadedImageUrl }}'>
           <button class="showthread-btn" mat-button color="primary" (click)="threadService.openThread(message.customIdName)"
             *ngIf="messageType === 'channelMessages'">Thread</button>
         </div>

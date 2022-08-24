@@ -7,6 +7,7 @@ export class ChannelMessage {
   channelId: string; // is the firebase document ID from the channel, in which message was posted, for example channel 8liMczKcm1Paer7sJbAX
   customIdName: string;
   public textStyle: "normal" | "italic" | "bold" | "linethrough" = 'normal';
+  uploadedImageUrl?: string;
 
   constructor(obj?: any) {
     this.text = obj ? obj.text : '';
@@ -15,6 +16,7 @@ export class ChannelMessage {
     this.channelId = obj ? obj.channelId : ''
     this.customIdName = obj ? obj.customIdName : '';
     this.textStyle = obj ? obj.textStyle : '';
+    this.uploadedImageUrl = obj ? obj.uploadedImageUrl : '';
   }
 
   public toJSON(): any {
@@ -25,6 +27,7 @@ export class ChannelMessage {
       channelId: this.channelId,
       customIdName: this.customIdName,
       textStyle: this.textStyle,
+      uploadedImageUrl: this.uploadedImageUrl,
     }
   }
 }
