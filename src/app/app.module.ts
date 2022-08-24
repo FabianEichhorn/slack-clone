@@ -41,6 +41,7 @@ import { RouterModule } from '@angular/router';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { RegisterComponent } from './register/register.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { RegisterComponent } from './register/register.component';
     MatDialogModule,
     MatInputModule,
     MatProgressBarModule,
+    MatSnackBarModule,
 
     // imports firestore modules
     provideFirebaseApp(() => initializeApp(environment.firebase)),

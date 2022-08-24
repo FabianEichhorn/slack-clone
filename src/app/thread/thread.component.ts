@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../shared/message.service';
+import { ThreadService } from '../shared/thread.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-thread',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThreadComponent implements OnInit {
 
-  constructor() { }
+  constructor(public messageService: MessageService, public userService: UserService, public threadService: ThreadService) { }
 
   ngOnInit(): void {
+
+  }
+
+  public closeThread() {
+
   }
 
 }

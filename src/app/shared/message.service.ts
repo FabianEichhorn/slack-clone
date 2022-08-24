@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { TitleStrategy } from '@angular/router';
 import { ChannelMessage } from '../models/channelmessage.class';
-import { Directmessage } from '../models/directmessage.class';
 import { Threadmessage } from '../models/threadmessage.class';
 import { UserService } from './user.service';
 
@@ -14,10 +12,6 @@ export class MessageService {
   public messages: ChannelMessage[] = [];
   public thread: Threadmessage[] = [];
   public isLoading: boolean = true;
-  public isTextBold: any;
-  public isTextItalics: any;
-  public isTextnormal: any = true;
-  public isTextLineThrough: any;
   public selectedButton: "normal" | "italic" | "bold" | "linethrough" = 'normal';
 
 
@@ -62,23 +56,18 @@ export class MessageService {
       });
   }
 
-  /*private getDirectMessageFromFirebase(id: string | null) {
-    this.firestore
-      .collection("directMessages", ref => ref
-        .where('users', 'array-contains', '3C651LYhk1HaB8Y0Vsbf') // gives back all directMessages where current logged in user is part of
-      )
-      .valueChanges()
-      .subscribe((changes: any) => {
-        this.messages = changes.filter((item: { users: (string | null)[]; }) => item.users.includes(id));
-        this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
-        this.userService.getParticipants(this.messages);
-      });
-  }*/
-
   public postToFirestore(collectionName: string, data: any) {
     this.firestore
       .collection(collectionName)
       .add(data);
+  }
+
+  public postThreadToFirestore(collectionName: string, postInThreadOfMessage: string, data: any) {
+    this.firestore
+      .collection(collectionName)
+      .doc(postInThreadOfMessage) // message-id
+      .collection('thread')
+      .add(data)
   }
 
   public getThread(messageId: string) {
@@ -100,8 +89,6 @@ export class MessageService {
       this.selectedButton = 'normal'
     }
     console.log(this.selectedButton);
-    
-    
   }
 
   makeTextItalics() {
@@ -111,10 +98,7 @@ export class MessageService {
      this.selectedButton = 'normal'
    }
    console.log(this.selectedButton);
-   
   }
-
-
 
   makeTextLineThrough() {
     if (this.selectedButton != 'linethrough') {

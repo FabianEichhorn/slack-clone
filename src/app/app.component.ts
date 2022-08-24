@@ -20,8 +20,6 @@ export class AppComponent implements OnInit {
     } else {
       this.router.navigate(['/login'])
     }
-    console.log(this.loginService.questLogin, this.loginService.login)
-
   }
 
 

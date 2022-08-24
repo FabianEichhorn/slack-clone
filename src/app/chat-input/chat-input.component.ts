@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ChannelMessage } from '../models/channelmessage.class';
@@ -15,6 +16,7 @@ import { UserService } from '../shared/user.service';
 })
 export class ChatInputComponent implements OnInit {
 
+  @Input() postInThreadOfMessage: string = ''; // if we set this ID, a message will be posted as child of a channelmessage, if not it will be a normal message
   public routerUrl: string | null = this.router.url;
   public channelmessage: ChannelMessage = new ChannelMessage();
   public channelId: string | null = '';
@@ -33,6 +35,7 @@ export class ChatInputComponent implements OnInit {
     private storage: AngularFireStorage,
     public loginService: LoginService,
     public user: UserService,
+    private _snackBar: MatSnackBar,
   ) { }
 
 
@@ -43,15 +46,17 @@ export class ChatInputComponent implements OnInit {
         this.channelmessage.channelId = this.channelId;
       }
     });
-
-
   }
 
   sendMessage() {
-    if (this.routerUrl.includes('channelmessages')) {
-      this.sendChannelMessage();
-    } else if (this.routerUrl.includes('directmessages')) {
-      this.sendDirectMessage();
+    if (this.channelmessage.text != '') {
+      if (this.routerUrl.includes('channelmessages')) {
+        this.sendChannelMessage();
+      } else if (this.routerUrl.includes('directmessages')) {
+        this.sendDirectMessage();
+      }
+    } else {
+      this.openSnackBar('Please insert a text.', 'close');
     }
   }
 
@@ -60,32 +65,37 @@ export class ChatInputComponent implements OnInit {
     this.isEmojiPickerVisible = false;
   }
 
-  sendChannelMessage() {
+  private sendChannelMessage() {
     this.channelId = this.routerUrl;
-    this.getRIghtUserId()
+    this.getRightUserId()
     this.channelmessage.textStyle = this.messageService.selectedButton;
     this.channelmessage.timestamp = new Date().getTime();
-    this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
+    if (this.postInThreadOfMessage != '') {
+      this.messageService.postThreadToFirestore('channelMessages', this.postInThreadOfMessage, this.channelmessage.toJSON());
+    } else {
+      this.messageService.postToFirestore('channelMessages', this.channelmessage.toJSON());
+    }
     this.channelmessage.text = "";
   }
 
-  sendDirectMessage() {
+  private sendDirectMessage() {
     this.channelId = this.routerUrl;
-    this.getRIghtUserId()
+    this.getRightUserId()
     this.channelmessage.textStyle = this.messageService.selectedButton;
     this.channelmessage.timestamp = new Date().getTime();
     this.messageService.postToFirestore('directMessages', this.channelmessage.toJSON());
     this.channelmessage.text = "";
   }
 
+  private openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {"duration": 2000});
+  }
+
   onFileSelected(event) {
     const file: File = event.target.files[0]; // in the event we can find out the filename of selectedImage
-
     if (file) {
       this.fileName = file.name;
-
       console.log('Firebase Upload: file:', file, ' name: ', this.fileName);
-
       // this.saveToFireStorage();
     }
   }
@@ -94,7 +104,7 @@ export class ChatInputComponent implements OnInit {
     this.storage
       .upload('testimage', 'image.image')
   }
-  getRIghtUserId() {
+  getRightUserId() {
     if (this.loginService.questLogin) {
       this.channelmessage.userId = 'GfjNnUqEpNxZxTyBdCwt';
     } else if (this.loginService.login && this.loginService.loginEmail == 'dumbminds@gmx.de') {

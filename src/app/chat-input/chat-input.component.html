@@ -6,26 +6,20 @@
     </div>
 
     <div>
-        <input [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough'}" placeholder="Nachricht von Max Mustermann" [(ngModel)]="textArea"
-            [(ngModel)]="channelmessage.text" type="text">
-
-
+        <input [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough'}" placeholder="Please enter your message..." [(ngModel)]="textArea"
+            [(ngModel)]="channelmessage.text" type="text" (keyup.enter)="sendMessage()">
     </div>
 
     <div class="gadgets-box">
-
-        <!-- diesen Bereich eventuell für Abgabe ausblenden -->
         <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept="image/*">
         <!-- this button is hidden by CSS, but triggered by a function of another element -->
 
-        <div class="file-upload">
+        <!-- <div class="file-upload">
             <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo" (click)="fileUpload.click()">
                 insert_photo
             </mat-icon>
             {{ fileName || "No image uploaded yet." }}
-        </div>
-
-        <!-- diesen Bereich eventuell für Abgabe ausblenden -->
+        </div> -->
 
         <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>
         <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>

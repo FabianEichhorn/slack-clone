@@ -1,1 +1,27 @@
-<p>thread works!</p>
+<div class="threads-box">
+  <div class="thread-headline">
+    <h2>Thread</h2>
+    <button mat-button (click)="threadService.closeThread()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <h3 *ngIf="messageService.thread.length == 0">thread empty: write your first thread message</h3>
+  <div *ngFor="let message of messageService.thread" class="message">
+    <div>
+      <div class="user-box">
+        <ng-container *ngFor="let participant of userService.participants">
+          <ng-container *ngIf="participant.customIdName === message.userId">
+            <img src="{{ participant.img }}" alt="">
+            <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
+          </ng-container>
+        </ng-container>
+        <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+      </div>
+      <p class="typed-message">{{ message.text }} </p>
+    </div>
+  </div>
+  <div class="chat-input-box">
+    <!-- input box for thread -->
+    <app-chat-input [postInThreadOfMessage]="threadService.threadForMessageId" class="chat-input"></app-chat-input>
+  </div>
+</div>
