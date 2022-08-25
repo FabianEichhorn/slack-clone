@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 import { User } from '../models/user.class';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +17,14 @@ export class LoginService {
   loginEmail: string;
   loginPassword: string;
 
+  userId: string; //public id for logged in user
 
-  constructor(public firestore: AngularFirestore) { }
+
+
+  constructor(public firestore: AngularFirestore, public router: Router) { }
+
+
+
 
   public postToFirestore(collectionName: string, data: any) {
     this.firestore

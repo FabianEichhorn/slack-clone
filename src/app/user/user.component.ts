@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { User } from '../models/user.class';
 import { LoginService } from '../shared/login.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-user',
@@ -9,9 +12,14 @@ import { LoginService } from '../shared/login.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(public loginService: LoginService, public router: Router) { }
+  user: User = new User();
+
+  getUserData: any;
+
+  constructor(public loginService: LoginService, public router: Router, public firestore: AngularFirestore, public userService: UserService) { }
 
   ngOnInit(): void {
+
   }
 
   logut() {

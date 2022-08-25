@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Message } from '../models/message.class';
 import { User } from '../models/user.class';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,26 @@ export class UserService implements OnInit {
   participants: User[] = [];
 
   userBox: boolean = false;
+  getUserDatas: any;
 
-  constructor(public firestore: AngularFirestore) {
+  constructor(public firestore: AngularFirestore, public loginService: LoginService) {
     this.getUsers();
   }
 
   ngOnInit(): void {
+    console.log(this.getUserDatas.firstName)
   }
+
+  public getUserData() {
+    this.getUserDatas = this.firestore.collection("users",
+      ref => ref.where("email", "==", this.loginService.loginEmail))
+      .valueChanges()
+      .subscribe((changes: any) => {
+        this.getUserDatas = changes;
+      })
+
+  }
+
 
   private getUsers() {
     this.firestore
