@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Router, RouterLink } from '@angular/router';
-import { ConnectableObservable } from 'rxjs';
-import { ChannelMessage } from '../models/channelmessage.class';
+import { Router } from '@angular/router';
+import { Message } from '../models/message.class';
 import { User } from '../models/user.class';
 import { LoginService } from '../shared/login.service';
 
@@ -15,7 +14,7 @@ import { LoginService } from '../shared/login.service';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
-  channelMessage: ChannelMessage = new ChannelMessage();
+  channelMessage: Message = new Message();
   //register
   firstName: string;
   lastName: string;

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ChannelMessage } from '../models/channelmessage.class';
+import { Message } from '../models/message.class';
 import { LoginService } from '../shared/login.service';
 import { MessageService } from '../shared/message.service';
 import { UserService } from '../shared/user.service';
@@ -16,7 +16,7 @@ export class ChatInputComponent implements OnInit {
 
   @Input() postInThreadOfMessage: string = ''; // if we set this ID, a message will be posted as child of a channelmessage, if not it will be a normal message
   public routerUrl: string | null = this.router.url;
-  public channelmessage: ChannelMessage = new ChannelMessage();
+  public channelmessage: Message = new Message();
   public channelId: string | null = '';
   public userId: string | null = '';
   public textArea: string = '';

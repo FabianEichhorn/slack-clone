@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ChannelMessage } from '../models/channelmessage.class';
 import { UserService } from './user.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
+import { Message } from '../models/message.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  public messages: ChannelMessage[] = [];
-  public thread: ChannelMessage[] = [];
+  public messages: Message[] = [];
+  public thread: Message[] = [];
   public isLoading: boolean = true;
   public selectedButton: "normal" | "italic" | "bold" | "linethrough" = 'normal';
 
