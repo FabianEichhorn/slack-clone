@@ -24,7 +24,7 @@
           [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough'}">
           {{ message.text }}</p>
         </div>
-        <img src='https://firebasestorage.googleapis.com/v0/b/slack-clone-64942.appspot.com/o/images%2F1661407307659_marco_beer.png?alt=media&token=acbb0ea7-3c57-47c0-8e82-de9a96c2a0fa'>
+        <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
         <button class="showthread-btn" mat-button color="primary" (click)="threadService.openThread(message.customIdName)"
         *ngIf="messageType === 'channelMessages'">Thread</button>
       </div>

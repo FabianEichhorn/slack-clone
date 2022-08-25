@@ -9,7 +9,7 @@
     <input
       [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough'}"
       placeholder="Please enter your message..." [(ngModel)]="textArea" [(ngModel)]="channelmessage.text" type="text"
-      (keyup.enter)="sendMessage()">
+      (keyup.enter)="trySendMessage()">
   </div>
 
   <div class="gadgets-box">
@@ -30,7 +30,7 @@
 
   </div>
 
-  <img (click)="sendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
+  <img (click)="trySendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
 </div>
 
 

@@ -95,7 +95,7 @@ export class MessageService {
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
               console.log(url);
-              //insert image details in firebase
+              // poste erst jetzt die gesamte Nachricht in Firestore Database (haben erst jetzt die passende URL)
             })
           })
         )
@@ -103,8 +103,20 @@ export class MessageService {
     }
   }
 
-  public getImageFireStorage() {
+  public post(imageFile:File, routerUrl: string, postInThreadOfMessage: boolean) {
+    if(imageFile) {
+      // post image and AFTER message, we need the data (direct or channel)
+    } else {
+      // post message (direct or channel)
+    }
+  }
 
+  private postMessage(routerUrl: string, postInThreadOfMessage: boolean) {
+    // wenn router-url 'channelMessages'
+    // post to channelmessages
+      // wenn thread aktiv --> post thread
+    // wenn router-url 'directmessages'
+    // post to direct messages
   }
 
   makeTextBold() {

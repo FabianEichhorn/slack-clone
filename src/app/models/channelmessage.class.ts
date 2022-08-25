@@ -16,7 +16,7 @@ export class ChannelMessage {
     this.channelId = obj ? obj.channelId : ''
     this.customIdName = obj ? obj.customIdName : '';
     this.textStyle = obj ? obj.textStyle : '';
-    this.imageUrl = obj ? obj.uploadedImageUrl : '';
+    this.imageUrl = obj ? obj.imageUrl : '';
   }
 
   public toJSON(): any {
@@ -27,7 +27,7 @@ export class ChannelMessage {
       channelId: this.channelId,
       customIdName: this.customIdName,
       textStyle: this.textStyle,
-      uploadedImageUrl: this.imageUrl,
+      imageUrl: this.imageUrl,
     }
   }
 }

@@ -45,17 +45,21 @@ export class ChatInputComponent implements OnInit {
     });
   }
 
-  public async sendMessage() {
-    if (this.channelmessage.text != '') {
-      await this.uploadImage();
+  public trySendMessage() {
+    if (this.channelmessage.text != '' || this.imageFile) {
+      this.send();
+    } else {
+      this.openSnackBar('Please insert a text or an image.', 'close');
+    }
+  }
+
+  private send() {
+      this.uploadImage();
       if (this.routerUrl.includes('channelmessages')) {
         this.sendChannelMessage();
       } else if (this.routerUrl.includes('directmessages')) {
         this.sendDirectMessage();
       }
-    } else {
-      this.openSnackBar('Please insert a text.', 'close');
-    }
   }
 
   public addEmoji(event: any) {
