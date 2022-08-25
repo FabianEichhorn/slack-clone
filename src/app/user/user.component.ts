@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   }
 
   logut() {
-    this.loginService.questLogin = false;
+    this.loginService.guestLogin = false;
     this.loginService.login = false;
     this.router.navigate(['/login'])
   }

@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
   //Quest Login
 
   questLogin() {
-    this.loginService.questLogin = true;
+    this.loginService.guestLogin = true;
     this.loginService.login = true;
     this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
   }

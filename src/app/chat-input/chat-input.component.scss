@@ -1,107 +1,96 @@
      .chat-input-box {
-       position: relative;
-       display: flex;
-       flex-direction: column;
-       background-color: rgb(255, 255, 255);
-       width: 98%;
-       height: 105px;
-       border-style: solid;
-       border-width: 2px;
-       border-color: rgb(177, 176, 176);
-       border-radius: 8px;
-
-       input {
-         margin-top: 15px;
-         margin-bottom: 15px;
-         font-size: 16px;
-         margin-left: 10px;
-         max-width: 100%;
-         width: 90%;
-         border: 0;
-         outline: none;
-
-         &:focus {
-           outline: none !important;
-         }
-       }
-
-       img {
-         cursor: pointer;
-         position: absolute;
-         bottom: 10px;
-         right: 10px;
-         width: 25px;
-         height: 25px;
-       }
-     }
-
-     .font-settings-box {
-       display: flex;
-
-       div {
-         margin-left: 10px;
-       }
-
-       button {
-         margin-left: 10px;
-         margin-top: 5px;
-         height: 23px;
-         width: 23px;
-         background-color: transparent;
-         border-radius: 100px;
-         border: 1px solid gray;
-
-         &:hover {
-           background-color: gray;
-         }
-       }
-     }
-
-     .gadgets-box {
-       display: flex;
-       align-items: center;
-
-       div {
-         margin-left: 10px;
-       }
-
-       mat-icon {
+         position: relative;
          display: flex;
-         margin-left: 10px;
-         cursor: pointer;
-       }
+         flex-direction: column;
+         background-color: rgb(255, 255, 255);
+         width: 98%;
+         height: 105px;
+         border-style: solid;
+         border-width: 2px;
+         border-color: rgb(177, 176, 176);
+         border-radius: 8px;
+         input {
+             margin-top: 15px;
+             margin-bottom: 15px;
+             font-size: 16px;
+             margin-left: 10px;
+             max-width: 100%;
+             width: 90%;
+             border: 0;
+             outline: none;
+             &:focus {
+                 outline: none !important;
+             }
+         }
+         img {
+             cursor: pointer;
+             position: absolute;
+             bottom: 10px;
+             right: 10px;
+             width: 25px;
+             height: 25px;
+         }
      }
-
+     
+     .font-settings-box {
+         display: flex;
+         div {
+             margin-left: 10px;
+         }
+         button {
+             margin-left: 10px;
+             margin-top: 5px;
+             height: 23px;
+             width: 23px;
+             background-color: transparent;
+             border-radius: 100px;
+             border: 1px solid gray;
+             &:hover {
+                 background-color: gray;
+             }
+         }
+     }
+     
+     .gadgets-box {
+         display: flex;
+         align-items: center;
+         div {
+             margin-left: 10px;
+         }
+         mat-icon {
+             display: flex;
+             margin-left: 10px;
+             cursor: pointer;
+         }
+     }
+     
      .file-input {
-       display: none;
+         display: none;
      }
-
+     
      .file-upload {
-       display: flex;
-       align-items: center;
+         display: flex;
+         align-items: center;
      }
-
+     
      .emoji-container {
-       background: transparent;
-       border: 0;
-       transform: translateX(-0px);
-       cursor: pointer;
-
-       &:focus {
-         outline: 0;
-       }
+         background: transparent;
+         border: 0;
+         transform: translateX(-0px);
+         cursor: pointer;
+         &:focus {
+             outline: 0;
+         }
      }
-
+     
      .emoji-mart {
-       position: absolute;
-       top: -450px !important;
+         position: absolute;
+         top: -450px !important;
      }
-
+     
      mat-spinner {
-      margin: 4px;
+         margin: 4px;
      }
-
-
      /* :host {
     width: 94%;
     margin-bottom: 8px;

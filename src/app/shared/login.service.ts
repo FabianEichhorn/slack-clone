@@ -9,7 +9,7 @@ export class LoginService {
 
   user: any = new User;
   currentUserId: string;
-  questLogin: boolean = false;
+  guestLogin: boolean = false;
   login: boolean = false;
   registration: boolean = false;
   loginEmail: string;
@@ -17,8 +17,6 @@ export class LoginService {
 
 
   constructor(public firestore: AngularFirestore) { }
-
-
 
   public postToFirestore(collectionName: string, data: any) {
     this.firestore
