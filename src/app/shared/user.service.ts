@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ChannelMessage } from '../models/channelmessage.class';
-import { Directmessage } from '../models/directmessage.class';
 import { User } from '../models/user.class';
 
 @Injectable({
@@ -31,12 +30,12 @@ export class UserService implements OnInit {
       });
   }
 
-  public getParticipants(messages: ChannelMessage[] | Directmessage[]) {
+  public getParticipants(messages: ChannelMessage[]) {
     this.getParticipantsIds(messages);
     this.getParticipantsData();
   }
 
-  private getParticipantsIds(messages: ChannelMessage[] | Directmessage[]) {
+  private getParticipantsIds(messages: ChannelMessage[]) {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
       if (this.participantsIds.indexOf(message.userId) === -1) { // push userId only if it isn't already in the array
