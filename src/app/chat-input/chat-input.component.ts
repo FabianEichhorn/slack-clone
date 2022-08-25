@@ -45,9 +45,9 @@ export class ChatInputComponent implements OnInit {
     });
   }
 
-  public sendMessage() {
+  public async sendMessage() {
     if (this.channelmessage.text != '') {
-      this.uploadImage();
+      await this.uploadImage();
       if (this.routerUrl.includes('channelmessages')) {
         this.sendChannelMessage();
       } else if (this.routerUrl.includes('directmessages')) {

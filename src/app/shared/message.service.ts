@@ -4,6 +4,7 @@ import { ChannelMessage } from '../models/channelmessage.class';
 import { Threadmessage } from '../models/threadmessage.class';
 import { UserService } from './user.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -85,11 +86,20 @@ export class MessageService {
 
   public uploadImageFireStorage(imageFile: File) {
     if (imageFile) {
+      let filePath = `/images/${new Date().getTime()}_${imageFile.name}`;
+      const fileRef = this.firestorage.ref(filePath);
       this.firestorage
-        .upload("/images/" + Math.random() * 1000000000 + "_" + imageFile.name, imageFile)  // 1. argument = filename, 2. argument = actual path to the image
-        .then((result: any) => {
-          console.log(result);
-        });
+        .upload(filePath, imageFile)  // 1. argument = filepath on firestorage (incl. timestamp), 2. argument = actual path to the image
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              console.log(url);
+              //insert image details in firebase
+            })
+          })
+        )
+        .subscribe()
     }
   }
 

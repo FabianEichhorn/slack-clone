@@ -38,6 +38,9 @@
     margin: 6px;
     margin-top: 30px;
     margin-left: 20px;
+    img {
+      height: 300px;
+    }
 }
 
 .user-box {
@@ -71,7 +74,7 @@
     margin-bottom: 0px;
 }
 
-.message-button-box {
+.message-box {
     padding-left: 46px;
     margin-top: -16px;
 }
