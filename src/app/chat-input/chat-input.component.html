@@ -8,7 +8,7 @@
   <div>
     <input
       [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough'}"
-      placeholder="Please enter your message..." [(ngModel)]="textArea" [(ngModel)]="channelmessage.text" type="text"
+      placeholder="Please enter your message..." [(ngModel)]="textArea" [(ngModel)]="message.text" type="text"
       (keyup.enter)="trySendMessage()">
   </div>
 
@@ -22,6 +22,7 @@
         insert_photo
       </mat-icon>
       {{ fileName || "No image added yet." }}
+      <mat-spinner [diameter]="20" *ngIf="messageService.isUploading"></mat-spinner>
     </div>
 
     <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>

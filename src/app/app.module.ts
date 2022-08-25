@@ -42,6 +42,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { RegisterComponent } from './register/register.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
 
     // imports firestore modules
     provideFirebaseApp(() => initializeApp(environment.firebase)),

@@ -73,12 +73,12 @@
      }
 
      .file-input {
-      display: none;
+       display: none;
      }
 
      .file-upload {
-      display: flex;
-      align-items: center;
+       display: flex;
+       align-items: center;
      }
 
      .emoji-container {
@@ -97,7 +97,9 @@
        top: -450px !important;
      }
 
-
+     mat-spinner {
+      margin: 4px;
+     }
 
 
      /* :host {

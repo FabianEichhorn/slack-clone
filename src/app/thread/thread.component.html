@@ -18,6 +18,7 @@
         <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
       </div>
       <p class="typed-message">{{ message.text }} </p>
+      <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
     </div>
   </div>
   <div class="chat-input-box">

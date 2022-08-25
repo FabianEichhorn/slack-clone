@@ -13,6 +13,7 @@ export class MessageService {
   public messages: Message[] = [];
   public thread: Message[] = [];
   public isLoading: boolean = true;
+  public isUploading: boolean = false;
   public selectedButton: "normal" | "italic" | "bold" | "linethrough" = 'normal';
 
 
@@ -57,18 +58,13 @@ export class MessageService {
       });
   }
 
-  public postToFirestore(collectionName: string, data: any) {
+  public postToFirestore(path: string, message: Message) {
     this.firestore
-      .collection(collectionName)
-      .add(data);
-  }
-
-  public postThreadToFirestore(collectionName: string, postInThreadOfMessage: string, data: any) {
-    this.firestore
-      .collection(collectionName)
-      .doc(postInThreadOfMessage) // message-id
-      .collection('thread')
-      .add(data)
+      .collection(path)
+      .add(message.toJSON())
+      .then(() => {
+        this.isUploading = false;
+      })
   }
 
   public getThread(messageId: string) {
@@ -83,8 +79,7 @@ export class MessageService {
       });
   }
 
-  public uploadImageFireStorage(imageFile: File) {
-    if (imageFile) {
+  public postImageAndMessage(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
       let filePath = `/images/${new Date().getTime()}_${imageFile.name}`;
       const fileRef = this.firestorage.ref(filePath);
       this.firestorage
@@ -94,28 +89,32 @@ export class MessageService {
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
               console.log(url);
-              // poste erst jetzt die gesamte Nachricht in Firestore Database (haben erst jetzt die passende URL)
+              message.imageUrl = url;
+              this.postMessage(message, routerUrl, postInThreadOfMessage);
             })
           })
         )
         .subscribe()
-    }
   }
 
-  public post(imageFile:File, routerUrl: string, postInThreadOfMessage: boolean) {
-    if(imageFile) {
-      // post image and AFTER message, we need the data (direct or channel)
+  public send(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
+    this.isUploading = true;
+    if (imageFile) {
+      this.postImageAndMessage(imageFile, message, routerUrl, postInThreadOfMessage);
     } else {
-      // post message (direct or channel)
+      this.postMessage(message, routerUrl, postInThreadOfMessage)
     }
   }
 
-  private postMessage(routerUrl: string, postInThreadOfMessage: boolean) {
-    // wenn router-url 'channelMessages'
-    // post to channelmessages
-      // wenn thread aktiv --> post thread
-    // wenn router-url 'directmessages'
-    // post to direct messages
+  private postMessage(message: Message, routerUrl: string, postInThreadOfMessage: string) {
+    if (routerUrl.includes('channelmessages') && postInThreadOfMessage != '') {
+      const path = `channelMessages/${postInThreadOfMessage}/thread`;
+      this.postToFirestore(path, message);
+    } else if (routerUrl.includes('channelmessages')) {
+      this.postToFirestore('channelMessages', message);
+    } else if (routerUrl.includes('directmessages')) {
+      this.postToFirestore('directMessages', message);
+    }
   }
 
   makeTextBold() {
