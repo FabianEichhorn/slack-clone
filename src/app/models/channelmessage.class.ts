@@ -1,5 +1,3 @@
-import { objectVal } from "@angular/fire/database";
-
 export class ChannelMessage {
   text: string;
   timestamp: number;

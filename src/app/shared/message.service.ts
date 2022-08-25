@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ChannelMessage } from '../models/channelmessage.class';
-import { Threadmessage } from '../models/threadmessage.class';
 import { UserService } from './user.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
@@ -12,7 +11,7 @@ import { finalize } from 'rxjs';
 export class MessageService {
 
   public messages: ChannelMessage[] = [];
-  public thread: Threadmessage[] = [];
+  public thread: ChannelMessage[] = [];
   public isLoading: boolean = true;
   public selectedButton: "normal" | "italic" | "bold" | "linethrough" = 'normal';
 
