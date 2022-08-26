@@ -77,14 +77,8 @@ export class ChatInputComponent implements OnInit {
   }
 
   private getRightUserId() {
-    if (this.loginService.questLogin) {
-      this.message.userId = 'GfjNnUqEpNxZxTyBdCwt';
-    } else if (this.loginService.login && this.loginService.loginEmail == 'dumbminds@gmx.de') {
-      this.message.userId = '3C651LYhk1HaB8Y0Vsbf'
-    } else if (this.loginService.login && this.loginService.loginEmail == 'fabihorn.go@gmail.com') {
-      this.message.userId = '0ktdB0VydBMemqEwcDIv'
-    } else if (this.loginService.login && this.loginService.loginEmail == 'klammer.lukas@hotmail.com') {
-      this.message.userId = '8dbx47l03bPocYuOfuJ4'
+    if (this.loginService.guestLogin || this.loginService.login) {
+      this.message.userId = this.loginService.userId;
     }
   }
 }

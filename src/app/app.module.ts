@@ -43,6 +43,8 @@ import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-chann
 import { RegisterComponent } from './register/register.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoginService } from './shared/login.service';
+import { UserService } from './shared/user.service';
 
 
 @NgModule({
@@ -91,7 +93,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FormsModule,
     RouterModule,
   ],
-  providers: [MessageService],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -80,6 +80,7 @@ export class MessageService {
   }
 
   public postImageAndMessage(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
+<<<<<<< HEAD
       let filePath = `/images/${new Date().getTime()}_${imageFile.name}`;
       const fileRef = this.firestorage.ref(filePath);
       this.firestorage
@@ -91,9 +92,23 @@ export class MessageService {
               message.imageUrl = url;
               this.postMessage(message, routerUrl, postInThreadOfMessage);
             })
+=======
+    let filePath = `/images/${new Date().getTime()}_${imageFile.name}`;
+    const fileRef = this.firestorage.ref(filePath);
+    this.firestorage
+      .upload(filePath, imageFile)  // 1. argument = filepath on firestorage (incl. timestamp), 2. argument = actual path to the image
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            console.log(url);
+            message.imageUrl = url;
+            this.postMessage(message, routerUrl, postInThreadOfMessage);
+>>>>>>> fcf7937ef3f5d9b4e509fd5bea1c7878a8dbc00f
           })
-        )
-        .subscribe()
+        })
+      )
+      .subscribe()
   }
 
   public post(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
@@ -115,6 +130,7 @@ export class MessageService {
       this.postToFirestore('directMessages', message);
     }
   }
+
 
   makeTextBold() {
     if (this.selectedButton != 'bold') {
@@ -142,6 +158,8 @@ export class MessageService {
     }
     console.log(this.selectedButton);
   }
+
+
 }
 /* this.isTextItalics = true;
     this.isTextBold = false;

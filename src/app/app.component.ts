@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(public loginService: LoginService, public userService: UserService, public router: Router) { }
 
   ngOnInit() {
-    if (this.loginService.questLogin || this.loginService.login) {
+    if (this.loginService.guestLogin || this.loginService.login) {
       this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
     } else {
       this.router.navigate(['/login'])
