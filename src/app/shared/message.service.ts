@@ -39,7 +39,6 @@ export class MessageService {
       .subscribe((changes: any) => {
         this.messages = changes;
         this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
-        this.userService.getParticipants(this.messages);
         this.isLoading = false;
       });
   }
@@ -53,7 +52,6 @@ export class MessageService {
       .subscribe((changes: any) => {
         this.messages = changes;
         this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
-        this.userService.getParticipants(this.messages);
         this.isLoading = false;
       });
   }
@@ -64,6 +62,8 @@ export class MessageService {
       .add(message.toJSON())
       .then(() => {
         this.isUploading = false;
+        // reset Variablen
+        console.log('An dieser Stelle möchte ich aus message.service.ts in chat-input.component die Variablen imageFile, fileName, textArea... zurücksetzen');
       })
   }
 

@@ -47,7 +47,6 @@ export class ChatInputComponent implements OnInit {
 
   public trySendMessage() {
     if (this.message.text != '' || this.imageFile) {
-      // this.channelId = this.routerUrl;
       this.getRightUserId();
       this.message.textStyle = this.messageService.selectedButton;
       this.message.timestamp = new Date().getTime();
