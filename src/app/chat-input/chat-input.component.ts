@@ -19,10 +19,8 @@ export class ChatInputComponent implements OnInit {
   public message: Message = new Message();
   public channelId: string | null = '';
   public userId: string | null = '';
-  public textArea: string = '';
   public isEmojiPickerVisible: any;
-  public fileName: string = '';
-  private imageFile: File = null;
+  public imageFile: File = null;
   public findUserId: any;
 
 
@@ -46,19 +44,21 @@ export class ChatInputComponent implements OnInit {
   }
 
   public trySendMessage() {
-    if (this.message.text != '' || this.imageFile) {
+    if (this.messageService.isUploading) {
+      this.openSnackBar('Please wait until upload is completed.', 'close');
+    }
+    else if (this.message.text != '' || this.imageFile != null) {
       this.getRightUserId();
       this.message.textStyle = this.messageService.selectedButton;
       this.message.timestamp = new Date().getTime();
       this.messageService.post(this.imageFile, this.message, this.routerUrl, this.postInThreadOfMessage);
-      this.imageFile = null;
     } else {
       this.openSnackBar('Please insert a text or an image.', 'close');
     }
   }
 
   public addEmoji(event: any) {
-    this.textArea = `${this.textArea}${event.emoji.native}`;
+    this.message.text = `${this.message.text}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
   }
 
@@ -68,7 +68,6 @@ export class ChatInputComponent implements OnInit {
 
   public onFileSelected(event) {
     this.imageFile = event.target.files[0]; // in the event we can find out the filename of selectedImage
-    this.fileName = this.imageFile.name;
   }
 
   private getRightUserId() {
