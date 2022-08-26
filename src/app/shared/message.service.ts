@@ -88,7 +88,6 @@ export class MessageService {
         .pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
-              console.log(url);
               message.imageUrl = url;
               this.postMessage(message, routerUrl, postInThreadOfMessage);
             })
@@ -97,7 +96,7 @@ export class MessageService {
         .subscribe()
   }
 
-  public send(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
+  public post(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
     this.isUploading = true;
     if (imageFile) {
       this.postImageAndMessage(imageFile, message, routerUrl, postInThreadOfMessage);

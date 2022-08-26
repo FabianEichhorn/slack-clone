@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
   checkUserLogin() {
     this.checkUserData = this.firestore.collection("users",
       ref => ref.where("email", "==", this.loginService.loginEmail))
-      .valueChanges()
+      .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         if (changes[0] && changes[0].password == this.loginService.loginPassword) {
           this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
