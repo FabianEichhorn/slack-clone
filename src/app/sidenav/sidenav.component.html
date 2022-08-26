@@ -17,7 +17,6 @@
             <h2>Direct Messages</h2>
         </div>
         <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of sidenavService.users" routerLinkActive="router-link-active" [ngClass]="{'d-none': user.customIdName === loginService.userId}">
-      <!-- todo: userservice logged in user variable -->
       {{ user.firstName }} {{ user.lastName }}
     </span>
     </div>

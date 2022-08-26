@@ -51,15 +51,11 @@ export class ChatInputComponent implements OnInit {
       this.getRightUserId();
       this.message.textStyle = this.messageService.selectedButton;
       this.message.timestamp = new Date().getTime();
-      this.sendMessageAndImage();
+      this.messageService.postImageAndMessage(this.imageFile, this.message, this.routerUrl, this.postInThreadOfMessage);
       this.imageFile = null;
     } else {
       this.openSnackBar('Please insert a text or an image.', 'close');
     }
-  }
-
-  private sendMessageAndImage() {
-    this.messageService.post(this.imageFile, this.message, this.routerUrl, this.postInThreadOfMessage);
   }
 
   public addEmoji(event: any) {
