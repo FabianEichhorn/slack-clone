@@ -1,9 +1,9 @@
-.threads-box {
-    width: 400px;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    h3 {
-        padding: 16px;
-    }
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  width: 400px;
 }
 
 .thread-headline {

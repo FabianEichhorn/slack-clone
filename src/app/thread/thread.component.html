@@ -39,9 +39,7 @@
       <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
     </div>
   </div>
-
-  <!-- input box for thread -->
-  <div class="chat-input-box">
-    <app-chat-input [postInThreadOfMessage]="threadService.threadForMessageId" class="chat-input"></app-chat-input>
-  </div>
 </div>
+
+<!-- input box for thread -->
+<app-chat-input [postInThreadOfMessage]="threadService.threadForMessageId" class="chat-input"></app-chat-input>

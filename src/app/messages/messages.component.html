@@ -1,6 +1,7 @@
 <div class="thread-messages-box">
-  <div class="messages-box">
+  <div class="messages-input-box">
     <mat-progress-bar mode="indeterminate" *ngIf="messageService.isLoading"></mat-progress-bar>
+
     <ng-container *ngIf="!messageService.isLoading">
       <span class="info-empty" *ngIf="id == null">Please select a channel or a direct message to show
         conversation.</span>
@@ -8,33 +9,32 @@
         conversation yet. Please enter your first message :-)</span>
     </ng-container>
 
-    <div *ngFor="let message of messageService.messages" class="message">
-      <div>
-        <div class="user-box">
-          <ng-container *ngFor="let participant of userService.participants">
-            <ng-container *ngIf="participant.customIdName === message.userId">
-              <img src="{{ participant.img }}" alt="">
-              <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
+    <div>
+      <div *ngFor="let message of messageService.messages" class="message">
+        <div>
+          <div class="user-box">
+            <ng-container *ngFor="let participant of userService.participants">
+              <ng-container *ngIf="participant.customIdName === message.userId">
+                <img src="{{ participant.img }}" alt="">
+                <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
+              </ng-container>
             </ng-container>
-          </ng-container>
-          <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+            <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+          </div>
+          <div class="message-box">
+            <p
+              [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough'}">
+              {{ message.text }}</p>
+          </div>
+          <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
+          <button class="showthread-btn" mat-button color="primary" (click)="threadService.openThread(message)"
+            *ngIf="messageType === 'channelMessages'">Thread</button>
         </div>
-        <div class="message-box">
-          <p
-          [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough'}">
-          {{ message.text }}</p>
-        </div>
-        <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
-        <button class="showthread-btn" mat-button color="primary" (click)="threadService.openThread(message)"
-        *ngIf="messageType === 'channelMessages'">Thread</button>
       </div>
     </div>
+
+    <app-chat-input class="chat-input"></app-chat-input>
   </div>
 
   <app-thread *ngIf="threadService.isThreadOpened"></app-thread>
-</div>
-
-<!-- input box for channel or direct messages -->
-<div class="chat-input-box">
-  <app-chat-input class="chat-input"></app-chat-input>
 </div>

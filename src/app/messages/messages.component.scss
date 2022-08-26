@@ -10,14 +10,13 @@
     display: flex;
 }
 
-.messages-box {
+.messages-input-box {
     position: relative;
     padding-bottom: 1px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     flex: 1;
-    height: calc(100vh - 200px);
-    overflow-y: scroll;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
