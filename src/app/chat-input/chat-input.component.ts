@@ -20,8 +20,6 @@ export class ChatInputComponent implements OnInit {
   public isEmojiPickerVisible: any;
   public findUserId: any;
 
-  // public message: Message = new Message();
-  // public imageFile: File = null; // auslagern in service
 
   constructor(
     public messageService: MessageService,
