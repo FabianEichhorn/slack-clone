@@ -8,7 +8,7 @@
   <div>
     <input
       [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough'}"
-      placeholder="Please enter your message..." [(ngModel)]="message.text" type="text"
+      placeholder="Please enter your message..." [(ngModel)]="messageService.message.text" type="text"
       (keyup.enter)="trySendMessage()">
   </div>
 
@@ -21,7 +21,7 @@
         (click)="fileUpload.click()">
         insert_photo
       </mat-icon>
-      <span *ngIf="imageFile; else elseBlock">{{ imageFile.name }}</span>
+      <span *ngIf="messageService.imageFile; else elseBlock">{{ messageService.imageFile.name }}</span>
       <ng-template #elseBlock>No image added yet</ng-template>
       <mat-spinner [diameter]="20" *ngIf="messageService.isUploading"></mat-spinner>
     </div>

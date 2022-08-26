@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { Message } from '../models/message.class';
 import { LoginService } from '../shared/login.service';
 import { MessageService } from '../shared/message.service';
 import { UserService } from '../shared/user.service';
@@ -16,13 +15,13 @@ export class ChatInputComponent implements OnInit {
 
   @Input() postInThreadOfMessage: string = ''; // if we set this ID, a message will be posted as child of a channelmessage, if not it will be a normal message
   public routerUrl: string | null = this.router.url;
-  public message: Message = new Message();
   public channelId: string | null = '';
   public userId: string | null = '';
   public isEmojiPickerVisible: any;
-  public imageFile: File = null;
   public findUserId: any;
 
+  // public message: Message = new Message();
+  // public imageFile: File = null; // auslagern in service
 
   constructor(
     public messageService: MessageService,
@@ -38,7 +37,7 @@ export class ChatInputComponent implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       this.channelId = paramMap.get('id');
       if (this.channelId) {
-        this.message.channelId = this.channelId;
+        this.messageService.message.channelId = this.channelId;
       }
     });
   }
@@ -47,18 +46,19 @@ export class ChatInputComponent implements OnInit {
     if (this.messageService.isUploading) {
       this.openSnackBar('Please wait until upload is completed.', 'close');
     }
-    else if (this.message.text != '' || this.imageFile != null) {
+    else if (this.messageService.message.text != '' || this.messageService.imageFile != null) {
       this.getRightUserId();
-      this.message.textStyle = this.messageService.selectedButton;
-      this.message.timestamp = new Date().getTime();
-      this.messageService.post(this.imageFile, this.message, this.routerUrl, this.postInThreadOfMessage);
+      this.messageService.message.channelId = this.channelId;
+      this.messageService.message.textStyle = this.messageService.selectedButton;
+      this.messageService.message.timestamp = new Date().getTime();
+      this.messageService.post(this.routerUrl, this.postInThreadOfMessage);
     } else {
       this.openSnackBar('Please insert a text or an image.', 'close');
     }
   }
 
   public addEmoji(event: any) {
-    this.message.text = `${this.message.text}${event.emoji.native}`;
+    this.messageService.message.text = `${this.messageService.message.text}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
   }
 
@@ -67,12 +67,12 @@ export class ChatInputComponent implements OnInit {
   }
 
   public onFileSelected(event) {
-    this.imageFile = event.target.files[0]; // in the event we can find out the filename of selectedImage
+    this.messageService.imageFile = event.target.files[0]; // in the event we can find out the filename of selectedImage
   }
 
   private getRightUserId() {
     if (this.loginService.guestLogin || this.loginService.login) {
-      this.message.userId = this.loginService.userId;
+      this.messageService.message.userId = this.loginService.userId;
     }
   }
 }

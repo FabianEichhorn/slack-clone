@@ -10,6 +10,8 @@ import { Message } from '../models/message.class';
 })
 export class MessageService {
 
+  public message: Message = new Message(); // the message that we enter in chat-input
+  public imageFile: File | null = null; // the message that we enter in chat-input
   public messages: Message[] = [];
   public thread: Message[] = [];
   public isLoading: boolean = true;
@@ -62,8 +64,8 @@ export class MessageService {
       .add(message.toJSON())
       .then(() => {
         this.isUploading = false;
-        // reset Variablen
-        console.log('An dieser Stelle möchte ich aus message.service.ts in chat-input.component die Variablen imageFile, fileName, textArea... zurücksetzen');
+        this.imageFile = null;
+        this.message = new Message();
       })
   }
 
@@ -79,40 +81,40 @@ export class MessageService {
       });
   }
 
-  public postImageAndMessage(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
-    let filePath = `/images/${new Date().getTime()}_${imageFile.name}`;
+  public postImageAndMessage(routerUrl: string, postInThreadOfMessage: string) {
+    let filePath = `/images/${new Date().getTime()}_${this.imageFile.name}`;
     const fileRef = this.firestorage.ref(filePath);
     this.firestorage
-      .upload(filePath, imageFile)  // 1. argument = filepath on firestorage (incl. timestamp), 2. argument = actual path to the image
+      .upload(filePath, this.imageFile)  // 1. argument = filepath on firestorage (incl. timestamp), 2. argument = actual path to the image
       .snapshotChanges()
       .pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
-            message.imageUrl = url;
-            this.postMessage(message, routerUrl, postInThreadOfMessage);
+            this.message.imageUrl = url;
+            this.postMessage(routerUrl, postInThreadOfMessage);
           })
         })
       )
       .subscribe()
   }
 
-  public post(imageFile: File, message: Message, routerUrl: string, postInThreadOfMessage: string) {
+  public post(routerUrl: string, postInThreadOfMessage: string) {
     this.isUploading = true;
-    if (imageFile) {
-      this.postImageAndMessage(imageFile, message, routerUrl, postInThreadOfMessage);
+    if (this.imageFile) {
+      this.postImageAndMessage(routerUrl, postInThreadOfMessage);
     } else {
-      this.postMessage(message, routerUrl, postInThreadOfMessage)
+      this.postMessage(routerUrl, postInThreadOfMessage)
     }
   }
 
-  private postMessage(message: Message, routerUrl: string, postInThreadOfMessage: string) {
+  private postMessage(routerUrl: string, postInThreadOfMessage: string) {
     if (routerUrl.includes('channelmessages') && postInThreadOfMessage != '') {
       const path = `channelMessages/${postInThreadOfMessage}/thread`;
-      this.postToFirestore(path, message);
+      this.postToFirestore(path, this.message);
     } else if (routerUrl.includes('channelmessages')) {
-      this.postToFirestore('channelMessages', message);
+      this.postToFirestore('channelMessages', this.message);
     } else if (routerUrl.includes('directmessages')) {
-      this.postToFirestore('directMessages', message);
+      this.postToFirestore('directMessages', this.message);
     }
   }
 
@@ -123,7 +125,6 @@ export class MessageService {
     } else {
       this.selectedButton = 'normal'
     }
-    console.log(this.selectedButton);
   }
 
   makeTextItalics() {
@@ -132,7 +133,6 @@ export class MessageService {
     } else {
       this.selectedButton = 'normal'
     }
-    console.log(this.selectedButton);
   }
 
   makeTextLineThrough() {
@@ -141,7 +141,6 @@ export class MessageService {
     } else {
       this.selectedButton = 'normal'
     }
-    console.log(this.selectedButton);
   }
 
 
