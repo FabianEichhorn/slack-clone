@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
+import { Message } from '../models/message.class';
 import { MessageService } from './message.service';
 
 @Injectable({
@@ -7,13 +8,15 @@ import { MessageService } from './message.service';
 export class ThreadService {
   isThreadOpened: boolean = false;
   threadForMessageId: string = ''; // says, tho which message id belongs the thread
+  parentMessage: Message;
 
   constructor(private messageService: MessageService) { }
 
-  public openThread(customIdName: string) {
+  public openThread(message: Message) {
+    this.parentMessage = message;
     this.isThreadOpened = true;
-    this.threadForMessageId = customIdName;
-    this.getThread(customIdName);
+    this.threadForMessageId = message.customIdName;
+    this.getThread(message.customIdName);
   }
 
   public getThread(customIdName: string) {

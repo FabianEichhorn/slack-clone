@@ -25,7 +25,7 @@
           {{ message.text }}</p>
         </div>
         <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
-        <button class="showthread-btn" mat-button color="primary" (click)="threadService.openThread(message.customIdName)"
+        <button class="showthread-btn" mat-button color="primary" (click)="threadService.openThread(message)"
         *ngIf="messageType === 'channelMessages'">Thread</button>
       </div>
     </div>

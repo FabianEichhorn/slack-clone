@@ -14,22 +14,22 @@ export class UserService implements OnInit {
   participants: User[] = [];
 
   userBox: boolean = false;
-  getUserDatas: any;
+  userData: User;
 
   constructor(public firestore: AngularFirestore, public loginService: LoginService) {
     this.getUsers();
   }
 
   ngOnInit(): void {
-    console.log(this.getUserDatas.firstName)
+
   }
 
   public getUserData() {
-    this.getUserDatas = this.firestore.collection("users",
+    this.firestore.collection("users",
       ref => ref.where("email", "==", this.loginService.loginEmail))
       .valueChanges()
       .subscribe((changes: any) => {
-        this.getUserDatas = changes;
+        this.userData = changes[0];
       })
 
   }

@@ -5,7 +5,25 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <h3 *ngIf="messageService.thread.length == 0">thread empty: write your first thread message</h3>
+
+  <!-- first message -->
+  <div class="message">
+    <div>
+      <div class="user-box">
+        <ng-container *ngFor="let participant of userService.participants">
+          <ng-container *ngIf="participant.customIdName === threadService.parentMessage.userId">
+            <img src="{{ participant.img }}" alt="">
+            <p class="user">{{ participant.firstName }} {{ participant.lastName }}</p>
+          </ng-container>
+        </ng-container>
+        <p class="timestamp">{{ threadService.parentMessage.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+      </div>
+      <p class="typed-message">{{ threadService.parentMessage.text }} </p>
+      <img *ngIf="threadService.parentMessage.imageUrl != ''" src='{{ threadService.parentMessage.imageUrl }}'>
+    </div>
+  </div>
+
+  <!-- thread -->
   <div *ngFor="let message of messageService.thread" class="message">
     <div>
       <div class="user-box">
@@ -21,8 +39,9 @@
       <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
     </div>
   </div>
+
+  <!-- input box for thread -->
   <div class="chat-input-box">
-    <!-- input box for thread -->
     <app-chat-input [postInThreadOfMessage]="threadService.threadForMessageId" class="chat-input"></app-chat-input>
   </div>
 </div>

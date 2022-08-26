@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
 
   constructor(public loginService: LoginService, public userService: UserService, public firestore: AngularFirestore, public router: Router) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.userService.userBox = false; // avoids opened user box after login
+  }
 
   //Register
 
@@ -72,9 +74,9 @@ export class LoginComponent implements OnInit {
       })
   }
 
-  //Quest Login
+  //Guest Login
 
-  questLogin() {
+  guestLogin() {
     this.checkUserData = this.firestore.collection("users",
       ref => ref.where("email", "==", 'guest'))
       .valueChanges({ idField: 'customIdName' })
