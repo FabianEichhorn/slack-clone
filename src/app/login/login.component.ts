@@ -16,17 +16,7 @@ export class LoginComponent implements OnInit {
 
   user: User = new User();
   channelMessage: Message = new Message();
-
-  //register
-
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
   checkUserData: any;
-
-
-
 
   constructor(public loginService: LoginService, public userService: UserService, public firestore: AngularFirestore, public router: Router) { }
 
@@ -38,22 +28,20 @@ export class LoginComponent implements OnInit {
 
   generateNewUser() {
     this.getUserData();
-    this.deleteValue();
+    this.loginService.deleteRegisterValues();
+    this.router.navigate(['/login'])
+    this.loginService.registration = false
+    alert('Thank you for your registration. You can now log in!')
   }
 
-  deleteValue() {
-    this.firstName = '';
-    this.lastName = '';
-    this.email = '';
-    this.password = '';
-  }
+
 
   getUserData() {
     this.user.img = './assets/img/user-4-64.png'
-    this.user.firstName = this.firstName;
-    this.user.lastName = this.lastName;
-    this.user.email = this.email;
-    this.user.password = this.password;
+    this.user.firstName = this.loginService.firstName;
+    this.user.lastName = this.loginService.lastName;
+    this.user.email = this.loginService.email;
+    this.user.password = this.loginService.password;
     this.loginService.postToFirestore('users', this.user.toJSON())
   };
 
@@ -65,12 +53,9 @@ export class LoginComponent implements OnInit {
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         if (changes[0] && changes[0].password == this.loginService.loginPassword) {
-          this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
-          this.loginService.login = true;
-          this.loginService.userId = changes[0].customIdName;
-          this.userService.getUserData();
+          this.successfulLogin(changes);
         } else {
-          alert('Incorrect E-Mail or Password')
+          this.failedLogin();
         }
       })
   }
@@ -82,13 +67,29 @@ export class LoginComponent implements OnInit {
       ref => ref.where("email", "==", 'guest'))
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
-        this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX']);
-        this.loginService.guestLogin = true;
-        this.loginService.login = true;
-        this.loginService.userId = changes[0].customIdName;
-        this.loginService.loginEmail = 'guest'
-        this.userService.getUserData();
+        this.succsessfulGuestLogin(changes);
       })
+  }
+
+  successfulLogin(changes) {
+    this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
+    this.loginService.login = true;
+    this.loginService.userId = changes[0].customIdName;
+    this.userService.getUserData();
+  }
+
+  failedLogin() {
+    alert('Incorrect E-Mail or Password')
+    this.loginService.deleteLoginValues();
+  }
+
+  succsessfulGuestLogin(changes) {
+    this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX']);
+    this.loginService.guestLogin = true;
+    this.loginService.login = true;
+    this.loginService.userId = changes[0].customIdName;
+    this.loginService.loginEmail = 'guest'
+    this.userService.getUserData();
   }
 
 

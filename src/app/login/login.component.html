@@ -32,22 +32,22 @@
 
         <div class="input-box">
             <i class="fa fa-user icon"></i>
-            <input [(ngModel)]="firstName" required class="email-input" type="text" placeholder="First Name">
+            <input [(ngModel)]="loginService.firstName" required class="email-input" type="text" placeholder="First Name">
         </div>
 
         <div class="input-box">
             <i class="fa fa-user icon"></i>
-            <input [(ngModel)]="lastName" required class="email-input" type="text" placeholder="Last Name">
+            <input [(ngModel)]="loginService.lastName" required class="email-input" type="text" placeholder="Last Name">
         </div>
 
         <div class="input-box">
             <i class="fa fa-envelope icon"></i>
-            <input [(ngModel)]="email" required class="email-input" type="email" placeholder="E-mail">
+            <input [(ngModel)]="loginService.email" required class="email-input" type="email" placeholder="E-mail">
         </div>
 
         <div class="input-box">
             <i class="fa fa-key icon"></i>
-            <input [(ngModel)]="password" class="password-input" type="password" placeholder="Passwort">
+            <input [(ngModel)]="loginService.password" class="password-input" type="password" placeholder="Passwort">
             <span class="eye" onclick="showPasswordRegister()">
     <i class="fa fa-eye" id="hide3"></i>
     <i class="fa fa-eye-slash" id="hide4"></i>

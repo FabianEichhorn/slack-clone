@@ -19,12 +19,27 @@ export class LoginService {
 
   userId: string; //public id for logged in user
 
+  // Login input values
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+
 
 
   constructor(public firestore: AngularFirestore, public router: Router) { }
 
+  deleteRegisterValues() {
+    this.firstName = '';
+    this.lastName = '';
+    this.email = '';
+    this.password = '';
+  }
 
-
+  deleteLoginValues() {
+    this.loginEmail = '';
+    this.loginPassword = '';
+  }
 
   public postToFirestore(collectionName: string, data: any) {
     this.firestore

@@ -26,6 +26,7 @@ export class UserComponent implements OnInit {
     this.loginService.guestLogin = false;
     this.loginService.login = false;
     this.router.navigate(['/login'])
+    this.loginService.deleteLoginValues();
   }
 
 }

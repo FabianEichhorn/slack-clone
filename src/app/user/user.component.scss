@@ -15,9 +15,10 @@
     flex-direction: column;
     align-items: center;
     img {
+        background-color: rgb(255, 255, 255);
         width: 60px;
         height: 60px;
-        object-fit: cover;
+        object-fit: contain;
         border-radius: 100%;
         margin-bottom: 15px;
     }
