@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
     }
   }
 
-  saveUser() {
+  async saveUser() {
     this.firestore
       .collection("users")
       .doc(this.loginService.userId)
@@ -47,6 +47,15 @@ export class UserComponent implements OnInit {
       .then(() => {
         this.editProfile = false;
       });
+    this.deleteUserValues();
   }
+
+  deleteUserValues() {
+    this.user.firstName = '';
+    this.user.lastName = '';
+    this.user.email = '';
+    this.user.password = '';
+  }
+
 
 }

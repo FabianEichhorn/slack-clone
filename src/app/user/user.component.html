@@ -53,7 +53,7 @@
                     <div class="pd-right-left"> Password: </div>
                 </td>
                 <td>
-                    <input [(ngModel)]="user.password" class="pd-right-left" type="text">
+                    <input [(ngModel)]="user.password" class="pd-right-left" type="password">
                 </td>
             </tr>
             <tr>
@@ -69,7 +69,7 @@
         </table>
         <div class="edit-box">
             <div class="pd-right-left c-pointer">
-                <p (click)="editProfile = false">Back to Profile</p>
+                <p (click)="editProfile = false; deleteUserValues()">Back to Profile</p>
             </div>
             <div>
                 <p class="pd-right-left c-pointer" (click)="saveUser()">Save</p>
