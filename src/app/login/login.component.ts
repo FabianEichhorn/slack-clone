@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   getUserData() {
+    this.user.img = './assets/img/user-4-64.png'
     this.user.firstName = this.firstName;
     this.user.lastName = this.lastName;
     this.user.email = this.email;
