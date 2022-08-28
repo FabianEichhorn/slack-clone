@@ -1,5 +1,5 @@
 :host {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 5vh);
     display: flex;
     flex-direction: column;
 }
@@ -38,7 +38,7 @@
     margin-top: 30px;
     margin-left: 20px;
     img {
-      height: 300px;
+        height: 300px;
     }
 }
 
@@ -117,4 +117,15 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@media (max-width: 1000px) {
+    .app-thread-class {
+        z-index: 3;
+        position: absolute;
+        background-color: white;
+        width: 99%;
+        height: 94vh;
+        overflow: hidden;
+    }
 }

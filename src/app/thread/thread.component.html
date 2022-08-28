@@ -1,44 +1,44 @@
 <div class="threads-box">
-  <div class="thread-headline">
-    <h2>Thread</h2>
-    <button mat-button (click)="threadService.closeThread()">
+    <div class="thread-headline">
+        <h2>Thread</h2>
+        <button mat-button (click)="threadService.closeThread()">
       <mat-icon>close</mat-icon>
     </button>
-  </div>
-
-  <!-- first message -->
-  <div class="message">
-    <div>
-      <div class="user-box">
-        <ng-container *ngFor="let user of userService.users">
-          <ng-container *ngIf="user.customIdName === threadService.parentMessage.userId">
-            <img src="{{ user.img }}" alt="">
-            <p class="user">{{ user.firstName }} {{ user.lastName }}</p>
-          </ng-container>
-        </ng-container>
-        <p class="timestamp">{{ threadService.parentMessage.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
-      </div>
-      <p class="typed-message">{{ threadService.parentMessage.text }} </p>
-      <img *ngIf="threadService.parentMessage.imageUrl != ''" src='{{ threadService.parentMessage.imageUrl }}'>
     </div>
-  </div>
 
-  <!-- thread -->
-  <div *ngFor="let message of messageService.thread" class="message">
-    <div>
-      <div class="user-box">
-        <ng-container *ngFor="let user of userService.users">
-          <ng-container *ngIf="user.customIdName === message.userId">
-            <img src="{{ user.img }}" alt="">
-            <p class="user">{{ user.firstName }} {{ user.lastName }}</p>
-          </ng-container>
-        </ng-container>
-        <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
-      </div>
-      <p class="typed-message">{{ message.text }} </p>
-      <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
+    <!-- first message -->
+    <div class="message">
+        <div>
+            <div class="user-box">
+                <ng-container *ngFor="let user of userService.users">
+                    <ng-container *ngIf="user.customIdName === threadService.parentMessage.userId">
+                        <img src="{{ user.img }}" alt="">
+                        <p class="user">{{ user.firstName }} {{ user.lastName }}</p>
+                    </ng-container>
+                </ng-container>
+                <p class="timestamp">{{ threadService.parentMessage.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+            </div>
+            <p class="typed-message">{{ threadService.parentMessage.text }} </p>
+            <img *ngIf="threadService.parentMessage.imageUrl != ''" src='{{ threadService.parentMessage.imageUrl }}'>
+        </div>
     </div>
-  </div>
+
+    <!-- thread -->
+    <div *ngFor="let message of messageService.thread" class="message">
+        <div>
+            <div class="user-box">
+                <ng-container *ngFor="let user of userService.users">
+                    <ng-container *ngIf="user.customIdName === message.userId">
+                        <img src="{{ user.img }}" alt="">
+                        <p class="user">{{ user.firstName }} {{ user.lastName }}</p>
+                    </ng-container>
+                </ng-container>
+                <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+            </div>
+            <p class="typed-message">{{ message.text }} </p>
+            <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
+        </div>
+    </div>
 </div>
 
 <!-- input box for thread -->
