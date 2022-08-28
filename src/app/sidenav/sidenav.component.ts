@@ -19,6 +19,8 @@ export class SidenavComponent implements OnInit {
     this.sidenavService.getUsers();
   }
 
+  
+
   public openDialogAddChannel() {
     // todo: implement add channel Logik und Dialog
     const dialogRef = this.dialog.open(DialogAddChannelComponent);
