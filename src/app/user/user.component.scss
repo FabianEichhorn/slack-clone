@@ -1,9 +1,7 @@
 .user-settings-box {
-    div {
-        cursor: pointer;
-    }
-    height: 250px;
-    width: 300px;
+    position: relative;
+    min-height: 250px;
+    min-width: 300px;
     background-color: #263d61;
     border-radius: 5px;
     margin-top: 10px;
@@ -28,6 +26,39 @@
     }
 }
 
+.edit-profile-content {
+    color: white;
+    font-weight: bold;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    table {
+        border-spacing: 10px;
+        input {
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            font-weight: bold;
+        }
+    }
+}
+
+.edit-box {
+    position: absolute;
+    right: 20px;
+    bottom: 2px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    div,
+    p {
+         :hover {
+            color: rgb(189, 189, 189);
+        }
+    }
+}
+
 .d-flex {
     display: flex;
 }
@@ -35,4 +66,12 @@
 .pd-right-left {
     padding-right: 10px;
     padding-left: 10px;
+}
+
+.pd-bottom {
+    padding-bottom: 10px;
+}
+
+.c-pointer {
+    cursor: pointer;
 }

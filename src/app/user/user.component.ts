@@ -14,6 +14,8 @@ export class UserComponent implements OnInit {
 
   user: User = new User();
 
+  editProfile: boolean = false;
+
   getUserData: any;
 
   constructor(public loginService: LoginService, public router: Router, public firestore: AngularFirestore, public userService: UserService) { }
@@ -27,6 +29,24 @@ export class UserComponent implements OnInit {
     this.loginService.login = false;
     this.router.navigate(['/login'])
     this.loginService.deleteLoginValues();
+  }
+
+  ShowEditProfile() {
+    if (!this.editProfile) {
+      this.editProfile = true;
+    } else {
+      this.editProfile = false;
+    }
+  }
+
+  saveUser() {
+    this.firestore
+      .collection("users")
+      .doc(this.loginService.userId)
+      .update(this.user.toJSON())
+      .then(() => {
+        this.editProfile = false;
+      });
   }
 
 }
