@@ -22,7 +22,7 @@
                         <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
                     </div>
                     <div class="message-box">
-                        <p [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough'}">
+                        <p [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough', 'code': message.textStyle === 'code'}">
                             {{ message.text }}</p>
                     </div>
                     <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>

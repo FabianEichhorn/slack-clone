@@ -1,38 +1,35 @@
 <div class="chat-input-box">
-  <div class="font-settings-box">
-    <button (click)="messageService.makeTextBold()">B</button>
-    <button (click)="messageService.makeTextItalics()">I</button>
-    <button (click)="messageService.makeTextLineThrough()">--</button>
-  </div>
-
-  <div>
-    <input
-      [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough'}"
-      placeholder="Please enter your message..." [(ngModel)]="messageService.message.text" type="text"
-      (keyup.enter)="trySendMessage()">
-  </div>
-
-  <div class="gadgets-box">
-    <!-- this input/button is hidden by CSS, but triggered by a function of another element -->
-    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept="image/*">
-
-    <div class="file-upload">
-      <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo"
-        (click)="fileUpload.click()">
-        insert_photo
-      </mat-icon>
-      <span *ngIf="messageService.imageFile; else elseBlock">{{ messageService.imageFile.name }}</span>
-      <ng-template #elseBlock>No image added yet</ng-template>
-      <mat-spinner [diameter]="20" *ngIf="messageService.isUploading"></mat-spinner>
+    <div class="font-settings-box">
+        <button (click)="messageService.makeTextBold()">B</button>
+        <button (click)="messageService.makeTextItalics()">I</button>
+        <button (click)="messageService.makeTextLineThrough()">--</button>
+        <button (click)="messageService.makeTextasCode()">&lt; / &gt;</button>
     </div>
 
-    <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>
-    <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)"
-      title="Choose your emoji"></emoji-mart>
+    <div>
+        <input [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough', 'code': messageService.selectedButton === 'code'}" placeholder="Please enter your message..."
+            [(ngModel)]="messageService.message.text" type="text" (keyup.enter)="trySendMessage()">
+    </div>
 
-  </div>
+    <div class="gadgets-box">
+        <!-- this input/button is hidden by CSS, but triggered by a function of another element -->
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept="image/*">
 
-  <img (click)="trySendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
+        <div class="file-upload">
+            <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo" (click)="fileUpload.click()">
+                insert_photo
+            </mat-icon>
+            <span *ngIf="messageService.imageFile; else elseBlock">{{ messageService.imageFile.name }}</span>
+            <ng-template #elseBlock>No image added yet</ng-template>
+            <mat-spinner [diameter]="20" *ngIf="messageService.isUploading"></mat-spinner>
+        </div>
+
+        <div class="emoji-container" id="emoji" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😀</div>
+        <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>
+
+    </div>
+
+    <img (click)="trySendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
 </div>
 
 

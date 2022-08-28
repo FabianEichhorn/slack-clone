@@ -4,7 +4,7 @@ export class Message {
   userId: string; // is the firebase document ID from the user who sent the message, for example user 3C651LYhk1HaB8Y0Vsbf
   channelId: string; // is the firebase document ID from the channel, in which message was posted, for example channel 8liMczKcm1Paer7sJbAX
   customIdName?: string;
-  textStyle: "normal" | "italic" | "bold" | "linethrough" = 'normal';
+  textStyle: "normal" | "italic" | "bold" | "linethrough" | "code" = 'normal';
   imageUrl?: string;
 
   constructor(obj?: any) {

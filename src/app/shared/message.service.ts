@@ -16,7 +16,7 @@ export class MessageService {
   public thread: Message[] = [];
   public isLoading: boolean = true;
   public isUploading: boolean = false;
-  public selectedButton: "normal" | "italic" | "bold" | "linethrough" = 'normal';
+  public selectedButton: "normal" | "italic" | "bold" | "linethrough" | "code" = 'normal';
 
 
   constructor(public firestore: AngularFirestore, public userService: UserService, private firestorage: AngularFireStorage) { }
@@ -143,6 +143,16 @@ export class MessageService {
     }
   }
 
+  makeTextasCode() {
+    if (this.selectedButton != 'code') {
+      this.selectedButton = 'code'
+    } else {
+      this.selectedButton = 'normal'
+    }
+    console.log(this.selectedButton);
+    
+  }
+ 
 
 }
 /* this.isTextItalics = true;
