@@ -12,11 +12,27 @@ export class SidenavService {
   public channels: Channel[] = [];
   public users: User[] = [];
   public hideinMaxWidth: any;
+  public isToggleTrue: any;
 
   constructor(public firestore: AngularFirestore) { }
 
   public toggle(): void {
     return this.sideNavToggleSubject.next(null);
+  }
+
+  public toggleChannels(){
+    if (this.isToggleTrue == false) {
+      this.isToggleTrue == true
+      document.getElementById('channel-name').classList.remove('d-none');
+      
+    } else {
+      document.getElementById('channel-name').classList.add('d-none')
+      this.isToggleTrue = false;
+      console.log('test');
+    }
+    console.log(this.isToggleTrue);
+    
+    
   }
 
   public getChannels() {
