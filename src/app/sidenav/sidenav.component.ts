@@ -19,10 +19,7 @@ export class SidenavComponent implements OnInit {
     this.sidenavService.getUsers();
   }
 
-  public toggleChannels(){
-    console.log('test');
-    document.getElementById('channel-name').classList.add('d-none')
-  }
+  
 
   public openDialogAddChannel() {
     // todo: implement add channel Logik und Dialog
