@@ -16,12 +16,15 @@
 
     <div class="channels">
         <div class="channel-content">
-            <mat-icon _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+            <mat-icon (click)="sidenavService.togglePrivateMessages()" _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
             <h2>Direct Messages</h2>
         </div>
-        <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of sidenavService.users" routerLinkActive="router-link-active" [ngClass]="{'d-none': user.customIdName === loginService.userId}">
-      {{ user.firstName }} {{ user.lastName }}
-    </span>
+        <div class="private-name" id="private-name">
+            <span [routerLink]="['/directmessages/' + user.customIdName]" *ngFor="let user of sidenavService.users" routerLinkActive="router-link-active" [ngClass]="{'d-none': user.customIdName === loginService.userId}">
+            {{ user.firstName }} {{ user.lastName }}
+           </span>
+        </div>
+
     </div>
 
     <div class="footer">
