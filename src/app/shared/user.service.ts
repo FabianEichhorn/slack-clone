@@ -32,7 +32,7 @@ export class UserService implements OnInit {
         this.user.password = changes[0].password;
         this.user.img = changes[0].img;
         this.user.customIdName = changes[0].customIdName;
-        console.log(this.user); //BUG: keinen neuen user instanziiert
+        // console.log(this.user); //BUG: keinen neuen user instanziiert
       })
   }
 

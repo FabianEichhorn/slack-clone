@@ -13,11 +13,12 @@ import { UserService } from '../shared/user.service';
 export class UserComponent implements OnInit {
 
   editProfile: boolean = false;
+  backupUser: User = new User();
 
   constructor(public loginService: LoginService, public router: Router, public firestore: AngularFirestore, public userService: UserService) { }
 
   ngOnInit(): void {
-
+    this.createBackupUser();
   }
 
   logout() {
@@ -27,7 +28,7 @@ export class UserComponent implements OnInit {
     this.loginService.deleteLoginValues();
   }
 
-  ShowEditProfile() {
+  showEditProfile() {
     if (!this.editProfile) {
       this.editProfile = true;
     } else {
@@ -46,13 +47,24 @@ export class UserComponent implements OnInit {
   //   this.deleteUserValues();
   // }
 
-  deleteUserValues() {
-    console.log('Userdaten zurücksetzen');
+  // needed, if we don't want to save user
+  createBackupUser() {
+    this.backupUser.firstName = this.userService.user.firstName;
+    this.backupUser.lastName = this.userService.user.lastName;
+    this.backupUser.email = this.userService.user.email;
+    this.backupUser.password = this.userService.user.password;
+    this.backupUser.img = this.userService.user.img;
+    this.backupUser.customIdName = this.userService.user.customIdName;
+  }
 
-    // this.user.firstName = '';
-    // this.user.lastName = '';
-    // this.user.email = '';
-    // this.user.password = '';
+  // if we don't want to save --> reset the input values to default
+  undoChanges() {
+    this.userService.user.firstName = this.backupUser.firstName;
+    this.userService.user.lastName = this.backupUser.lastName
+    this.userService.user.email = this.backupUser.email
+    this.userService.user.password = this.backupUser.password
+    this.userService.user.img = this.backupUser.img
+    this.userService.user.customIdName = this.backupUser.customIdName
   }
 
 

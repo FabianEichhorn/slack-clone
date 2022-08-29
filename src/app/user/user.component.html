@@ -6,14 +6,14 @@
     </div>
     <div class="d-flex">
       <p class="pd-right-left">{{ userService.user.firstName }}</p>
-      <p class="pd-right-left">{{ userService.user.lastName }}</p>
+      <p class="pd-right-left" *ngIf="userService.user.customIdName != 'GfjNnUqEpNxZxTyBdCwt'">{{ userService.user.lastName }}</p>
     </div>
     <div>
       <p>{{ userService.user.email }}</p>
     </div>
     <div class="edit-box">
       <div class="pd-right-left c-pointer">
-        <p *ngIf="userService.user.customIdName != 'GfjNnUqEpNxZxTyBdCwt'" (click)="ShowEditProfile()">Edit Profile</p>
+        <p *ngIf="userService.user.customIdName != 'GfjNnUqEpNxZxTyBdCwt'" (click)="showEditProfile()">Edit Profile</p>
       </div>
       <div>
         <p class="pd-right-left c-pointer" (click)="logout()">Logout</p>
@@ -71,10 +71,10 @@
     </table>
     <div class="edit-box">
       <div class="pd-right-left c-pointer">
-        <p (click)="editProfile = false; deleteUserValues()">Back to Profile</p>
+        <p (click)="editProfile = false; undoChanges()">Back to Profile</p>
       </div>
       <div>
-        <p class="pd-right-left c-pointer" (click)="userService.changeUser()">Save</p>
+        <p class="pd-right-left c-pointer" (click)="userService.changeUser(); editProfile = false">Change</p>
       </div>
     </div>
   </div>
