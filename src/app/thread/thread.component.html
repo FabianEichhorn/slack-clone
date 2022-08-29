@@ -35,7 +35,8 @@
                 </ng-container>
                 <p class="timestamp">{{ message.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
             </div>
-            <p class="typed-message">{{ message.text }} </p>
+            <p [ngClass]="{'bold': message.textStyle === 'bold', 'italic': message.textStyle === 'italic', 'linethrough': message.textStyle === 'linethrough', 'code': message.textStyle === 'code'}">
+                {{ message.text }}</p>
             <img *ngIf="message.imageUrl != ''" src='{{ message.imageUrl }}'>
         </div>
     </div>
