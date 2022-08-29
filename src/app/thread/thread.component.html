@@ -18,7 +18,7 @@
                 </ng-container>
                 <p class="timestamp">{{ threadService.parentMessage.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
             </div>
-            <p class="typed-message">{{ threadService.parentMessage.text }} </p>
+            <p class="typed-message" [ngClass]="{'bold': threadService.parentMessage.textStyle === 'bold', 'italic': threadService.parentMessage.textStyle === 'italic', 'linethrough': threadService.parentMessage.textStyle === 'linethrough', 'code': threadService.parentMessage.textStyle === 'code'}">{{ threadService.parentMessage.text }} </p>
             <img *ngIf="threadService.parentMessage.imageUrl != ''" src='{{ threadService.parentMessage.imageUrl }}'>
         </div>
     </div>
