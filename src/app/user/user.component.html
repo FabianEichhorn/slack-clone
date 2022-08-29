@@ -1,81 +1,72 @@
 <div *ngIf="!editProfile" class="user-settings-box">
-  <div class="user-settings-content">
-    <div>
-      <!-- <img src={{ userService.user.img }}> BUG -->
-      <img src="{{ userService.user.img }}">
+    <div class="user-settings-content">
+        <div>
+            <!-- <img src={{ userService.user.img }}> BUG -->
+            <img src="{{ userService.user.img }}">
+        </div>
+        <div class="d-flex">
+            <p class="pd-right-left">{{ userService.user.firstName }}</p>
+            <p class="pd-right-left" *ngIf="userService.user.customIdName != 'GfjNnUqEpNxZxTyBdCwt'">{{ userService.user.lastName }}</p>
+        </div>
+        <div>
+            <p>{{ userService.user.email }}</p>
+        </div>
+        <div class="edit-box">
+            <div class="pd-right-left c-pointer">
+                <p *ngIf="userService.user.customIdName != 'GfjNnUqEpNxZxTyBdCwt'" (click)="showEditProfile()">Edit Profile</p>
+            </div>
+            <div>
+                <p class="pd-right-left c-pointer" (click)="logout()">Logout</p>
+            </div>
+        </div>
     </div>
-    <div class="d-flex">
-      <p class="pd-right-left">{{ userService.user.firstName }}</p>
-      <p class="pd-right-left" *ngIf="userService.user.customIdName != 'GfjNnUqEpNxZxTyBdCwt'">{{ userService.user.lastName }}</p>
-    </div>
-    <div>
-      <p>{{ userService.user.email }}</p>
-    </div>
-    <div class="edit-box">
-      <div class="pd-right-left c-pointer">
-        <p *ngIf="userService.user.customIdName != 'GfjNnUqEpNxZxTyBdCwt'" (click)="showEditProfile()">Edit Profile</p>
-      </div>
-      <div>
-        <p class="pd-right-left c-pointer" (click)="logout()">Logout</p>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div *ngIf="editProfile" class="user-settings-box">
-  <div class="edit-profile-content">
-    <table>
-      <tr class="pd-bottom">
-        <td>
-          <div class="pd-right-left">First Name: </div>
-        </td>
-        <td>
-          <input [(ngModel)]="userService.user.firstName" class="pd-right-left" type="text">
-          <!-- BUG: keine Placeholder, wenn bereits two way binding mit ngModel -->
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="pd-right-left"> Last Name: </div>
-        </td>
-        <td>
-          <input [(ngModel)]="userService.user.lastName" class="pd-right-left" type="text">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="pd-right-left"> E-Mail: </div>
-        </td>
-        <td>
-          <input [(ngModel)]="userService.user.email" class="pd-right-left" type="text">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="pd-right-left"> Password: </div>
-        </td>
-        <td>
-          <input [(ngModel)]="userService.user.password" class="pd-right-left" type="password">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="pd-right-left"> Profile Picture: </div>
-        </td>
-        <td>
-          <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo">
-            insert_photo
-          </mat-icon>
-        </td>
-      </tr>
-    </table>
-    <div class="edit-box">
-      <div class="pd-right-left c-pointer">
-        <p (click)="editProfile = false; undoChanges()">Back to Profile</p>
-      </div>
-      <div>
-        <p class="pd-right-left c-pointer" (click)="userService.changeUser(); editProfile = false">Change</p>
-      </div>
+    <div class="edit-profile-content">
+        <table>
+            <tr class="pd-bottom">
+                <td>
+                    <div class="pd-right-left">First Name: </div>
+                </td>
+                <td>
+                    <input [(ngModel)]="userService.user.firstName" class="pd-right-left" type="text">
+                    <!-- BUG: keine Placeholder, wenn bereits two way binding mit ngModel -->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="pd-right-left"> Last Name: </div>
+                </td>
+                <td>
+                    <input [(ngModel)]="userService.user.lastName" class="pd-right-left" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="pd-right-left"> E-Mail: </div>
+                </td>
+                <td>
+                    <input [(ngModel)]="userService.user.email" class="pd-right-left" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="pd-right-left"> Password: </div>
+                </td>
+                <td>
+                    <input [(ngModel)]="userService.user.password" class="pd-right-left" type="password">
+                </td>
+            </tr>
+
+        </table>
+        <div class="edit-box">
+            <div class="pd-right-left c-pointer">
+                <p (click)="editProfile = false; undoChanges()">Back to Profile</p>
+            </div>
+            <div>
+                <p class="pd-right-left c-pointer" (click)="userService.changeUser(); editProfile = false">Change</p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
