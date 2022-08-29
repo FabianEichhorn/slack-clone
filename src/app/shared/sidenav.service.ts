@@ -13,6 +13,9 @@ export class SidenavService {
   public users: User[] = [];
   public hideinMaxWidth: any;
   public isToggleTrue: any = true;
+  public isToggleTruePrivate: any = true;
+  public arrowDrop: any = 'arrow_drop_down';
+  public arrowDropPrivate: any = 'arrow_drop_down';
 
   constructor(public firestore: AngularFirestore) { }
 
@@ -30,12 +33,12 @@ export class SidenavService {
     }
   }
   public togglePrivateMessages(){
-    if (this.isToggleTrue == false) {
-      this.isToggleTrue = true;
+    if (this.isToggleTruePrivate == false) {
+      this.isToggleTruePrivate = true;
       document.getElementById('private-name').classList.remove('d-none');
     } else {
       document.getElementById('private-name').classList.add('d-none')
-      this.isToggleTrue = false;
+      this.isToggleTruePrivate = false;
     }
   }
 
@@ -72,5 +75,21 @@ export class SidenavService {
     } else {
       document.getElementById('sidenav').classList.remove('d-none')
     }
+  }
+
+  changeArrowDrop() {
+    if (this.arrowDrop == 'arrow_drop_down') {
+      this.arrowDrop = 'arrow_drop_up'
+    } else {
+      this.arrowDrop = 'arrow_drop_down'
+    }    
+  }
+
+  changeArrowDropPrivate() {
+    if (this.arrowDropPrivate == 'arrow_drop_down') {
+      this.arrowDropPrivate = 'arrow_drop_up'
+    } else {
+      this.arrowDropPrivate = 'arrow_drop_down'
+    }    
   }
 }

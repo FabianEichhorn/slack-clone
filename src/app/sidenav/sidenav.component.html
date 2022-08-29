@@ -1,7 +1,7 @@
 <div class="sidenav" id="sidenav">
     <div class="channels">
         <div class="channel-content">
-            <mat-icon (click)="sidenavService.toggleChannels()" _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+            <mat-icon (click)="sidenavService.toggleChannels(); sidenavService.changeArrowDrop()" _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">{{ sidenavService.arrowDrop }}</mat-icon>
             <h2>Channel</h2>
             <button mat-button (click)="openDialogAddChannel()">
         <mat-icon>add</mat-icon>
@@ -16,7 +16,7 @@
 
     <div class="channels">
         <div class="channel-content">
-            <mat-icon (click)="sidenavService.togglePrivateMessages()" _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+            <mat-icon (click)="sidenavService.togglePrivateMessages(); sidenavService.changeArrowDropPrivate()" _ngcontent-cql-c131="" role="img" class=" mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">{{ sidenavService.arrowDropPrivate }}</mat-icon>
             <h2>Direct Messages</h2>
         </div>
         <div class="private-name" id="private-name">
