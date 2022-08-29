@@ -24,29 +24,19 @@ export class SidenavService {
     if (this.isToggleTrue == false) {
       this.isToggleTrue = true;
       document.getElementById('channel-name').classList.remove('d-none');
-      console.log('');
-      
     } else {
       document.getElementById('channel-name').classList.add('d-none')
       this.isToggleTrue = false;
-      console.log('test');
     }
-    console.log(this.isToggleTrue);
-  
   }
   public togglePrivateMessages(){
     if (this.isToggleTrue == false) {
       this.isToggleTrue = true;
       document.getElementById('private-name').classList.remove('d-none');
-      console.log('');
-      
     } else {
       document.getElementById('private-name').classList.add('d-none')
       this.isToggleTrue = false;
-      console.log('test');
     }
-    console.log(this.isToggleTrue);
-  
   }
 
   public getChannels() {

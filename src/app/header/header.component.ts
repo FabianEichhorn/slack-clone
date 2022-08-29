@@ -9,7 +9,7 @@ import { UserService } from '../shared/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  userData: any = this.userService;
+  // userData: any = this.userService; // TRICK
 
   constructor(public sidenav: SidenavService, public userService: UserService) { }
 
@@ -20,12 +20,13 @@ export class HeaderComponent implements OnInit {
     this.sidenav.toggle();
   }
 
-  openUserBox() {
-    if (this.userData.userBox) {
-      this.userService.userBox = false;
-    } else {
-      this.userData.userBox = true;
-    }
-  }
+  // public toggleUserBox() {
+  //   // if (this.userService.showUserBox) {
+  //   //   this.userService.showUserBox = false;
+  //   // } else {
+  //   //   this.userService.showUserBox = true;
+  //   // }
+  //   // this.userService.showUserBox = !this.userService.showUserBox; // TRICK
+  // }
 
 }

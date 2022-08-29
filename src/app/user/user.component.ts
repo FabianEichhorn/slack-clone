@@ -12,11 +12,7 @@ import { UserService } from '../shared/user.service';
 })
 export class UserComponent implements OnInit {
 
-  user: User = new User();
-
   editProfile: boolean = false;
-
-  getUserData: any;
 
   constructor(public loginService: LoginService, public router: Router, public firestore: AngularFirestore, public userService: UserService) { }
 
@@ -24,7 +20,7 @@ export class UserComponent implements OnInit {
 
   }
 
-  logut() {
+  logout() {
     this.loginService.guestLogin = false;
     this.loginService.login = false;
     this.router.navigate(['/login'])
@@ -39,22 +35,24 @@ export class UserComponent implements OnInit {
     }
   }
 
-  async saveUser() {
-    this.firestore
-      .collection("users")
-      .doc(this.loginService.userId)
-      .update(this.user.toJSON())
-      .then(() => {
-        this.editProfile = false;
-      });
-    this.deleteUserValues();
-  }
+  // async saveUser() {
+  //   this.firestore
+  //     .collection("users")
+  //     .doc(this.loginService.userId) //BUG: this.userData.customIdName
+  //     .update(this.user.toJSON())
+  //     .then(() => {
+  //       this.editProfile = false;
+  //     });
+  //   this.deleteUserValues();
+  // }
 
   deleteUserValues() {
-    this.user.firstName = '';
-    this.user.lastName = '';
-    this.user.email = '';
-    this.user.password = '';
+    console.log('Userdaten zurücksetzen');
+
+    // this.user.firstName = '';
+    // this.user.lastName = '';
+    // this.user.email = '';
+    // this.user.password = '';
   }
 
 

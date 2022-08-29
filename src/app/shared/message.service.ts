@@ -149,10 +149,8 @@ export class MessageService {
     } else {
       this.selectedButton = 'normal'
     }
-    console.log(this.selectedButton);
-    
   }
- 
+
 
 }
 /* this.isTextItalics = true;

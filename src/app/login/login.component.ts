@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(public loginService: LoginService, public userService: UserService, public firestore: AngularFirestore, public router: Router) { }
 
   ngOnInit(): void {
-    this.userService.userBox = false; // avoids opened user box after login
+    this.userService.showUserBox = false; // avoids opened user box after login
   }
 
   //Register
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
     this.loginService.login = true;
     this.loginService.userId = changes[0].customIdName;
-    this.userService.getUserData();
+    this.userService.getUser();
   }
 
   failedLogin() {
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login = true;
     this.loginService.userId = changes[0].customIdName;
     this.loginService.loginEmail = 'guest'
-    this.userService.getUserData();
+    this.userService.getUser();
   }
 
 
