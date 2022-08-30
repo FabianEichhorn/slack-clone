@@ -21,11 +21,6 @@ export class SidenavComponent implements OnInit {
 
 
   public openDialogAddChannel() {
-    const dialogRef = this.dialog.open(DialogAddChannelComponent);
-    dialogRef.afterClosed().subscribe(channelName => {
-      if (channelName != '' && channelName != undefined) {
-        this.sidenavService.addChannel(channelName);
-      }
-    });
+    this.dialog.open(DialogAddChannelComponent);
   }
 }

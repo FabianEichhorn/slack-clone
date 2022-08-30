@@ -1,12 +1,18 @@
-<h1 mat-dialog-title>Add channel</h1>
-<div mat-dialog-content>
-    <p>Channels are made for team communication. They should be topic-related</p>
-    <mat-form-field appearance="fill">
+<div class="dialog-container">
+  <mat-progress-bar *ngIf="sidenavService.isUploadingChannel" mode="indeterminate"></mat-progress-bar>
+  <form (ngSubmit)="addChannel(channelForm)" #channelForm="ngForm">
+    <h1 mat-dialog-title>Add channel</h1>
+    <div mat-dialog-content>
+      <p>Channels are made for team communication. They should be topic-related</p>
+      <mat-form-field appearance="fill">
         <mat-label>Channel name</mat-label>
-        <input matInput [(ngModel)]="channelName" placeholder="Please enter your channel name" required="">
-    </mat-form-field>
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()" [mat-dialog-close]="channelName">Cancel</button>
-    <button mat-button color="primary" [mat-dialog-close]="channelName" cdkFocusInitial>Add channel</button>
+        <input matInput [(ngModel)]="channelName" placeholder="Please enter your channel name" required name="channelName">
+        <mat-error>Channel name is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button color="primary" cdkFocusInitial (click)="isSaveClicked = true">Add channel</button>
+    </div>
+  </form>
 </div>

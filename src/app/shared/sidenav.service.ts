@@ -1,6 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 import { Channel } from '../models/channel.class';
 import { User } from '../models/user.class';
 
@@ -16,6 +18,7 @@ export class SidenavService implements OnDestroy {
   public isToggleTruePrivate: boolean = true;
   public arrowDrop: string = 'arrow_drop_down';
   public arrowDropPrivate: string = 'arrow_drop_down';
+  public isUploadingChannel: boolean = false;
   private destroy$ = new Subject<void>();
 
   constructor(public firestore: AngularFirestore) { }
@@ -67,12 +70,17 @@ export class SidenavService implements OnDestroy {
       });
   }
 
-  public addChannel(channelName: string) {
+  public addChannel(channelName: string, dialogRef: MatDialogRef<DialogAddChannelComponent>) {
+    this.isUploadingChannel = true;
     this.firestore
       .collection('channels')
       .add({
         'name': channelName,
         'users': ['0ktdB0VydBMemqEwcDIv', '3C651LYhk1HaB8Y0Vsbf', '8dbx47l03bPocYuOfuJ4'],
+      })
+      .then(() => {
+        this.isUploadingChannel = false;
+        dialogRef.close();
       })
   }
 
