@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserService } from './user.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
+import { finalize, Subject, takeUntil } from 'rxjs';
 import { Message } from '../models/message.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class MessageService implements OnDestroy {
 
   public message: Message = new Message(); // the message that we enter in chat-input
   public imageFile: File | null = null; // the message that we enter in chat-input
@@ -17,13 +17,13 @@ export class MessageService {
   public isLoading: boolean = true;
   public isUploading: boolean = false;
   public selectedButton: "normal" | "italic" | "bold" | "linethrough" | "code" = 'normal';
-
+  private destroy$ = new Subject<void>();
 
   constructor(public firestore: AngularFirestore, public userService: UserService, private firestorage: AngularFireStorage) { }
 
-
-  ngOnInit(): void {
-
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    console.log('service wird zerstört');
   }
 
   public getFromFirebase(messageType: string, id: string | null) {
@@ -34,10 +34,14 @@ export class MessageService {
     }
   }
 
+  // TODO: simplify code
   private getChannelMessageFromFirebase(id: string | null) {
     this.firestore
-      .collection("channelMessages", ref => ref.where('channelId', '==', id))
+      .collection("channelMessages", ref => ref
+        .where('channelId', '==', id)
+      )
       .valueChanges({ idField: 'customIdName' })
+      .pipe(takeUntil(this.destroy$))
       .subscribe((changes: any) => {
         this.messages = changes;
         this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
@@ -51,6 +55,7 @@ export class MessageService {
         .where('channelId', '==', id) // gives back all directMessages where current logged in user is part of
       )
       .valueChanges({ idField: 'customIdName' })
+      .pipe(takeUntil(this.destroy$))
       .subscribe((changes: any) => {
         this.messages = changes;
         this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
@@ -75,6 +80,7 @@ export class MessageService {
       .doc(messageId)
       .collection('thread')
       .valueChanges()
+      .pipe(takeUntil(this.destroy$))
       .subscribe((changes: any) => {
         this.thread = changes;
         this.thread.sort((a, b) => { return a.timestamp - b.timestamp });
@@ -93,7 +99,8 @@ export class MessageService {
             this.message.imageUrl = url;
             this.postMessage(routerUrl, postInThreadOfMessage);
           })
-        })
+        }),
+        takeUntil(this.destroy$),
       )
       .subscribe()
   }
@@ -118,7 +125,7 @@ export class MessageService {
     }
   }
 
-
+  // wenn möglich: simplify code
   makeTextBold() {
     if (this.selectedButton != 'bold') {
       this.selectedButton = 'bold'
@@ -151,11 +158,7 @@ export class MessageService {
     }
   }
 
-
 }
-/* this.isTextItalics = true;
-    this.isTextBold = false;
-    this.isTextnormal = false; */
 
 
 

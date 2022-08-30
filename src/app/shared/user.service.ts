@@ -1,30 +1,31 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Subject, takeUntil } from 'rxjs';
 import { User } from '../models/user.class';
 import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements OnInit {
+export class UserService implements OnDestroy {
 
   users: User[] = [];
   user: User = new User();
-
   public showUserBox: boolean = false;
+  private destroy$ = new Subject<void>();
 
   constructor(public firestore: AngularFirestore, public loginService: LoginService) {
     this.getUsers();
   }
-
-  ngOnInit(): void {
-
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
   }
 
   public getUser() {
     this.firestore.collection("users",
       ref => ref.where("email", "==", this.loginService.loginEmail))
       .valueChanges({ idField: 'customIdName' })
+      .pipe(takeUntil(this.destroy$))
       .subscribe((changes: any) => {
         this.user.firstName = changes[0].firstName;
         this.user.lastName = changes[0].lastName;
@@ -32,7 +33,6 @@ export class UserService implements OnInit {
         this.user.password = changes[0].password;
         this.user.img = changes[0].img;
         this.user.customIdName = changes[0].customIdName;
-        // console.log(this.user); //BUG: keinen neuen user instanziiert
       })
   }
 
@@ -40,6 +40,7 @@ export class UserService implements OnInit {
     this.firestore
       .collection('users')
       .valueChanges({ idField: 'customIdName' })
+      .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => {
         this.users = users;
       });
@@ -50,7 +51,6 @@ export class UserService implements OnInit {
       .collection("users")
       .doc(this.user.customIdName)
       .update(this.user.toJSON())
-      .then(() => {});
   }
 
   public toggleUserBox() {

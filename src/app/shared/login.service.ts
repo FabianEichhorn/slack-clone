@@ -24,8 +24,6 @@ export class LoginService {
   email: string;
   password: string;
 
-
-
   constructor(public firestore: AngularFirestore, public router: Router) { }
 
   deleteRegisterValues() {

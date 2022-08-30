@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // imports firestore modules
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -31,20 +33,16 @@ import { ChatInputComponent } from './chat-input/chat-input.component';
 import { MessagesComponent } from './messages/messages.component';
 import { environment } from '../environments/environment';
 import { ContentDrawerComponent } from './content-drawer/content-drawer.component';
-import { MessageService } from './shared/message.service';
 import { FormsModule } from '@angular/forms';
 import { ThreadComponent } from './thread/thread.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
-import { InprintComponent } from './inprint/inprint.component';
 import { RouterModule } from '@angular/router';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { RegisterComponent } from './register/register.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { LoginService } from './shared/login.service';
 import { UserService } from './shared/user.service';
+import { ImprintComponent } from './imprint/imprint.component';
 
 
 @NgModule({
@@ -58,10 +56,10 @@ import { UserService } from './shared/user.service';
     ThreadComponent,
     LoginComponent,
     UserComponent,
-    InprintComponent,
     DataProtectionComponent,
     DialogAddChannelComponent,
     RegisterComponent,
+    ImprintComponent,
   ],
   imports: [
     // imports Angular Material

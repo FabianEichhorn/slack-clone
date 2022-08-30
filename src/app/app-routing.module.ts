@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
-import { InprintComponent } from './inprint/inprint.component';
+import { ImprintComponent } from './imprint/imprint.component';
 import { LoginComponent } from './login/login.component';
 import { MessagesComponent } from './messages/messages.component';
-import { RegisterComponent } from './register/register.component';
 import { ThreadComponent } from './thread/thread.component';
 
 const routes: Routes = [
@@ -18,7 +17,7 @@ const routes: Routes = [
     path: 'thread', component: ThreadComponent
   },
   {
-    path: 'inprint', component: InprintComponent
+    path: 'imprint', component: ImprintComponent
   },
   {
     path: 'data-protection', component: DataProtectionComponent

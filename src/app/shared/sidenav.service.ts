@@ -1,23 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { Channel } from '../models/channel.class';
 import { User } from '../models/user.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SidenavService {
+export class SidenavService implements OnDestroy {
   public sideNavToggleSubject: BehaviorSubject<any> = new BehaviorSubject(null);
   public channels: Channel[] = [];
   public users: User[] = [];
   public hideinMaxWidth: any;
-  public isToggleTrue: any = true;
-  public isToggleTruePrivate: any = true;
-  public arrowDrop: any = 'arrow_drop_down';
-  public arrowDropPrivate: any = 'arrow_drop_down';
+  public isToggleTrue: boolean = true;
+  public isToggleTruePrivate: boolean = true;
+  public arrowDrop: string = 'arrow_drop_down';
+  public arrowDropPrivate: string = 'arrow_drop_down';
+  private destroy$ = new Subject<void>();
 
   constructor(public firestore: AngularFirestore) { }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+  }
 
   public toggle(): void {
     return this.sideNavToggleSubject.next(null);
@@ -46,6 +51,7 @@ export class SidenavService {
     this.firestore
       .collection("channels", ref => ref.where("users", "array-contains", "3C651LYhk1HaB8Y0Vsbf")) // query all channels where current user is part of
       .valueChanges( {idField: 'customIdName'} )
+      .pipe(takeUntil(this.destroy$))
       .subscribe((changes: any) => {
         this.channels = changes;
       });
@@ -55,6 +61,7 @@ export class SidenavService {
     this.firestore
       .collection("users")
       .valueChanges( {idField: 'customIdName'} )
+      .pipe(takeUntil(this.destroy$))
       .subscribe((changes: any) => {
         this.users = changes;
       });
@@ -82,7 +89,7 @@ export class SidenavService {
       this.arrowDrop = 'arrow_drop_up'
     } else {
       this.arrowDrop = 'arrow_drop_down'
-    }    
+    }
   }
 
   changeArrowDropPrivate() {
@@ -90,6 +97,6 @@ export class SidenavService {
       this.arrowDropPrivate = 'arrow_drop_up'
     } else {
       this.arrowDropPrivate = 'arrow_drop_down'
-    }    
+    }
   }
 }

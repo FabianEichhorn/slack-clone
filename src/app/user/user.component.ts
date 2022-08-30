@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../models/user.class';
 import { LoginService } from '../shared/login.service';
@@ -15,7 +14,7 @@ export class UserComponent implements OnInit {
   editProfile: boolean = false;
   backupUser: User = new User();
 
-  constructor(public loginService: LoginService, public router: Router, public firestore: AngularFirestore, public userService: UserService) { }
+  constructor(public loginService: LoginService, public router: Router, public userService: UserService) { }
 
   ngOnInit(): void {
     this.createBackupUser();
@@ -36,18 +35,6 @@ export class UserComponent implements OnInit {
     }
   }
 
-  // async saveUser() {
-  //   this.firestore
-  //     .collection("users")
-  //     .doc(this.loginService.userId) //BUG: this.userData.customIdName
-  //     .update(this.user.toJSON())
-  //     .then(() => {
-  //       this.editProfile = false;
-  //     });
-  //   this.deleteUserValues();
-  // }
-
-  // needed, if we don't want to save user
   createBackupUser() {
     this.backupUser.firstName = this.userService.user.firstName;
     this.backupUser.lastName = this.userService.user.lastName;
@@ -66,6 +53,5 @@ export class UserComponent implements OnInit {
     this.userService.user.img = this.backupUser.img
     this.userService.user.customIdName = this.backupUser.customIdName
   }
-
 
 }

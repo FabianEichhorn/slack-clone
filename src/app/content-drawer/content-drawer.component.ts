@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../shared/message.service';
 import { SidenavService } from '../shared/sidenav.service';
 
@@ -8,26 +9,25 @@ import { SidenavService } from '../shared/sidenav.service';
   templateUrl: './content-drawer.component.html',
   styleUrls: ['./content-drawer.component.scss']
 })
-export class ContentDrawerComponent implements OnInit {
+export class ContentDrawerComponent implements OnInit, OnDestroy {
   @ViewChild('sidenav') public sidenav: MatSidenav | undefined;
+
+  private destroy$ = new Subject<void>();
 
   constructor(public messageService: MessageService, private sideNavService: SidenavService) { }
 
   ngOnInit() {
-    this.sideNavService.sideNavToggleSubject.subscribe(() => {
+    this.sideNavService.sideNavToggleSubject
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
       if (this.sidenav) {
         this.sidenav.toggle();
       }
     });
   }
 
-
-
-  // function that closes the sidenav, for example by clicking on a link
-  // closeSidenav() {
-  //   if (this.sidenav) {
-  //     this.sidenav.toggle();
-  //   }
-  // }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+  }
 
 }

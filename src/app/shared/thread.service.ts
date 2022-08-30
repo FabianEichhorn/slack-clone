@@ -16,11 +16,7 @@ export class ThreadService {
     this.parentMessage = message;
     this.isThreadOpened = true;
     this.threadForMessageId = message.customIdName;
-    this.getThread(message.customIdName);
-  }
-
-  public getThread(customIdName: string) {
-    this.messageService.getThread(customIdName);
+    this.messageService.getThread(message.customIdName);
   }
 
   public closeThread() {

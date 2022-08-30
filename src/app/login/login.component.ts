@@ -24,14 +24,12 @@ export class LoginComponent implements OnInit {
     this.userService.showUserBox = false; // avoids opened user box after login
   }
 
-  //Register
-
   generateNewUser() {
     this.getUserData();
     this.loginService.deleteRegisterValues();
-    this.router.navigate(['/login'])
-    this.loginService.registration = false
-    alert('Thank you for your registration. You can now log in!')
+    this.router.navigate(['/login']);
+    this.loginService.registration = false;
+    alert('Thank you for your registration. You can now log in!');
   }
 
 
@@ -47,13 +45,13 @@ export class LoginComponent implements OnInit {
 
   //Login
 
-  checkUserLogin() {
+  checkUserLogin() { //TODO: bring to service
     this.checkUserData = this.firestore.collection("users",
       ref => ref.where("email", "==", this.loginService.loginEmail))
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         if (changes[0] && changes[0].password == this.loginService.loginPassword) {
-          this.successfulLogin(changes);
+          this.successfullLogin(changes);
         } else {
           this.failedLogin();
         }
@@ -67,11 +65,11 @@ export class LoginComponent implements OnInit {
       ref => ref.where("email", "==", 'guest'))
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
-        this.succsessfulGuestLogin(changes);
+        this.successfullGuestLogin(changes);
       })
   }
 
-  successfulLogin(changes) {
+  successfullLogin(changes) {
     this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX'])
     this.loginService.login = true;
     this.loginService.userId = changes[0].customIdName;
@@ -83,7 +81,7 @@ export class LoginComponent implements OnInit {
     this.loginService.deleteLoginValues();
   }
 
-  succsessfulGuestLogin(changes) {
+  successfullGuestLogin(changes) {
     this.router.navigate(['/channelmessages/8liMczKcm1Paer7sJbAX']);
     this.loginService.guestLogin = true;
     this.loginService.login = true;
