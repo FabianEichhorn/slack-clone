@@ -28,10 +28,24 @@ export class MessageService implements OnDestroy {
 
   public getFromFirebase(messageType: string, id: string | null) {
     if (messageType == 'channelMessages') {
-      this.getChannelMessageFromFirebase(id);
+      this.getMessageFromFirebase(id, 'channelMessages');
     } else if (messageType == 'directMessages') {
-      this.getDirectMessageFromFirebase(id);
+      this.getMessageFromFirebase(id, 'directMessages');
     }
+  }
+
+  private getMessageFromFirebase(id: string | null, collectionIdentifier: string) {
+    this.firestore
+      .collection(collectionIdentifier, ref => ref
+        .where('channelId', '==', id)
+      )
+      .valueChanges({ idField: 'customIdName' })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((changes: any) => {
+        this.messages = changes;
+        this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
+        this.isLoading = false;
+      });
   }
 
   // TODO: simplify code
