@@ -12,6 +12,7 @@ export class DialogAddChannelComponent {
   constructor(public dialogRef: MatDialogRef<DialogAddChannelComponent>) { }
 
   onNoClick(): void {
+    this.channelName = null;
     this.dialogRef.close();
   }
 

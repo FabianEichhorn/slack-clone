@@ -7,6 +7,6 @@
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onNoClick()" [mat-dialog-close]="channelName">Cancel</button>
     <button mat-button color="primary" [mat-dialog-close]="channelName" cdkFocusInitial>Add channel</button>
 </div>
