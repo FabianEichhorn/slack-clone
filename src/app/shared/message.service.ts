@@ -23,50 +23,20 @@ export class MessageService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next();
-    console.log('service wird zerstört');
   }
 
   public getFromFirebase(messageType: string, id: string | null) {
     if (messageType == 'channelMessages') {
-      this.getMessageFromFirebase(id, 'channelMessages');
+      this.getMessagesFromFirebase(id, 'channelMessages');
     } else if (messageType == 'directMessages') {
-      this.getMessageFromFirebase(id, 'directMessages');
+      this.getMessagesFromFirebase(id, 'directMessages');
     }
   }
 
-  private getMessageFromFirebase(id: string | null, collectionIdentifier: string) {
+  private getMessagesFromFirebase(id: string | null, collectionIdentifier: string) {
     this.firestore
       .collection(collectionIdentifier, ref => ref
         .where('channelId', '==', id)
-      )
-      .valueChanges({ idField: 'customIdName' })
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((changes: any) => {
-        this.messages = changes;
-        this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
-        this.isLoading = false;
-      });
-  }
-
-  // TODO: simplify code
-  private getChannelMessageFromFirebase(id: string | null) {
-    this.firestore
-      .collection("channelMessages", ref => ref
-        .where('channelId', '==', id)
-      )
-      .valueChanges({ idField: 'customIdName' })
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((changes: any) => {
-        this.messages = changes;
-        this.messages.sort((a, b) => { return a.timestamp - b.timestamp });
-        this.isLoading = false;
-      });
-  }
-
-  private getDirectMessageFromFirebase(id: string | null) {
-    this.firestore
-      .collection("directMessages", ref => ref
-        .where('channelId', '==', id) // gives back all directMessages where current logged in user is part of
       )
       .valueChanges({ idField: 'customIdName' })
       .pipe(takeUntil(this.destroy$))

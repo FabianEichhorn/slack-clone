@@ -8,7 +8,7 @@
 
     <div>
         <input [ngClass]="{'bold': messageService.selectedButton === 'bold', 'italic':messageService.selectedButton === 'italic',  'linethrough': messageService.selectedButton === 'linethrough', 'code': messageService.selectedButton === 'code'}" placeholder="Please enter your message..."
-            [(ngModel)]="messageService.message.text" type="text" (keyup.enter)="trySendMessage()">
+            [(ngModel)]="messageText" type="text" (keyup.enter)="trySendMessage()">
     </div>
 
     <div class="gadgets-box">
@@ -19,7 +19,7 @@
             <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo" (click)="fileUpload.click()">
                 insert_photo
             </mat-icon>
-            <span *ngIf="messageService.imageFile; else elseBlock">{{ messageService.imageFile.name }}</span>
+            <span *ngIf="imageFile; else elseBlock">{{ imageFile.name }}</span>
             <ng-template #elseBlock>No image added yet</ng-template>
             <mat-spinner [diameter]="20" *ngIf="messageService.isUploading"></mat-spinner>
         </div>
@@ -31,30 +31,3 @@
 
     <img (click)="trySendMessage()" src="./assets/icons/arrow-34-48.png" alt="senden">
 </div>
-
-
-<!-- <div>
-
-    <editor apiKey="fen4oy4telrpapv7223cg8ywdmh7netjtp231r0lo6y8y6i9" [(ngModel)]="channelmessage.text"></editor>
-
-    <div class="footer">
-        <div class="wrapperFiles">
-            <span>Files: </span>
-            <div class="file">
-                <span></span>
-                <mat-icon class="icon-delete">clear</mat-icon>
-                <mat-icon class="icon">loop</mat-icon>
-            </div>
-        </div>
-
-        <mat-icon class="icon icon-ImageUpload" aria-hidden="false" title="Add an image" aria-label="insert_photo">
-            insert_photo
-            <input type="file" multiple accept="*.jpg.png" />
-        </mat-icon>
-
-        <mat-icon class="icon" title="Cancel Message">cancel</mat-icon>
-
-        <mat-icon (click)="sendMessage()" class="icon" aria-hidden="false" title="Send Message" aria-label="send-icon">send</mat-icon>
-    </div>
-
-</div> -->

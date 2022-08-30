@@ -18,7 +18,8 @@ export class ChatInputComponent implements OnInit {
   public channelId: string | null = '';
   public userId: string | null = '';
   public isEmojiPickerVisible: any;
-  public findUserId: any;
+  public messageText: string = '';
+  public imageFile: File | null = null;
 
 
   constructor(
@@ -44,19 +45,31 @@ export class ChatInputComponent implements OnInit {
     if (this.messageService.isUploading) {
       this.openSnackBar('Please wait until upload is completed.', 'close');
     }
-    else if (this.messageService.message.text != '' || this.messageService.imageFile != null) {
-      this.getRightUserId();
-      this.messageService.message.channelId = this.channelId;
-      this.messageService.message.textStyle = this.messageService.selectedButton;
-      this.messageService.message.timestamp = new Date().getTime();
-      this.messageService.post(this.routerUrl, this.postInThreadOfMessage);
+    else if (this.messageText != '' || this.messageService.imageFile != null) {
+      this.sendMessage();
     } else {
       this.openSnackBar('Please insert a text or an image.', 'close');
     }
   }
 
+  private sendMessage() {
+    this.getRightUserId();
+    this.messageService.message.text = this.messageText;
+    this.messageService.imageFile = this.imageFile;
+    this.messageService.message.channelId = this.channelId;
+    this.messageService.message.textStyle = this.messageService.selectedButton;
+    this.messageService.message.timestamp = new Date().getTime();
+    this.messageService.post(this.routerUrl, this.postInThreadOfMessage);
+    this.resetInputs();
+  }
+
+  private resetInputs() {
+    this.messageText = '';
+    this.imageFile = null;
+  }
+
   public addEmoji(event: any) {
-    this.messageService.message.text = `${this.messageService.message.text}${event.emoji.native}`;
+    this.messageText = `${this.messageText}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
   }
 
@@ -65,7 +78,7 @@ export class ChatInputComponent implements OnInit {
   }
 
   public onFileSelected(event) {
-    this.messageService.imageFile = event.target.files[0]; // in the event we can find out the filename of selectedImage
+    this.imageFile = event.target.files[0]; // in the event we can find out the filename of selectedImage
   }
 
   private getRightUserId() {
